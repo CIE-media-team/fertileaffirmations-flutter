@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xff4F694C),
+          primaryColorDark: Color(0xff3B4429),
           fontFamily: 'primary'),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -40,7 +41,7 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final String text = ' '; 
+  final String text = 'I love myself I love myself I love myself I love myself I love myself I love myself I love myself I love myself'; 
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
