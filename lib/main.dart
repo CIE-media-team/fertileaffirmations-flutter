@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Fertile Affirmations',
       theme: ThemeData(
           // This is the theme of your application.
           //
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xff4F694C),
           primaryColorDark: Color(0xff3B4429),
           fontFamily: 'primary'),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "Fertile Affirmations"),
     );
   }
 }
@@ -43,25 +43,24 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  final String text = 'I love myself I love myself I love myself I love myself I love myself I love myself I love myself I love myself'; 
-
+  final String text = 'I love myself ';
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: Text(widget.title),
+            title: Text('Fertile Affirmations'),
           ),
           drawer: MyNavigationDrawer(),
           body: Center(
@@ -111,11 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
               
             
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
