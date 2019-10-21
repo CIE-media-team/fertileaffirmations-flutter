@@ -33,34 +33,16 @@ return Scaffold(
                   ),
                 ),
                 Image.asset('assets/images/cardblank.png'),
-                Padding(padding: EdgeInsets.all(20),
       
                 
-                      child: AutoSizeText(
-                          
-                            
-                      widget.text,
-                  minFontSize: 20,
-                  maxFontSize: 50,
-                  
-                  style: TextStyle(fontFamily: "fancy", fontSize: 60),
-                  textAlign: TextAlign.center,
-                ))
           ]
               
             
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
 
-  }
-}
 

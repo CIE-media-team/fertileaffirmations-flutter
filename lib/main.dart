@@ -1,5 +1,6 @@
 //Kinsley Sigmund and Dylan Woodworth 
 //Peanuts
+import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -76,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // the App.build method, and use it to set our appbar title.
             title: Text(widget.title),
           ),
+          drawer: MyNavigationDrawer(),
           body: Center(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
