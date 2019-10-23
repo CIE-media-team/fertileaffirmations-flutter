@@ -1,11 +1,27 @@
+import 'dart:math';
+
 import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/card-screen.dart';
+import 'package:fertile_affirmations/custom-affirmation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'select-goddess.dart';
 import 'collection-screen.dart';
 
 class MyNavigationDrawer extends StatelessWidget {
+  
+  //Later, cards will be all cards in the database, not hardcoded.
+  List<String> cards = ["I have a body that is healthy, strong and ready to embrace my child.","I have a mind that is healthy, strong and ready to embrace my child."
+  "I am healing all that emerges as I walk through my journey toward parenthood.","I am living my life fully and completely.","I am fertile in all areas of my life.", "My mind, body and soul are filled with all the abundant energy I need to care for my child."];
+
+  int getCard(){  
+
+    var rng = new Random();
+    return rng.nextInt(cards.length);
+    
+
+
+  }
 
 
   @override
@@ -21,9 +37,9 @@ class MyNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(card: new CardClass(cardText: "First card"),), context),
+            menuItem("Affirmation", Icons.photo_library, MyCard(card: new CardClass(cardText: cards[getCard()]),), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
-            menuItem("Custom Affirmation", Icons.add, MyHomePage(), context), 
+            menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(), context), 
             menuItem("Remind Me", Icons.alarm, MyHomePage(), context), 
             menuItem("Reset", Icons.restore, MyHomePage(), context), 
