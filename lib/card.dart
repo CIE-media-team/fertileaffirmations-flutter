@@ -1,15 +1,13 @@
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'card-class.dart';
 
-class MyCard extends StatefulWidget {
-  MyCard({Key key}) : super(key: key);
+class MyCard extends StatelessWidget {
+  MyCard({Key key, @required this.card}) : super(key: key);
+  final CardClass card; 
+ 
 
-  @override
-  _MyCard createState() => _MyCard();
-}
-
-class _MyCard extends State<MyCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +33,7 @@ class _MyCard extends State<MyCard> {
           Padding(
               padding: EdgeInsets.all(20),
               child: AutoSizeText(
-                "hi",
+                card.cardText,
                 minFontSize: 20,
                 maxFontSize: 50,
                 style: TextStyle(fontFamily: "fancy", fontSize: 60),

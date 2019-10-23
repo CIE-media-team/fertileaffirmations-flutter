@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "card-class.dart";
 
 class Collection extends StatefulWidget {
   Collection({Key key}) : super(key: key);
@@ -8,6 +9,11 @@ class Collection extends StatefulWidget {
 }
 
 class _Collection extends State<Collection> {
+
+  // List<CardClass> allCards = new List<CardClass>().add(CardClass(cardID: 123, cardText: "hi", isDefault: true, isFavorite: false));
+  
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

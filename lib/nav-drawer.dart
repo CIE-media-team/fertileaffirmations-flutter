@@ -1,3 +1,4 @@
+import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/card.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
@@ -20,7 +21,7 @@ class MyNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(), context),
+            menuItem("Affirmation", Icons.photo_library, MyCard(card: new CardClass(cardText: "First card"),), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
             menuItem("Custom Affirmation", Icons.add, MyHomePage(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(), context), 
