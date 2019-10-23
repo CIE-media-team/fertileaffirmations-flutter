@@ -1,9 +1,9 @@
 import 'package:fertile_affirmations/card-class.dart';
-import 'package:fertile_affirmations/card.dart';
+import 'package:fertile_affirmations/card-screen.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'main-screen.dart';
 import 'select-goddess.dart';
-import 'collection.dart';
+import 'collection-screen.dart';
 
 class MyNavigationDrawer extends StatelessWidget {
 
