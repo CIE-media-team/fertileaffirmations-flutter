@@ -35,9 +35,9 @@ class MyCard extends StatelessWidget {
               child: AutoSizeText(
                 card.cardText,
                 minFontSize: 20,
-                maxFontSize: 50,
+                maxFontSize: 40,
                 maxLines: 5,
-                style: TextStyle(fontFamily: "fancy", fontSize: 50),
+                style: TextStyle(fontFamily: "fancy", fontSize: 40),
                 textAlign: TextAlign.center,
               ))
         ]),
