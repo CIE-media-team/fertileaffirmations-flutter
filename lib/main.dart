@@ -1,10 +1,14 @@
-//Kinsley Sigmund and Dylan Woodworth 
-//Peanuts
+
 import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 void main() => runApp(MyApp());
+
+enum Preference{ 
+  warm, 
+  porclain 
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,20 +21,22 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xff4F694C),
           primaryColorDark: Color(0xff3B4429),
           fontFamily: 'primary'),
-      home: MyHomePage(title: "Fertile Affirmations"),
+      home: MyHomePage(title: "Fertile Affirmations", preference: true,),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title, @required this.preference}) : super(key: key);
   final String title;
-  final String text = 'I love myself ';
+  final bool preference;  
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool preference; 
   // int _counter = 0;
 
   // void _incrementCounter() {
@@ -51,7 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: Text('Fertile Affirmations'),
+            backgroundColor: Colors.transparent ,
+            toolbarOpacity: 0,
           ),
           drawer: MyNavigationDrawer(),
           body: Center(
@@ -69,25 +76,30 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Image.asset('assets/images/noleaves2.png'),
                   ),
                 ),
-                Image.asset('assets/images/cardblank.png'),
-                Padding(padding: EdgeInsets.all(20),
-      
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset('assets/images/fertilelogo.png'),
+                    SizedBox(height: 5),
+                    Image.asset(getPreference()),
+                  ],
+
+                )
                 
-                      child: AutoSizeText(
-                          
-                            
-                      widget.text,
-                  minFontSize: 20,
-                  maxFontSize: 50,
-                  
-                  style: TextStyle(fontFamily: "fancy", fontSize: 60),
-                  textAlign: TextAlign.center,
-                ))
+               
           ]
               
             
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  String getPreference (){ 
+    if (preference == true){ 
+      return 'assets/images/porcelainfirst.png';
+    }
+    else{
+      return 'assets/images/warmfirst.png';
+    }
   }
 }

@@ -51,8 +51,8 @@ class CustomAffirmation extends StatelessWidget {
                       hintText: 'Enter text here and press submit to create your new card', 
                       hintMaxLines: 4,
                       
-                    // border: InputBorder.none,
-                      border: OutlineInputBorder(),
+                      border: InputBorder.none,
+                      // border: OutlineInputBorder(),
                       ),
                                       
                     //autofocus: true,
@@ -61,7 +61,7 @@ class CustomAffirmation extends StatelessWidget {
                     //+expands: true,
                     
                     maxLines: 8, minLines: 1,
-                    style: TextStyle(fontFamily: "fancy", fontSize: 45, height: 1.5),
+                    style: TextStyle(fontFamily: "fancy", fontSize: 30, height: 1.5),
                     
 
 
