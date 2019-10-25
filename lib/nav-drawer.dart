@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:fertile_affirmations/card-class.dart';
@@ -7,18 +8,20 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'select-goddess.dart';
 import 'collection-screen.dart';
+import 'package:flutter/foundation.dart';
+import 'card-class.dart';
+
 
 class MyNavigationDrawer extends StatelessWidget {
   
-  //Later, cards will be all cards in the database, not hardcoded.
-  List<String> cards = ["I have a body that is healthy, strong and ready to embrace my child.","I have a mind that is healthy, strong and ready to embrace my child."
-  "I am healing all that emerges as I walk through my journey toward parenthood.","I am living my life fully and completely.","I am fertile in all areas of my life.", "My mind, body and soul are filled with all the abundant energy I need to care for my child."];
-
-  int getCard(){  
-
+  //returns a random card stored in the text file
+  //Once we have the favorite/share button, we can just do a setState and update the boolean value for isFavorited.
+  CardClass getCard(){  
     var rng = new Random();
-    return rng.nextInt(cards.length);
-    
+    var cards = CardClass.getCards();
+
+    var num = rng.nextInt(cards.length);
+    return cards[num];
 
 
   }
@@ -37,7 +40,7 @@ class MyNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(card: new CardClass(cardText: cards[getCard()]),), context),
+            menuItem("Affirmation", Icons.photo_library, MyCard(card: getCard(),), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(), context), 

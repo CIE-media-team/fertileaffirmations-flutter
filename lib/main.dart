@@ -1,12 +1,200 @@
 //Kinsley Sigmund and Dylan Woodworth 
-//Peanuts
+import 'dart:async' show Future;
+
+import 'dart:math';
+import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+
+//This app will have 4 text files.
+//permanentcardsfile.txt -> This is stored in the resources folder. This contains the default cards. This file can be edited BUT it MUST retain its format. If you add a card, it will be seen upon
+//  next launch.
+//usercards.txt -> this is initially a blank file. This stores the user's created cards.
+//permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen.
+//allCards.txt -> This is refered to in the code as the "combined" file. It will consist of the permanentpreferencesfile + all user cards.
+
+
+
+void main(){
+
+  firstLaunch();
+  readCards();
+  
+  
+
+  
+  runApp(MyApp());
+
+  //resetApp();
+
+
+}
+
+
+//This method determines if the app has been opened before. If it hasn't, it creates a permanent backup file stored in the memory of the phone. This contains all 
+//default cards. It also creates a user file. The user file is loaded with all of the default cards. firstLaunch() is called everytime the app is opened, but its code
+//only executes once.
+void firstLaunch() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var first = (prefs.getBool('firstLaunch') ?? true);
+    prefs.setBool('firstLaunch', false);
+    var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
+
+    first=true;
+    if(first){
+      //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
+      writeFile("permanent",permcards.toString());
+      writeFile("permanentpreferences",permcards.toString());
+
+      writeFile("user","");
+    }
+    else{
+
+      
+      
+    }
+    var permcontents = await readContent("permanent");
+    var usercontents = await readContent("user");
+    var combinedcontents = permcontents + usercontents;
+    
+    //debugPrint(combinedcontents.toString());
+
+    writeFile("combined", combinedcontents);
+    readContent("combined");
+    
+
+}
+
+Future<String> get _localPath async {
+  final directory = await getApplicationDocumentsDirectory();
+  return directory.path;
+}
+
+Future<File> get _userFile async {
+  final path = await _localPath;
+  return File('$path/usercards.txt');
+}
+Future<File> get _permFile async {
+  final path = await _localPath;
+  return File('$path/permcards.txt');
+}
+Future<File> get _combinedFile async {
+  final path = await _localPath;
+  return File('$path/allCards.txt');
+}
+Future<File> get _permPreferencesFile async {
+  final path = await _localPath;
+  return File('$path/permPreferences.txt');
+}
+
+//If you want to read the userfile, set b as true. if you want to read the permanent file, set it as false. Returns all contents
+Future<String> readContent(String type) async {
+  try {
+    var file;
+    if(type.toLowerCase() == "user"){
+      file = await _userFile;
+    }
+    else if(type.toLowerCase() == "permanent"){
+      file = await _permFile;
+    }
+    else if(type.toLowerCase() == "combined"){
+      file = await _combinedFile;
+    }
+    else if(type.toLowerCase() == "permanentpreferences"){
+      file = await _permPreferencesFile;
+    }
+    // Read the file
+    var contents = await file.readAsString();
+    //debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
+    return contents;
+      
+      
+    // Returning the contents of the file
+  } catch (e) {
+    // If encountering an error, return
+    return 'Error trying to read the file.';
+  }
+}
+ 
+
+Future<File> writeFile(String type,var text) async {
+  var file;
+  if(type.toLowerCase() == "user"){
+    file = await _userFile;
+  }
+  else if(type.toLowerCase() == "permanent"){
+    file = await _permFile;
+  }
+  else{
+    file = await _combinedFile;
+  }
+  // Write the file
+  return file.writeAsString(text.toString());
+}
+
+
+
+void resetApp() async{
+
+
+}
+
+
+
+
+
+
+void readCards() async {
+  String s = await readContent("combined");
+  s = s.trim();
+  s = s.replaceAll("\n", "");
+  s = s.replaceAll("\r", "");
+
+  List<String> strings = s.split("&");
+  
+  List<CardClass> cards = new List((strings.length/4).ceil());
+  var i = 0;
+  var index = 0;
+  while(i <= strings.length-4){
+    //Verify file is being read correctly.    
+    cards[index] = new CardClass(strings[i], strings[i+1], strings[i+2], strings[i+3]);
+    debugPrint(cards[index].toString());
+    i+=4;
+    index+=1;
+
+
+
+
+  }
+
+
+
+}
+
+
+  
 
 class MyApp extends StatelessWidget {
+
+    
+
+  MyApp(){
+  }
+
+
+
+
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
