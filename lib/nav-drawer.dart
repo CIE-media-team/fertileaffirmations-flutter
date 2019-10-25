@@ -28,15 +28,15 @@ class MyNavigationDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        // color: Theme.of(context).primaryColor, 
+        
         decoration: BoxDecoration(
-          // color:Theme.of(context).primaryColor ,
-          image: DecorationImage(image: AssetImage('assets/images/noleaves2.png'), fit: BoxFit.fill),
-          border: null,
+          image: DecorationImage(image: AssetImage('assets/images/noleaves2.png'), fit: BoxFit.cover),
+          // border: Border(top: BorderSide.none, bottom: BorderSide.none)
         ),
         child: ListView(
           
           children: <Widget>[
+            Divider(),
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
             menuItem("Affirmation", Icons.photo_library, MyCard(card: new CardClass(cardText: cards[getCard()]),), context),
             menuItem("Collection", Icons.apps, Collection(), context), 

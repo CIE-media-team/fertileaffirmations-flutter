@@ -26,17 +26,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+// class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget { 
+
   MyHomePage({Key key, this.title, @required this.preference}) : super(key: key);
   final String title;
   final bool preference;  
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
 
-class _MyHomePageState extends State<MyHomePage> {
-  bool preference; 
+// class _MyHomePageState extends State<MyHomePage> {
+  // bool preference; 
   // int _counter = 0;
 
   // void _incrementCounter() {
@@ -53,22 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-        return Scaffold(
-          appBar: AppBar(
-            // Here we take the value from the MyHomePage object that was created by
-            // the App.build method, and use it to set our appbar title.
-            backgroundColor: Colors.transparent ,
-            toolbarOpacity: 0,
-          ),
-          drawer: MyNavigationDrawer(),
-          body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: Stack(
-              
-              alignment: AlignmentDirectional.center,
-              children: <Widget>[
-                Container(
+    return Stack(
+      children: <Widget>[
+        Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: FittedBox(
@@ -84,16 +73,68 @@ class _MyHomePageState extends State<MyHomePage> {
                     Image.asset(getPreference()),
                   ],
 
-                )
+                ),
                 
                
-          ]
-              
-            
+        
+      
+        Scaffold(
+          drawer: MyNavigationDrawer(),
+          backgroundColor: Colors.transparent,
+          appBar: new AppBar(
+            iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+          ),
+          body: new Container(
+            color: Colors.transparent,
+          ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ],
     );
   }
+
+        // return Scaffold(
+        //   appBar: AppBar(
+        //     // Here we take the value from the MyHomePage object that was created by
+        //     // the App.build method, and use it to set our appbar title.
+        //     backgroundColor: Colors.transparent ,
+        //     toolbarOpacity: 0,
+        //   ),
+        //   drawer: MyNavigationDrawer(),
+        //   body: Center(
+        //     // Center is a layout widget. It takes a single child and positions it
+        //     // in the middle of the parent.
+        //     child: Stack(
+              
+        //       alignment: AlignmentDirectional.center,
+        //       children: <Widget>[
+        //         Container(
+        //           width: MediaQuery.of(context).size.width,
+        //           height: MediaQuery.of(context).size.height,
+        //           child: FittedBox(
+        //             fit: BoxFit.cover,
+        //             child: Image.asset('assets/images/noleaves2.png'),
+        //           ),
+        //         ),
+        //         Column(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           children: <Widget>[
+        //             Image.asset('assets/images/fertilelogo.png'),
+        //             SizedBox(height: 5),
+        //             Image.asset(getPreference()),
+        //           ],
+
+        //         )
+                
+               
+        //   ]
+              
+            
+        // ),
+  //     ), // This trailing comma makes auto-formatting nicer for build methods.
+  //   );
+  // }
   String getPreference (){ 
     if (preference == true){ 
       return 'assets/images/porcelainfirst.png';
