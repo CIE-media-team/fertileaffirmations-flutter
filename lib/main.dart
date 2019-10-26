@@ -28,7 +28,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main(){
 
   firstLaunch();
-  readCards();
   
   
 
@@ -62,14 +61,14 @@ void firstLaunch() async{
       
       
     }
-    var permcontents = await readContent("permanent");
+    var permprefcontents = await readContent("permanentpreferences");
     var usercontents = await readContent("user");
-    var combinedcontents = permcontents + usercontents;
+    var combinedcontents = permprefcontents + usercontents;
     
     //debugPrint(combinedcontents.toString());
-
-    writeFile("combined", combinedcontents);
-    readContent("combined");
+    readCards(combinedcontents);
+    // writeFile("combined", combinedcontents);
+    // readContent("combined");
     
 
 }
@@ -153,8 +152,8 @@ void resetApp() async{
 
 
 
-void readCards() async {
-  String s = await readContent("combined");
+void readCards(String stringCards) async {
+  String s = stringCards;
   s = s.trim();
   s = s.replaceAll("\n", "");
   s = s.replaceAll("\r", "");
