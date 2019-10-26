@@ -48,7 +48,7 @@ void firstLaunch() async{
     var first = (prefs.getBool('firstLaunch') ?? true);
     prefs.setBool('firstLaunch', false);
     var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
-
+    //first=true;
     if(first){
       //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
       writeFile("permanent",permcards.toString());
@@ -113,7 +113,7 @@ Future<String> readContent(String type) async {
     }
     // Read the file
     var contents = await file.readAsString();
-    //debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
+    debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
     return contents;
       
       
@@ -133,8 +133,8 @@ Future<File> writeFile(String type,var text) async {
   else if(type.toLowerCase() == "permanent"){
     file = await _permFile;
   }
-  else{
-    file = await _combinedFile;
+  else if (type.toLowerCase() == "permanentpreferences"){
+    file = await _permPreferencesFile;
   }
   // Write the file
   return file.writeAsString(text.toString());
@@ -144,6 +144,21 @@ Future<File> writeFile(String type,var text) async {
 
 void resetApp() async{
 
+  
+
+}
+
+void save() async{
+  List l = CardClass.getPermPrefAndUserCards();
+
+  writeFile("permanentpreferences",l[0].toString());
+  writeFile("user",l[1].toString());
+  debugPrint("Saved the file!");
+
+  var permprefcontents = await readContent("permanentpreferences");
+  var usercontents = await readContent("user");
+  debugPrint("Perm pref contents: " + permprefcontents);
+  debugPrint("User contents: "+ usercontents);
 
 }
 
@@ -166,7 +181,7 @@ void readCards(String stringCards) async {
   while(i <= strings.length-4){
     //Verify file is being read correctly.    
     cards[index] = new CardClass(strings[i], strings[i+1], strings[i+2], strings[i+3]);
-    debugPrint(cards[index].toString());
+    //debugPrint(cards[index].toString());
     i+=4;
     index+=1;
 

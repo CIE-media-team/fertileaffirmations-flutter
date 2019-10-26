@@ -12,19 +12,9 @@ import 'package:flutter/foundation.dart';
 import 'card-class.dart';
 
 
+
 class MyNavigationDrawer extends StatelessWidget {
   
-  //returns a random card stored in the text file
-  //Once we have the favorite/share button, we can just do a setState and update the boolean value for isFavorited.
-  CardClass getCard(){  
-    var rng = new Random();
-    var cards = CardClass.getCards();
-
-    var num = rng.nextInt(cards.length);
-    return cards[num];
-
-
-  }
 
 
   @override
@@ -41,7 +31,7 @@ class MyNavigationDrawer extends StatelessWidget {
           children: <Widget>[
             Divider(),
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(card: getCard(),), context),
+            menuItem("Affirmation", Icons.photo_library, MyCard(card: CardClass.getRandomCard(),), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(preference: false,), context), 

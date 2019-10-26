@@ -1,8 +1,20 @@
+import 'package:fertile_affirmations/card-class.dart';
+
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-
+import 'main.dart';
 class CustomAffirmation extends StatelessWidget {
+
+  final myController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+  }
+
   
  
   final textController = TextEditingController(text: 'Enter your custom affirmation here.');
@@ -17,6 +29,11 @@ class CustomAffirmation extends StatelessWidget {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text('Fertile Affirmations'),
+        actions: <Widget>[
+          IconButton(
+            icon:Icon(Icons.check), 
+            onPressed: (){createCard();},)
+        ],
       ),
       drawer: MyNavigationDrawer(),
       body: Center(
@@ -42,6 +59,8 @@ class CustomAffirmation extends StatelessWidget {
                     textInputAction: TextInputAction.go,
                     keyboardType: TextInputType.multiline,
                     textAlignVertical: TextAlignVertical.center,
+                    controller: myController,
+
 
 
 
@@ -71,5 +90,12 @@ class CustomAffirmation extends StatelessWidget {
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+createCard(){
+    
+  new CardClass("57", myController.text, "false", "false");
+  save();
+  
+
   }
 }

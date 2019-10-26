@@ -1,56 +1,56 @@
-1&I have a body that is healthy, strong and ready to embrace my child&False&False&
-2&I have a mind that is healthy, strong and ready to embrace my child&False&False&
-3&I am healing all that emerges as I walk through my journey toward parenthood&False&False&
-4&I am living my life fully and completely&False&False&
-5&I am fertile in all areas of my life&False&False&
-6&My mind, body and soul are filled with all the abundant energy I need to care for my child&False&False&
-7&I love and respect my body unconditionally&False&False&
-8&I am worthy of my desires and dreams&False&False&
-9&I am part of a growing and loving family&False&False&
-10&I am creating the family of my dreams&False&False&
-11&I am celebrating each victory as I am closer to having a child of my own&False&False&
-12&I am bathed in peace with every breath I take&False&False&
-13&I am creating healthy boundaries with everyone around me&False&False&
-14&I am confident that my vision to have a child will become reality as my decision to achieve it has been made&False&False&
-15&I am visualizing my family picture, which motivates me to create it&False&False&
-16&I am slowing down to breathe&False&False&
-17&I am celebrating and welcoming my child into my life through any path it chooses to come to me&False&False&
-18&I am acknowledging the overwhelming stress of fear and worry, only to release it&False&False&
-19&My physical, emotional, sexual, spiritual and financial parts of self are in harmonious balance&False&False&
-20&I am trusting my journey as I emerge whole and well&False&False&
-21&I am kind and gentle with my spirit during this time of vulnerability&False&False&
-22&I am honoring my fertility journey with every breath I take&False&False&
-23&I am choosing to * BE * in the moment&False&False&
-24&I am surrounded by lover and support through my fertility journey&False&False&
-25&I am living in fertile abundance&False&False&
-26&I have everything I need to be a loving and successful parent&False&False&
-27&Acknowledge  Embrace  Walk Through!&False&False&
-28&I am acknowledging and embracing all thoughts and feelings related to my journey so I may walk through to release them&False&False&
-29&Clarify  Communicate  Create!&False&False&
-30&I am clarifying with self and others in order to build a bridge to productive communication, thus creating a healthier life and relationships&False&False&
-31&I am giving myself permission to take a break from trying to conceive...... be it a minute, day, week, or year&False&False&
-32&I am embracing any out of control feelings so that I may walk through and beyond them&False&False&
-33&I am releasing self blame and negative thought patterns by replacing them with self nurturing and positive affirmations&False&False&
-34&I am facing my fertility journey with optimism and realism&False&False&
-35&I am filled with patience through this journey&False&False&
-36&I am filled with positive energy as I open my heart and free myself of worry&False&False&
-37&I am safe from disappointment as I allow myself to feel it and release it&False&False&
-38&I am filled with hope&False&False&
-39&I am attracting a tiny new soul with every breath I take&False&False&
-40&I am nurturing my mind, body, and spirit with every breath I take&False&False&
-41&I am successfully navigating Assisted Reproductive Technology&False&False&
-42&I am the parent I was meant to be&False&False&
-43&I am living a life worth living with every breath I take&False&False&
-44&I am reclaiming sex for pleasure and recreation rather than procreation&False&False&
-45&I am taking time to grow and heal through each step of my fertility journey&False&False&
-46&I am lovingly and mindfully connected with my body and soul as I walk through my journey toward parenthood&False&False&
-47&I am filled with productive thoughts, feelings, and actions during my Two Week Wait&False&False&
-48&I am making healthy choices that enhance my fertility&False&False&
-49&My time to be a parent is now&False&False&
-50&I am releasing the What If and embracing the What Is&False&False&
-51&I am releasing the uncontrollable and taking action with the controllable in my journey toward parenthood&False&False&
-52&My womb is a healthy vessel of love and light&False&False&
-53&My fertility vibrates with energy and health&False&False&
-54&I am grateful for the financial resources that allow me to build my family&False&False&
-55&My child is here in perfect time&False&False&
-56&I am calling Ardousir, the Angel of Fertility, to support me with all aspects of conception, pregnancy, and childbirth&False&False&
+1&I have a body that is healthy, strong and ready to embrace my child&False&True&
+2&I have a mind that is healthy, strong and ready to embrace my child&False&True&
+3&I am healing all that emerges as I walk through my journey toward parenthood&False&True&
+4&I am living my life fully and completely&False&True&
+5&I am fertile in all areas of my life&False&True&
+6&My mind, body and soul are filled with all the abundant energy I need to care for my child&False&True&
+7&I love and respect my body unconditionally&False&True&
+8&I am worthy of my desires and dreams&False&True&
+9&I am part of a growing and loving family&False&True&
+10&I am creating the family of my dreams&False&True&
+11&I am celebrating each victory as I am closer to having a child of my own&False&True&
+12&I am bathed in peace with every breath I take&False&True&
+13&I am creating healthy boundaries with everyone around me&False&True&
+14&I am confident that my vision to have a child will become reality as my decision to achieve it has been made&False&True&
+15&I am visualizing my family picture, which motivates me to create it&False&True&
+16&I am slowing down to breathe&False&True&
+17&I am celebrating and welcoming my child into my life through any path it chooses to come to me&False&True&
+18&I am acknowledging the overwhelming stress of fear and worry, only to release it&False&True&
+19&My physical, emotional, sexual, spiritual and financial parts of self are in harmonious balance&False&True&
+20&I am trusting my journey as I emerge whole and well&False&True&
+21&I am kind and gentle with my spirit during this time of vulnerability&False&True&
+22&I am honoring my fertility journey with every breath I take&False&True&
+23&I am choosing to * BE * in the moment&False&True&
+24&I am surrounded by lover and support through my fertility journey&False&True&
+25&I am living in fertile abundance&False&True&
+26&I have everything I need to be a loving and successful parent&False&True&
+27&Acknowledge * Embrace * Walk Through!&False&True&
+28&I am acknowledging and embracing all thoughts and feelings related to my journey so I may walk through to release them&False&True&
+29&Clarify * Communicate * Create!&False&True&
+30&I am clarifying with self and others in order to build a bridge to productive communication, thus creating a healthier life and relationships&False&True&
+31&I am giving myself permission to take a break from trying to conceive...... be it a minute, day, week, or year&False&True&
+32&I am embracing any out of control feelings so that I may walk through and beyond them&False&True&
+33&I am releasing self blame and negative thought patterns by replacing them with self nurturing and positive affirmations&False&True&
+34&I am facing my fertility journey with optimism and realism&False&True&
+35&I am filled with patience through this journey&False&True&
+36&I am filled with positive energy as I open my heart and free myself of worry&False&True&
+37&I am safe from disappointment as I allow myself to feel it and release it&False&True&
+38&I am filled with hope&False&True&
+39&I am attracting a tiny new soul with every breath I take&False&True&
+40&I am nurturing my mind, body, and spirit with every breath I take&False&True&
+41&I am successfully navigating Assisted Reproductive Technology&False&True&
+42&I am the parent I was meant to be&False&True&
+43&I am living a life worth living with every breath I take&False&True&
+44&I am reclaiming sex for pleasure and recreation rather than procreation&False&True&
+45&I am taking time to grow and heal through each step of my fertility journey&False&True&
+46&I am lovingly and mindfully connected with my body and soul as I walk through my journey toward parenthood&False&True&
+47&I am filled with productive thoughts, feelings, and actions during my Two Week Wait&False&True&
+48&I am making healthy choices that enhance my fertility&False&True&
+49&My time to be a parent is now&False&True&
+50&I am releasing the What If and embracing the What Is&False&True&
+51&I am releasing the uncontrollable and taking action with the controllable in my journey toward parenthood&False&True&
+52&My womb is a healthy vessel of love and light&False&True&
+53&My fertility vibrates with energy and health&False&True&
+54&I am grateful for the financial resources that allow me to build my family&False&True&
+55&My child is here in perfect time&False&True&
+56&I am calling Ardousir, the Angel of Fertility, to support me with all aspects of conception, pregnancy, and childbirth&False&True&
