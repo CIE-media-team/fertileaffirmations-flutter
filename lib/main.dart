@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 //Kinsley Sigmund and Dylan Woodworth 
 import 'dart:async' show Future;
 
 import 'dart:math';
 import 'package:fertile_affirmations/card-class.dart';
-=======
-
->>>>>>> 7a09678381ebaf5832565b789905aa109049d38c
 import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -54,7 +50,6 @@ void firstLaunch() async{
     prefs.setBool('firstLaunch', false);
     var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
 
-    first=true;
     if(first){
       //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
       writeFile("permanent",permcards.toString());
