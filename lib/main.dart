@@ -144,7 +144,15 @@ Future<File> writeFile(String type,var text) async {
 
 void resetApp() async{
 
-  
+  var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
+
+  writeFile("user","");
+  writeFile("permanentpreferences",permcards);
+  readCards(permcards.toString());
+
+
+
+
 
 }
 
@@ -234,6 +242,7 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title, @required this.preference}) : super(key: key);
   final String title;
   final bool preference;  
+  
 
 //   @override
 //   _MyHomePageState createState() => _MyHomePageState();
