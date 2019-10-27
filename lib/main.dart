@@ -16,12 +16,11 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-//This app will have 4 text files.
+//This app will have 3 text files. 2 internal, and one in the resources folder.
 //permanentcardsfile.txt -> This is stored in the resources folder. This contains the default cards. This file can be edited BUT it MUST retain its format. If you add a card, it will be seen upon
 //  next launch.
 //usercards.txt -> this is initially a blank file. This stores the user's created cards.
-//permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen.
-//allCards.txt -> This is refered to in the code as the "combined" file. It will consist of the permanentpreferencesfile + all user cards.
+//permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen. IE the user favorites card #13, so we have to store that here.
 
 
 
@@ -45,15 +44,13 @@ void main(){
 //only executes once.
 void firstLaunch() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var first = (prefs.getBool('firstLaunch') ?? true);
-    prefs.setBool('firstLaunch', false);
-    var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
+    var first = (prefs.getBool('firstLaunch') ?? true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
+    prefs.setBool('firstLaunch', false); //set it to false after
+    var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt'); //this reads in the permcardsfile as a giant string
     //first=true;
-    if(first){
+    if(first){ //if it is the first run of the app, instantiate the user file and create the permanent preferences file with all default cards.
       //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
-      writeFile("permanent",permcards.toString());
       writeFile("permanentpreferences",permcards.toString());
-
       writeFile("user","");
     }
     else{
@@ -67,8 +64,7 @@ void firstLaunch() async{
     
     //debugPrint(combinedcontents.toString());
     readCards(combinedcontents);
-    // writeFile("combined", combinedcontents);
-    // readContent("combined");
+    
     
 
 }
@@ -82,10 +78,7 @@ Future<File> get _userFile async {
   final path = await _localPath;
   return File('$path/usercards.txt');
 }
-Future<File> get _permFile async {
-  final path = await _localPath;
-  return File('$path/permcards.txt');
-}
+
 Future<File> get _combinedFile async {
   final path = await _localPath;
   return File('$path/allCards.txt');
@@ -95,31 +88,27 @@ Future<File> get _permPreferencesFile async {
   return File('$path/permPreferences.txt');
 }
 
-//If you want to read the userfile, set b as true. if you want to read the permanent file, set it as false. Returns all contents
+
+//Will return the contents of either the user or permanentpreferences file.
 Future<String> readContent(String type) async {
   try {
     var file;
     if(type.toLowerCase() == "user"){
       file = await _userFile;
     }
-    else if(type.toLowerCase() == "permanent"){
-      file = await _permFile;
-    }
-    else if(type.toLowerCase() == "combined"){
-      file = await _combinedFile;
-    }
+    // else if(type.toLowerCase() == "permanent"){
+    //   file = await _permFile;
+    // }
+
     else if(type.toLowerCase() == "permanentpreferences"){
       file = await _permPreferencesFile;
     }
-    // Read the file
     var contents = await file.readAsString();
-    debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
+    //debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
     return contents;
       
       
-    // Returning the contents of the file
   } catch (e) {
-    // If encountering an error, return
     return 'Error trying to read the file.';
   }
 }
@@ -127,12 +116,11 @@ Future<String> readContent(String type) async {
 
 Future<File> writeFile(String type,var text) async {
   var file;
+
   if(type.toLowerCase() == "user"){
     file = await _userFile;
   }
-  else if(type.toLowerCase() == "permanent"){
-    file = await _permFile;
-  }
+
   else if (type.toLowerCase() == "permanentpreferences"){
     file = await _permPreferencesFile;
   }
@@ -144,11 +132,16 @@ Future<File> writeFile(String type,var text) async {
 
 void resetApp() async{
 
+  //read in the permcards file
   var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt');
 
+  //overwrite the user file, clearing the contents
   writeFile("user","");
+  //write all default values to the permanentpreferences file
   writeFile("permanentpreferences",permcards);
+  //clear the 'cards' list inside the CardClass class.
   CardClass.resetCards();
+  //Initialize all cards again.
   readCards(permcards.toString());
 
 
@@ -158,16 +151,19 @@ void resetApp() async{
 }
 
 void save() async{
+  //getPermPrefAndUserCards returns a list with 2 values. String values of permanent cards and string values of user cards.
   List l = CardClass.getPermPrefAndUserCards();
 
+  //Overwrite the permanentpreferences file with the updated cards
   writeFile("permanentpreferences",l[0].toString());
+  //Overwrite the user file with the updated cards
   writeFile("user",l[1].toString());
   debugPrint("Saved the file!");
 
-  var permprefcontents = await readContent("permanentpreferences");
-  var usercontents = await readContent("user");
-  debugPrint("Perm pref contents: " + permprefcontents);
-  debugPrint("User contents: "+ usercontents);
+  // var permprefcontents = await readContent("permanentpreferences");
+  // var usercontents = await readContent("user");
+  // debugPrint("Perm pref contents: " + permprefcontents);
+  // debugPrint("User contents: "+ usercontents);
 
 }
 
@@ -193,14 +189,8 @@ void readCards(String stringCards) async {
     //debugPrint(cards[index].toString());
     i+=4;
     index+=1;
-
-
-
-
+    
   }
-
-
-
 }
 
 

@@ -35,12 +35,13 @@ class CardClass {
 
 
   }
+  
   static List getCards(){
     return cards;
   }
   
  
-
+  //Needs to replicate EXACTLY how the cards are stored.
   String toString(){
     return(cardID+"&"+cardText.replaceAll("\n", "*")+"&"+isFavorite.toString()+"&"+isDefault.toString() + "&");
   }
@@ -54,6 +55,7 @@ class CardClass {
     }
     return s;
   }
+
   static List getPermPrefAndUserCards(){
     var permpref = "";
     var usercards = "";
@@ -77,10 +79,10 @@ class CardClass {
 //returns a random card stored in the text file
 //Once we have the favorite/share button, we can just do a setState and update the boolean value for isFavorited.
 
+
+
 static CardClass getRandomCard(){  
   final rng = new Random();
- // debugPrint(number.toString());
-  //debugPrint(cards.length.toString());
   CardClass c= cards[rng.nextInt(cards.length)];
   debugPrint(c.toString());
   return c;
@@ -88,6 +90,7 @@ static CardClass getRandomCard(){
 
   }
 
+  //resets cards list
   static void resetCards(){
     cards.clear();
   }
