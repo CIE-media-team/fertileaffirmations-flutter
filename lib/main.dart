@@ -205,8 +205,7 @@ class MyApp extends StatelessWidget {
 
     
 
-  MyApp(){
-  }
+  MyApp();
 
 
 

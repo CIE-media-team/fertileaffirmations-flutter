@@ -15,8 +15,6 @@ import 'main.dart';
 
 
 class MyNavigationDrawer extends StatelessWidget {
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class MyNavigationDrawer extends StatelessWidget {
         
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage('assets/images/noleaves2.png'), fit: BoxFit.cover),
-          // border: Border(top: BorderSide.none, bottom: BorderSide.none)
+          border: Border(top: BorderSide.none, bottom: BorderSide.none)
         ),
         child: ListView(
           
@@ -38,7 +36,7 @@ class MyNavigationDrawer extends StatelessWidget {
             menuItem("Favorites", Icons.favorite, MyHomePage(preference: false,), context), 
             menuItem("Remind Me", Icons.alarm, MyHomePage(preference: true,), context), 
             menuItem("Reset", Icons.restore, MyHomePage(preference: true,), context), 
-            menuItem("Select Your Goddess", Icons.people, MyHomePage(preference: true,), context), 
+            menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
             Divider(), 
             menuItem("Share", Icons.share, MyHomePage(preference: false,), context), 
             menuItem("Learn More", Icons.mail, MyHomePage(preference: false,), context), 
