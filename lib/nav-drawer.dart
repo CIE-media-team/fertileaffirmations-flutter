@@ -10,6 +10,7 @@ import 'select-goddess.dart';
 import 'collection-screen.dart';
 import 'package:flutter/foundation.dart';
 import 'card-class.dart';
+import 'main.dart';
 
 
 
@@ -57,6 +58,9 @@ class MyNavigationDrawer extends StatelessWidget {
               leading: Icon(icon),
               onTap: () {
                 Navigator.of(context).pop();
+                if(title == "Reset"){
+                  resetApp();
+                }
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => routeTo,)

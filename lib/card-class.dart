@@ -88,6 +88,10 @@ static CardClass getRandomCard(){
 
   }
 
+  static void resetCards(){
+    cards.clear();
+  }
+
 }
 
 

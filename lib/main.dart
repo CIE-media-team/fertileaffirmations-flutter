@@ -148,6 +148,7 @@ void resetApp() async{
 
   writeFile("user","");
   writeFile("permanentpreferences",permcards);
+  CardClass.resetCards();
   readCards(permcards.toString());
 
 
