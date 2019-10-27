@@ -4,14 +4,26 @@ import 'package:flutter/material.dart';
 import 'card-class.dart';
 
 class MyCard extends StatefulWidget {
-  MyCard({Key key, @required this.card}) : super(key: key);
-  final CardClass card;
+  MyCard({Key key}) : super(key: key);
 
   @override
   _MyCard createState() => _MyCard();
 }
 
 class _MyCard extends State<MyCard> {
+  int counter = 0;
+  CardClass c;
+  CardClass getRandomCard(){
+    if(counter == 0){
+      c = CardClass.getRandomCard();
+      counter++;
+      
+    }
+    else{
+
+    }
+    return c;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +57,7 @@ class _MyCard extends State<MyCard> {
                         child: Padding(
                             padding: EdgeInsets.all(40),
                             child: AutoSizeText(
-                              widget.card.cardText,
+                              getRandomCard().cardText,
                               minFontSize: 20,
                               maxFontSize: 40,
                               maxLines: 4,
@@ -66,7 +78,7 @@ class _MyCard extends State<MyCard> {
                       IconButton(
                         padding: EdgeInsets.all(0),
                         icon: Icon(
-                          widget.card.isFavorite
+                          getRandomCard().isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border,
                           size: (MediaQuery.of(context).size.height / 4) / 4,
@@ -93,10 +105,10 @@ class _MyCard extends State<MyCard> {
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite() {
     debugPrint("Favorite clicked!");
-    if (widget.card.isFavorite = false) {
-      widget.card.isFavorite = true;
+    if (getRandomCard().isFavorite = false) {
+      getRandomCard().isFavorite = true;
     } else {
-      widget.card.isFavorite = false;
+      getRandomCard().isFavorite = false;
     }
     setState(() {});
   }
