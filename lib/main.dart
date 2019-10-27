@@ -24,9 +24,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 
-void main(){
+Future main() async {
 
-  firstLaunch();
+  await firstLaunch();
   
   
 
@@ -42,12 +42,13 @@ void main(){
 //This method determines if the app has been opened before. If it hasn't, it creates a permanent backup file stored in the memory of the phone. This contains all 
 //default cards. It also creates a user file. The user file is loaded with all of the default cards. firstLaunch() is called everytime the app is opened, but its code
 //only executes once.
-void firstLaunch() async{
+
+Future firstLaunch() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var first = (prefs.getBool('firstLaunch') ?? true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
     prefs.setBool('firstLaunch', false); //set it to false after
     var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt'); //this reads in the permcardsfile as a giant string
-    //first=true;
+    first=true;
     if(first){ //if it is the first run of the app, instantiate the user file and create the permanent preferences file with all default cards.
       //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
       writeFile("permanentpreferences",permcards.toString());

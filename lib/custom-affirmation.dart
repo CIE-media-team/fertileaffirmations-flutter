@@ -99,4 +99,7 @@ class CustomAffirmation extends StatelessWidget {
     new CardClass("57", myController.text, "false", "false");
     save();
   }
+  
+
+
 }

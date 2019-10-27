@@ -16,6 +16,37 @@ import 'main.dart';
 
 class MyNavigationDrawer extends StatelessWidget {
 
+  Future<void> _ackAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Reset Application?'),
+        content: const Text('Pressing "ok" will clear all favorites and created cards. Are you sure?')
+        ,
+        actions: <Widget>[
+            FlatButton(
+            child: Text('Cancel'),
+            onPressed: () {
+            Navigator.of(context, rootNavigator: true).pop();
+            },
+          ),
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              
+            
+            Navigator.of(context, rootNavigator: true).pop();
+            },
+          ),
+        
+        ],
+      );
+    },
+  );
+}
+
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -30,7 +61,7 @@ class MyNavigationDrawer extends StatelessWidget {
           children: <Widget>[
             Divider(),
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(card: CardClass.getRandomCard(),), context),
+            menuItem("Affirmation", Icons.photo_library, MyCard(), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(preference: false,), context), 
@@ -54,11 +85,14 @@ class MyNavigationDrawer extends StatelessWidget {
                   fontSize: 18)),
               trailing: Icon(Icons.chevron_right),
               leading: Icon(icon),
-              onTap: () {
-                Navigator.of(context).pop();
+              onTap: () async {
                 if(title == "Reset"){
+                  await _ackAlert(context);
+
                   resetApp();
                 }
+                Navigator.of(context).pop();
+                
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => routeTo,)
