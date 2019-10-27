@@ -17,6 +17,10 @@ class Collection extends StatefulWidget {
 }
 
 class _Collection extends State<Collection> {
+
+  Size size(){
+    return (MediaQuery.of(context).size); 
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,21 +93,21 @@ class _Collection extends State<Collection> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1)),
+                  // decoration: BoxDecoration(
+                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerRight,
                   width: (MediaQuery.of(context).size.width / 2 - 30),
                   child: FlatButton(
-                    padding: EdgeInsets.only(
-                        left: 50, top: 20, bottom: 20, right: 20),
+                    // padding: EdgeInsets.only(
+                    //     left: 50, top: 20, bottom: 20, right: 20),
                     onPressed: () {},
                     child: Text("My Creations",
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1)),
+                  // decoration: BoxDecoration(
+                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.center,
                   width: (60),
                   child: IconButton(
@@ -116,13 +120,13 @@ class _Collection extends State<Collection> {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1)),
+                  // decoration: BoxDecoration(
+                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerLeft,
-                  width: (MediaQuery.of(context).size.width / 2 - 30),
+                  width: (size().width / 2 - 30),
                   child: FlatButton(
-                    padding: EdgeInsets.only(
-                        left: 20, top: 20, bottom: 20, right: 50),
+                    // padding: EdgeInsets.only(
+                    //     left: 20, top: 20, bottom: 20, right: 50),
                     onPressed: () {
                       Navigator.of(context).pop();
                       Navigator.push(
