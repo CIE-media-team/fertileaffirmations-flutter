@@ -4,13 +4,25 @@ import 'package:flutter/material.dart';
 import 'card-class.dart';
 
 class MyCardRandom extends StatefulWidget {
-  MyCardRandom({Key key) : super(key: key);
+  MyCardRandom({Key key}) : super(key: key);
 
   @override
   _MyCard createState() => _MyCard();
 }
 
 class _MyCard extends State<MyCardRandom> {
+  CardClass c;
+  int counter = 0;
+
+  CardClass getCard(){
+    if(counter == 0){
+      counter++;
+      c = CardClass.getRandomCard();
+
+    }
+    return c;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +56,7 @@ class _MyCard extends State<MyCardRandom> {
                         child: Padding(
                             padding: EdgeInsets.all(40),
                             child: AutoSizeText(
-                              widget.card.cardText,
+                              getCard().cardText,
                               minFontSize: 20,
                               maxFontSize: 40,
                               maxLines: 4,
@@ -65,7 +77,7 @@ class _MyCard extends State<MyCardRandom> {
                       IconButton(
                         padding: EdgeInsets.all(0),
                         icon: Icon(
-                          widget.card.isFavorite
+                          getCard().isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border,
                           size: (MediaQuery.of(context).size.height / 4) / 4,
@@ -92,10 +104,10 @@ class _MyCard extends State<MyCardRandom> {
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite() {
     debugPrint("Favorite clicked!");
-    if (widget.card.isFavorite = false) {
-      widget.card.isFavorite = true;
+    if (getCard().isFavorite = false) {
+      getCard().isFavorite = true;
     } else {
-      widget.card.isFavorite = false;
+      getCard().isFavorite = false;
     }
     setState(() {});
   }

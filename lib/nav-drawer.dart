@@ -6,6 +6,7 @@ import 'package:fertile_affirmations/card-screen.dart';
 import 'package:fertile_affirmations/custom-affirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:fertile_affirmations/main.dart';
+import 'card-screen-random.dart';
 import 'select-goddess.dart';
 import 'collection-screen.dart';
 import 'package:flutter/foundation.dart';
@@ -61,7 +62,7 @@ class MyNavigationDrawer extends StatelessWidget {
           children: <Widget>[
             Divider(),
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
-            menuItem("Affirmation", Icons.photo_library, MyCard(card:CardClass.getRandomCard()), context),
+            menuItem("Affirmation", Icons.photo_library, MyCardRandom(), context),
             menuItem("Collection", Icons.apps, Collection(), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, MyHomePage(preference: false,), context), 
