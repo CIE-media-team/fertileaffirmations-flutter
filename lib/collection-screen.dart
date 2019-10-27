@@ -9,7 +9,8 @@ import 'card-screen.dart';
 import 'custom-affirmation.dart';
 
 class Collection extends StatefulWidget {
-  Collection({Key key}) : super(key: key);
+  Collection({Key key, @required this.fave}) : super(key: key);
+  final bool fave;
 
   @override
   _Collection createState() => _Collection();
@@ -18,14 +19,26 @@ class Collection extends StatefulWidget {
 class _Collection extends State<Collection> {
   bool fave = false;
   bool creations = false;
+  bool firstrun = true;
   String creationsText = "My Creations";
   List cards = CardClass.getCards();
+  var faveCards = CardClass.getFavorites();
 
 
   Size size(){
     return (MediaQuery.of(context).size); 
   }
 
+  getCards(){
+    if(widget.fave && firstrun){
+      this.fave = true;
+      firstrun = false;
+      cards = faveCards;
+      return faveCards;
+    }
+
+    return cards;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +86,7 @@ class _Collection extends State<Collection> {
                               fit: BoxFit.cover,
                             ),
                             AutoSizeText(
-                              cards[position].cardText,
+                              getCards()[position].cardText,
                               // maxFontSize: 10,
                               minFontSize: 10,
                               maxLines: 4,
@@ -87,7 +100,7 @@ class _Collection extends State<Collection> {
                           ],
                         )));
               },
-              itemCount: cards.length,
+              itemCount: getCards().length,
             ),
           ),
           Container(
@@ -193,6 +206,9 @@ class _Collection extends State<Collection> {
     });
   }
   favoritesButton(){
+    // if(widget.fave && fave){
+    //   fave = false;
+    // }
     if(fave){
       cards = CardClass.getFavorites();
 
@@ -200,9 +216,7 @@ class _Collection extends State<Collection> {
     else{
       cards = CardClass.getCards();
     }
-    setState(() {
-      
-    });
+
   }
 
   getIcon(){

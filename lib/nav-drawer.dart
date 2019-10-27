@@ -63,9 +63,9 @@ class MyNavigationDrawer extends StatelessWidget {
             Divider(),
             menuItem("Instructions", Icons.info, SelectGoddess(), context), 
             menuItem("Affirmation", Icons.photo_library, MyCardRandom(), context),
-            menuItem("Collection", Icons.apps, Collection(), context), 
+            menuItem("Collection", Icons.apps, Collection(fave:false), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
-            menuItem("Favorites", Icons.favorite, MyHomePage(preference: false,), context), 
+            menuItem("Favorites", Icons.favorite, Collection(fave:true), context), 
             menuItem("Remind Me", Icons.alarm, MyHomePage(preference: true,), context), 
             menuItem("Reset", Icons.restore, MyHomePage(preference: true,), context), 
             menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
@@ -91,6 +91,9 @@ class MyNavigationDrawer extends StatelessWidget {
                   await _ackAlert(context);
 
                   resetApp();
+                }
+                if(title == "favorites"){
+
                 }
                 Navigator.of(context).pop();
                 
