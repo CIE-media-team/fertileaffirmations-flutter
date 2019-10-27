@@ -12,6 +12,16 @@ class MyCard extends StatefulWidget {
 }
 
 class _MyCard extends State<MyCard> {
+  getFaveIcon(){
+    //debugPrint(widget.card.isFavorite.toString());
+    if(widget.card.isFavorite){
+      return Icons.favorite;
+    }
+    else{
+      return Icons.favorite_border;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,9 +76,7 @@ class _MyCard extends State<MyCard> {
                       IconButton(
                         padding: EdgeInsets.all(0),
                         icon: Icon(
-                          widget.card.isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                          getFaveIcon(),
                           size: (MediaQuery.of(context).size.height / 4) / 4,
                         ),
                         color: Colors.red,
@@ -93,10 +101,10 @@ class _MyCard extends State<MyCard> {
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite() {
     debugPrint("Favorite clicked!");
-    if (widget.card.isFavorite = false) {
-      widget.card.isFavorite = true;
+    if (widget.card.isFavorite == false) {
+      widget.card.setFavorite(true);
     } else {
-      widget.card.isFavorite = false;
+      widget.card.setFavorite(false);
     }
     setState(() {});
   }

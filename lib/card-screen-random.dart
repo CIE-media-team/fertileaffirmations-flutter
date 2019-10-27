@@ -104,10 +104,10 @@ class _MyCard extends State<MyCardRandom> {
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite() {
     debugPrint("Favorite clicked!");
-    if (getCard().isFavorite = false) {
-      getCard().isFavorite = true;
+    if (getCard().isFavorite == false) {
+      getCard().setFavorite(true);
     } else {
-      getCard().isFavorite = false;
+      getCard().setFavorite(false);
     }
     setState(() {});
   }

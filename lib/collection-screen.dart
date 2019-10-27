@@ -10,17 +10,22 @@ import 'custom-affirmation.dart';
 
 class Collection extends StatefulWidget {
   Collection({Key key}) : super(key: key);
-  final List cards = CardClass.getCards();
 
   @override
   _Collection createState() => _Collection();
 }
 
 class _Collection extends State<Collection> {
+  bool fave = false;
+  bool creations = false;
+  List cards = CardClass.getCards();
+
 
   Size size(){
     return (MediaQuery.of(context).size); 
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,13 +55,13 @@ class _Collection extends State<Collection> {
                     child: FlatButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
-                          debugPrint(widget.cards[position].cardText);
+                          debugPrint(cards[position].cardText);
                           Navigator.of(context).pop();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MyCard(card: widget.cards[position])));
+                                      MyCard(card: cards[position])));
                         },
                         child: Stack(
                           alignment: Alignment.center,
@@ -67,7 +72,7 @@ class _Collection extends State<Collection> {
                               fit: BoxFit.cover,
                             ),
                             AutoSizeText(
-                              widget.cards[position].cardText,
+                              cards[position].cardText,
                               // maxFontSize: 10,
                               minFontSize: 10,
                               maxLines: 4,
@@ -81,7 +86,7 @@ class _Collection extends State<Collection> {
                           ],
                         )));
               },
-              itemCount: widget.cards.length,
+              itemCount: cards.length,
             ),
           ),
           Container(
@@ -100,7 +105,9 @@ class _Collection extends State<Collection> {
                   child: FlatButton(
                     // padding: EdgeInsets.only(
                     //     left: 50, top: 20, bottom: 20, right: 20),
-                    onPressed: () {},
+                    onPressed: () {
+                      myCreationsButton();
+                    },
                     child: Text("My Creations",
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
@@ -112,11 +119,23 @@ class _Collection extends State<Collection> {
                   width: (60),
                   child: IconButton(
                     icon: Icon(
-                      Icons.favorite_border,
+                      getIcon(),
                       color: Colors.red,
                       size: 30,
                     ),
-                    onPressed: () {},
+                    onPressed: (                 
+
+                    ) {
+                  
+                    setIcon();
+                    favoritesButton(); //this line HAS to be behind setIcon().
+
+
+
+
+                    setState(() {
+                      
+                    });},
                   ),
                 ),
                 Container(
@@ -147,5 +166,44 @@ class _Collection extends State<Collection> {
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  setIcon(){
+    fave = !fave;  
+  }
+
+
+  myCreationsButton(){
+    if(!creations){
+      cards = CardClass.getUserCards();
+      creations = true;
+    }
+    else{
+      cards = CardClass.getCards();
+    }
+    setState(() {
+      
+    });
+  }
+  favoritesButton(){
+    if(fave){
+      cards = CardClass.getFavorites();
+
+    }
+    else{
+      cards = CardClass.getCards();
+    }
+    setState(() {
+      
+    });
+  }
+
+  getIcon(){
+    if(fave){
+      return Icons.favorite;
+      
+    }
+    else{
+      return Icons.favorite_border;
+    }
   }
 }

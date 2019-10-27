@@ -97,6 +97,24 @@ static CardClass getRandomCard(){
   static void resetCards(){
     cards.clear();
   }
+  static List getFavorites(){
+    var l = [];
+    for(CardClass c in cards){
+      if(c.isFavorite){
+        l.add(c);
+      }
+    }
+    return l;
+  }
+  static List getUserCards(){
+    var l = [];
+    for(CardClass c in cards){
+      if(!c.isDefault){
+        l.add(c);
+      }
+    }
+    return l;
+  }
 
 }
 
