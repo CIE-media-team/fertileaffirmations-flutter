@@ -39,6 +39,9 @@ class CardClass {
   static List getCards(){
     return cards;
   }
+  void setFavorite(bool b){
+    this.isFavorite = b;
+  }
   
  
   //Needs to replicate EXACTLY how the cards are stored.
