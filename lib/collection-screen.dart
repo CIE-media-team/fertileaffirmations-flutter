@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "card-class.dart";
@@ -79,42 +81,62 @@ class _Collection extends State<Collection> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height /16,
+            height: MediaQuery.of(context).size.height / 16,
             width: MediaQuery.of(context).size.width,
             color: Theme.of(context).primaryColor,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerRight,
-                  width: MediaQuery.of(context).size.width/2-5,
-                  child:
-                FlatButton(
-                  onPressed: (){},
-                  child: Text("My Creations", style: TextStyle(color: Colors.white, fontSize: 20)),
-                ),),
+                  width: (MediaQuery.of(context).size.width / 2 - 30),
+                  child: FlatButton(
+                    padding: EdgeInsets.only(
+                        left: 50, top: 20, bottom: 20, right: 20),
+                    onPressed: () {},
+                    child: Text("My Creations",
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                  ),
+                ),
                 Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.center,
-                  width: 10, 
-                  child:
-                IconButton(
-                  icon: Icon(Icons.favorite_border, color: Colors.red,),
-                  onPressed: (){},
-                ),), 
+                  width: (60),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.favorite_border,
+                      color: Colors.red,
+                      size: 30,
+                    ),
+                    onPressed: () {},
+                  ),
+                ),
                 Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerLeft,
-                  width: MediaQuery.of(context).size.width/2-5,
-                  child:
-                FlatButton(
-                  onPressed: (){
-                    Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CustomAffirmation(),)
-                );},
-                  child: Text("Create Card", style: TextStyle(color: Colors.white, fontSize: 20),),
-                ),)
+                  width: (MediaQuery.of(context).size.width / 2 - 30),
+                  child: FlatButton(
+                    padding: EdgeInsets.only(
+                        left: 20, top: 20, bottom: 20, right: 50),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CustomAffirmation(),
+                          ));
+                    },
+                    child: Text(
+                      "Create Card",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                )
               ],
             ),
           )
