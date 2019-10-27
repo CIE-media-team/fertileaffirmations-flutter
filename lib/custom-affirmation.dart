@@ -96,8 +96,11 @@ class CustomAffirmation extends StatelessWidget {
   createCard() {
     //How are we going to determine what number? Have the user choose? Can we have 2 of the same number?
     //Need to add favorite button so we can store if it is a favorite or not.
-    new CardClass("57", myController.text, "false", "false");
-    save();
+    if(myController.text != ""){
+      new CardClass("57", myController.text, "false", "false");
+      save();
+    }
+
   }
   
 
