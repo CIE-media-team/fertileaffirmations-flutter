@@ -18,6 +18,7 @@ class Collection extends StatefulWidget {
 class _Collection extends State<Collection> {
   bool fave = false;
   bool creations = false;
+  String creationsText = "My Creations";
   List cards = CardClass.getCards();
 
 
@@ -107,8 +108,14 @@ class _Collection extends State<Collection> {
                     //     left: 50, top: 20, bottom: 20, right: 20),
                     onPressed: () {
                       myCreationsButton();
+                      if(creations){
+                        creationsText = "Back to Collection";
+                      }
+                      else{
+                        creationsText = "My Creations";
+                      }
                     },
-                    child: Text("My Creations",
+                    child: Text(creationsText,
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
@@ -179,6 +186,7 @@ class _Collection extends State<Collection> {
     }
     else{
       cards = CardClass.getCards();
+      creations = false;
     }
     setState(() {
       

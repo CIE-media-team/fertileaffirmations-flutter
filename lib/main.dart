@@ -48,7 +48,7 @@ Future firstLaunch() async{
     var first = (prefs.getBool('firstLaunch') ?? true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
     prefs.setBool('firstLaunch', false); //set it to false after
     var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt'); //this reads in the permcardsfile as a giant string
-    first=true;
+    //first=true;
     if(first){ //if it is the first run of the app, instantiate the user file and create the permanent preferences file with all default cards.
       //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
       writeFile("permanentpreferences",permcards.toString());
