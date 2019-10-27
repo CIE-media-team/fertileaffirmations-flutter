@@ -1,18 +1,20 @@
+import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "card-class.dart";
 import 'main.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'card-screen.dart';
+import 'custom-affirmation.dart';
 
 class Collection extends StatefulWidget {
   Collection({Key key}) : super(key: key);
-  final List cards = CardClass.getCards(); 
+  final List cards = CardClass.getCards();
 
   @override
   _Collection createState() => _Collection();
 }
 
 class _Collection extends State<Collection> {
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,76 +22,102 @@ class _Collection extends State<Collection> {
         title: Text("Collection"),
       ),
       body: Center(
-        child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Image.asset('assets/images/noleaves2.png'),
+        child: Column(children: <Widget>[
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 5,
+                  childAspectRatio: 50 / 75),
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, position) {
+                return Container(
+                    height: 100,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/noleaves2.png'),
+                            fit: BoxFit.fill),
+                        // border: Border.all(color: Colors.black, width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: FlatButton(
+                        padding: EdgeInsets.all(0),
+                        onPressed: () {
+                          debugPrint(widget.cards[position].cardText);
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MyCard(card: widget.cards[position])));
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: <Widget>[
+                            // Image.asset('assets/images/noleaves2.png'),
+                            Image.asset(
+                              'assets/images/cardblank.png',
+                              fit: BoxFit.cover,
+                            ),
+                            AutoSizeText(
+                              widget.cards[position].cardText,
+                              // maxFontSize: 10,
+                              minFontSize: 10,
+                              maxLines: 4,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColorDark,
+                                  fontFamily: "fancy",
+                                  fontSize: 4,
+                                  height: 1),
+                            )
+                          ],
+                        )));
+              },
+              itemCount: widget.cards.length,
             ),
           ),
-            ListView.builder(
-  itemBuilder: (context, position) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Container(
+            height: MediaQuery.of(context).size.height /16,
+            width: MediaQuery.of(context).size.width,
+            color: Theme.of(context).primaryColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 6.0),
-                  child: Text(
-                    widget.cards[position].cardText,
-                    style: TextStyle(
-                        fontSize: 22.0, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                // Padding(
-                //   padding:
-                //       const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 12.0),
-                //   child: Text(
-                //     cards[position],
-                //     style: TextStyle(fontSize: 18.0),
-                //   ),
-                // ),
+                Container(
+                  alignment: Alignment.centerRight,
+                  width: MediaQuery.of(context).size.width/2-5,
+                  child:
+                FlatButton(
+                  onPressed: (){},
+                  child: Text("My Creations", style: TextStyle(color: Colors.white, fontSize: 20)),
+                ),),
+                Container(
+                  alignment: Alignment.center,
+                  width: 10, 
+                  child:
+                IconButton(
+                  icon: Icon(Icons.favorite_border, color: Colors.red,),
+                  onPressed: (){},
+                ),), 
+                Container(
+                  alignment: Alignment.centerLeft,
+                  width: MediaQuery.of(context).size.width/2-5,
+                  child:
+                FlatButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CustomAffirmation(),)
+                );},
+                  child: Text("Create Card", style: TextStyle(color: Colors.white, fontSize: 20),),
+                ),)
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text(
-                    "5m",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.star_border,
-                      size: 35.0,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        Divider(
-          height: 2.0,
-          color: Colors.grey,
-        )
-      ],
-    );
-  },
-  itemCount: widget.cards.length,
-),
-          
+          )
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

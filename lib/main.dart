@@ -220,7 +220,8 @@ class MyApp extends StatelessWidget {
           
           primaryColor: Color(0xff4F694C),
           primaryColorDark: Color(0xff3B4429),
-          fontFamily: 'primary'),
+          fontFamily: 'primary', 
+          ),
       home: MyHomePage(title: "Fertile Affirmations", preference: true,),
     );
   }
