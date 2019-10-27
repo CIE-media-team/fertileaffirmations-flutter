@@ -31,6 +31,7 @@ class CustomAffirmation extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
+              if(myController.text != null){
               createCard();
               Navigator.of(context).pop();
               Navigator.push(
@@ -40,6 +41,18 @@ class CustomAffirmation extends StatelessWidget {
                       preference: true,
                     ),
                   ));
+            }
+            else{
+              Navigator.of(context).pop();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(
+                      preference: false,
+                    ),
+                  ));
+              
+            }
             },
           )
         ],

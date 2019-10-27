@@ -81,8 +81,11 @@ class _SelectGoddess extends State<SelectGoddess> {
                     SizedBox(
                       width: 5,
                     ),
+                    Expanded(child:
                     GestureDetector(
                         onTap: () {
+                          debugPrint("Porcelain");
+
                           Navigator.of(context).pop();
                           Navigator.push(
                               context,
@@ -96,7 +99,7 @@ class _SelectGoddess extends State<SelectGoddess> {
                           child:
                               Image.asset('assets/images/porcelainfirst.png'),
                         ))
-                  ],
+                    )],
                 )),
             SizedBox(height: MediaQuery.of(context).size.height / 12),
 
