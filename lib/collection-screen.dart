@@ -75,7 +75,7 @@ class _Collection extends State<Collection> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MyCard(position: position)));
+                                      MyCard(position: position, cards: getCards())));
                         },
                         child: Stack(
                           alignment: Alignment.center,

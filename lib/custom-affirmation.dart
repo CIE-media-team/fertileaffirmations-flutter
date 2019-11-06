@@ -5,6 +5,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
+/*
+
+Currently, when you hit done on the keyboard it launches a new custom affirmation screen and you 
+lose the text you just spend time typing out. We need to solve this bug to make the keyboard disappear when 
+when done is hit, then the check saves the card. 
+
+Inputting emojis in custom affirmation messes up the formatting of all of the cards. We need to either fix
+this or somehow not allow the users to save an emoji in their card. 
+*/
+
 class CustomAffirmation extends StatelessWidget {
   final myController = TextEditingController();
 
@@ -78,10 +88,16 @@ class CustomAffirmation extends StatelessWidget {
                   child: Center(
                       child: TextField(
                     textAlign: TextAlign.center,
-                    textInputAction: TextInputAction.go,
+                    textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.multiline,
                     textAlignVertical: TextAlignVertical.center,
+
                     controller: myController,
+                    // onSubmitted: (term){
+                    //   myController.clear();
+                    // },
+
+                  
 
                     decoration: InputDecoration(
                       hintText:
