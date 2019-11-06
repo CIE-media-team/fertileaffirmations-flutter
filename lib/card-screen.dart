@@ -4,20 +4,25 @@ import 'package:flutter/material.dart';
 import 'card-class.dart';
 
 class MyCard extends StatefulWidget {
-  MyCard({Key key, @required this.card}) : super(key: key);
+  MyCard({Key key, this.card, this.position}) : super(key: key);
   final CardClass card;
+  final int position;
+
 
   @override
   _MyCard createState() => _MyCard();
 }
 
 class _MyCard extends State<MyCard> {
-  getFaveIcon(){
+  List cards = CardClass.getCards();
+
+  getFaveIcon(int position) {
     //debugPrint(widget.card.isFavorite.toString());
-    if(widget.card.isFavorite){
+    // if (widget.card.isFavorite) {
+          if (cards[position].isFavorite) {
+
       return Icons.favorite;
-    }
-    else{
+    } else {
       return Icons.favorite_border;
     }
   }
@@ -43,68 +48,100 @@ class _MyCard extends State<MyCard> {
               fit: BoxFit.cover,
               image: AssetImage('assets/images/noleaves2.png'),
             ),
-            Column(children: <Widget>[
-              Stack(children: <Widget>[
-                Container(
-                    height: (MediaQuery.of(context).size.height / 4) * 3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('assets/images/cardblank.png'),
-                    )),
-                    child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.all(40),
-                            child: AutoSizeText(
-                              widget.card.cardText,
-                              minFontSize: 20,
-                              maxFontSize: 40,
-                              maxLines: 4,
-                              style: TextStyle(
-                                  fontFamily: "fancy",
-                                  fontSize: 40,
-                                  height: 1.3),
-                              textAlign: TextAlign.center,
-                            )))),
-              ]),
-              Container(
-                  height: (MediaQuery.of(context).size.height / 8),
-                  padding: EdgeInsets.all(0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      IconButton(
+            PageView.builder(
+              // child: Stack(children: <Widget>[
+              //   Container(
+              //       height: (MediaQuery.of(context).size.height / 4) * 3,
+              //       decoration: BoxDecoration(
+              //           image: DecorationImage(
+              //         image: AssetImage('assets/images/cardblank.png'),
+              //       )),
+              //       child: Center(
+              //           child: Padding(
+              //               padding: EdgeInsets.all(40),
+              //               child: AutoSizeText(
+              //                 widget.card.cardText,
+              //                 minFontSize: 20,
+              //                 maxFontSize: 40,
+              //                 maxLines: 4,
+              //                 style: TextStyle(
+              //                     fontFamily: "fancy",
+              //                     fontSize: 40,
+              //                     height: 1.3),
+              //                 textAlign: TextAlign.center,
+              //               )))),
+              // ])),
+              itemBuilder: (context, position) {
+                return Column(children: <Widget>[
+                  Stack(children: <Widget>[
+                    Container(
+                        height: (MediaQuery.of(context).size.height / 4) * 3,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                          image: AssetImage('assets/images/cardblank.png'),
+                        )),
+                        child: Center(
+                            child: Padding(
+                                padding: EdgeInsets.all(40),
+                                child: AutoSizeText(
+                                  cards[position].cardText,
+                                  minFontSize: 20,
+                                  maxFontSize: 40,
+                                  maxLines: 4,
+                                  style: TextStyle(
+                                      fontFamily: "fancy",
+                                      fontSize: 40,
+                                      height: 1.3),
+                                  textAlign: TextAlign.center,
+                                )))),]),
+                    Container(
+                        height: (MediaQuery.of(context).size.height / 8),
                         padding: EdgeInsets.all(0),
-                        icon: Icon(
-                          getFaveIcon(),
-                          size: (MediaQuery.of(context).size.height / 4) / 4,
-                        ),
-                        color: Colors.red,
-                        onPressed: () {
-                          
-                          // Function call to what happens when the favorite icon is pressed
-                          favorite();
-                        },
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      Icon(
-                        Icons.share,
-                        size: (MediaQuery.of(context).size.height / 4) / 4,
-                      ),
-                    ],
-                  ))
-            ]),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            IconButton(
+                              padding: EdgeInsets.all(0),
+                              icon: Icon(
+                                getFaveIcon(position),
+                                size: (MediaQuery.of(context).size.height / 4) /
+                                    4,
+                              ),
+                              color: Colors.red,
+                              onPressed: () {
+                                // Function call to what happens when the favorite icon is pressed
+                                favorite(position);
+                              },
+                            ),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width / 10),
+                            Icon(
+                              Icons.share,
+                              size:
+                                  (MediaQuery.of(context).size.height / 4) / 4,
+                            ),
+                          ],
+                        ))
+                  
+                ]);
+              },
+              itemCount: cards.length,
+            ),
           ])), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
   //need functionality here to write to the file to change the saved status/show the new icon!
-  void favorite() {
+  void favorite(int position) {
     debugPrint("Favorite clicked!");
-    if (widget.card.isFavorite == false) {
-      widget.card.setFavorite(true);
+// if (widget.card.isFavorite == false) {
+      if (cards[position].isFavorite == false) {
+      cards[position].setFavorite(true);
+      // widget.card.setFavorite(true);
     } else {
-      widget.card.setFavorite(false);
+      cards[position].setFavorite(true);
+      // widget.card.setFavorite(false);
     }
     setState(() {});
   }
