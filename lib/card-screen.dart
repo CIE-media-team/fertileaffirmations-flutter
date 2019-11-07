@@ -1,6 +1,3 @@
-
-
-
 import 'package:share/share.dart';
 
 import 'nav-drawer.dart';
@@ -9,16 +6,21 @@ import 'package:flutter/material.dart';
 import 'card-class.dart';
 import 'package:flip_card/flip_card.dart';
 
+GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
 class MyCard extends StatefulWidget {
-  MyCard({Key key, this.card, @required this.cards, @required this.position}) : super(key: key);
+  MyCard({Key key, this.card, @required this.cards, @required this.position})
+      : super(key: key);
   final CardClass card;
   final int position;
-  final List cards; 
-
+  final List cards;
 
   @override
   _MyCard createState() => _MyCard();
+}
+void main(List<String> args) {
+  //cardKey.currentState.toggleCard();
+
 }
 
 class _MyCard extends State<MyCard> {
@@ -27,15 +29,12 @@ class _MyCard extends State<MyCard> {
   getFaveIcon(int position) {
     //debugPrint(widget.card.isFavorite.toString());
     // if (widget.card.isFavorite) {
-          if (widget.cards[position].isFavorite) {
-
+    if (widget.cards[position].isFavorite) {
       return Icons.favorite;
     } else {
       return Icons.favorite_border;
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,75 +80,83 @@ class _MyCard extends State<MyCard> {
               //                 textAlign: TextAlign.center,
               //               )))),
               // ])),
-              controller: PageController(initialPage: widget.position, keepPage: true, viewportFraction: 1),
+              controller: PageController(
+                  initialPage: widget.position,
+                  keepPage: true,
+                  viewportFraction: 1),
               itemBuilder: (context, position) {
                 return Column(children: <Widget>[
                   Stack(children: <Widget>[
-                   FlipCard(back: 
+                    FlipCard(
+                        //key: cardKey,
+                        direction: FlipDirection.HORIZONTAL,
+                        back: Container(
+                            height:
+                                (MediaQuery.of(context).size.height / 4) * 3,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage('assets/images/cardblank.png'),
+                            )),
+                            child: Center(
+                                child: Padding(
+                                    padding: EdgeInsets.all(40),
+                                    child: AutoSizeText(
+                                        widget.cards[position].cardText,
+                                        minFontSize: 20,
+                                        maxFontSize: 40,
+                                        maxLines: 4,
+                                        style: TextStyle(
+                                            fontFamily: "fancy",
+                                            fontSize: 40,
+                                            height: 1.3),
+                                        textAlign: TextAlign.center)))),
+                        front: Container(
+                            height:
+                                (MediaQuery.of(context).size.height / 4) * 3,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/porcelain.png')),
+                            )))
+                  ]),
                   Container(
-                    height: (MediaQuery.of(context).size.height / 4) * 3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('assets/images/cardblank.png'),
-                    )),
-                    child: Center(
-                        child: Padding(
-                            padding: EdgeInsets.all(40),
-                            child: AutoSizeText(
-                              widget.cards[position].cardText,
-                              minFontSize: 20,
-                              maxFontSize: 40,
-                              maxLines: 4,
-                              style: TextStyle(
-                                  fontFamily: "fancy",
-                                  fontSize: 40,
-                                  height: 1.3),
-                              textAlign: TextAlign.center
-                            )))),
-                    front: Container(
-                    height: (MediaQuery.of(context).size.height / 4) * 3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage('assets/images/porcelain.png')),
-                )))]),
-                    Container(
-                        height: (MediaQuery.of(context).size.height / 8),
-                        padding: EdgeInsets.all(0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              padding: EdgeInsets.all(0),
-                              icon: Icon(
-                                getFaveIcon(position),
-                                size: (MediaQuery.of(context).size.height / 4) /
-                                    4,
-                              ),
-                              color: Colors.red,
-                              onPressed: () {
-                                // Function call to what happens when the favorite icon is pressed
-                                favorite(position);
-                              },
+                      height: (MediaQuery.of(context).size.height / 8),
+                      padding: EdgeInsets.all(0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          IconButton(
+                            padding: EdgeInsets.all(0),
+                            icon: Icon(
+                              getFaveIcon(position),
+                              size:
+                                  (MediaQuery.of(context).size.height / 4) / 4,
                             ),
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width / 10),
-                            IconButton(
-                              padding: EdgeInsets.all(0),
-                              icon: Icon(
-                                Icons.share,
-                                size: (MediaQuery.of(context).size.height / 4) /
-                                    4,
-                              ),
-                              //color: Colors.red,
-                              onPressed: () {
-                                // Function call to what happens when the favorite icon is pressed
-                                Share.share("Fertile Affirmations is a mindfullness based tool created to help motivate and support you during your family building journey. Check it out at:\nhttp://fertileaffirmations.com/");
-                              },
+                            color: Colors.red,
+                            onPressed: () {
+                              // Function call to what happens when the favorite icon is pressed
+                              favorite(position);
+                            },
+                          ),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width / 10),
+                          IconButton(
+                            padding: EdgeInsets.all(0),
+                            icon: Icon(
+                              Icons.share,
+                              size:
+                                  (MediaQuery.of(context).size.height / 4) / 4,
                             ),
-                          ],
-                        ))
-                  
+                            //color: Colors.red,
+                            onPressed: () {
+                              // Function call to what happens when the favorite icon is pressed
+                              Share.share(
+                                  "Fertile Affirmations is a mindfullness based tool created to help motivate and support you during your family building journey. Check it out at:\nhttp://fertileaffirmations.com/");
+                            },
+                          ),
+                        ],
+                      ))
                 ]);
               },
               itemCount: widget.cards.length,
@@ -160,13 +167,14 @@ class _MyCard extends State<MyCard> {
 
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite(int position) {
+
     debugPrint("Favorite clicked!");
 // if (widget.card.isFavorite == false) {
-      if (widget.cards[position].isFavorite == false) {
+    if (widget.cards[position].isFavorite == false) {
       widget.cards[position].setFavorite(true);
       // widget.card.setFavorite(true);
     } else {
-      widget.cards[position].setFavorite(true);
+      widget.cards[position].setFavorite(false);
       // widget.card.setFavorite(false);
     }
     setState(() {});
