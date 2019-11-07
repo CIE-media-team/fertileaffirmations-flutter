@@ -2,6 +2,9 @@ import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'card-class.dart';
+import 'package:share/share.dart';
+import 'package:flip_card/flip_card.dart';
+
 
 class MyCardRandom extends StatefulWidget {
   MyCardRandom({Key key}) : super(key: key);
@@ -46,6 +49,7 @@ class _MyCard extends State<MyCardRandom> {
             ),
             Column(children: <Widget>[
               Stack(children: <Widget>[
+                FlipCard(back: 
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 3,
                     decoration: BoxDecoration(
@@ -64,9 +68,14 @@ class _MyCard extends State<MyCardRandom> {
                                   fontFamily: "fancy",
                                   fontSize: 40,
                                   height: 1.3),
-                              textAlign: TextAlign.center,
+                              textAlign: TextAlign.center
                             )))),
-              ]),
+                    front: Container(
+                    height: (MediaQuery.of(context).size.height / 4) * 3,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/images/porcelain.png')),
+                )))]),
               Container(
                   height: (MediaQuery.of(context).size.height / 8),
                   padding: EdgeInsets.all(0),
@@ -90,10 +99,19 @@ class _MyCard extends State<MyCardRandom> {
                         },
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 10),
-                      Icon(
-                        Icons.share,
-                        size: (MediaQuery.of(context).size.height / 4) / 4,
-                      ),
+                      IconButton(
+                              padding: EdgeInsets.all(0),
+                              icon: Icon(
+                                Icons.share,
+                                size: (MediaQuery.of(context).size.height / 4) /
+                                    4,
+                              ),
+                              //color: Colors.red,
+                              onPressed: () {
+                                // Function call to what happens when the favorite icon is pressed
+                                Share.share("I just received my Fertile Affirmation. You can too at fertileaffirmations.com!");
+                              },
+                            ),
                     ],
                   ))
             ]),

@@ -1,10 +1,14 @@
 
 
 
+import 'package:share/share.dart';
+
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'card-class.dart';
+import 'package:flip_card/flip_card.dart';
+
 
 class MyCard extends StatefulWidget {
   MyCard({Key key, this.card, @required this.cards, @required this.position}) : super(key: key);
@@ -81,26 +85,33 @@ class _MyCard extends State<MyCard> {
               itemBuilder: (context, position) {
                 return Column(children: <Widget>[
                   Stack(children: <Widget>[
-                    Container(
-                        height: (MediaQuery.of(context).size.height / 4) * 3,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage('assets/images/cardblank.png'),
-                        )),
-                        child: Center(
-                            child: Padding(
-                                padding: EdgeInsets.all(40),
-                                child: AutoSizeText(
-                                  widget.cards[position].cardText,
-                                  minFontSize: 20,
-                                  maxFontSize: 40,
-                                  maxLines: 4,
-                                  style: TextStyle(
-                                      fontFamily: "fancy",
-                                      fontSize: 40,
-                                      height: 1.3),
-                                  textAlign: TextAlign.center,
-                                )))),]),
+                   FlipCard(back: 
+                  Container(
+                    height: (MediaQuery.of(context).size.height / 4) * 3,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/images/cardblank.png'),
+                    )),
+                    child: Center(
+                        child: Padding(
+                            padding: EdgeInsets.all(40),
+                            child: AutoSizeText(
+                              widget.cards[position].cardText,
+                              minFontSize: 20,
+                              maxFontSize: 40,
+                              maxLines: 4,
+                              style: TextStyle(
+                                  fontFamily: "fancy",
+                                  fontSize: 40,
+                                  height: 1.3),
+                              textAlign: TextAlign.center
+                            )))),
+                    front: Container(
+                    height: (MediaQuery.of(context).size.height / 4) * 3,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/images/porcelain.png')),
+                )))]),
                     Container(
                         height: (MediaQuery.of(context).size.height / 8),
                         padding: EdgeInsets.all(0),
@@ -123,10 +134,18 @@ class _MyCard extends State<MyCard> {
                             ),
                             SizedBox(
                                 width: MediaQuery.of(context).size.width / 10),
-                            Icon(
-                              Icons.share,
-                              size:
-                                  (MediaQuery.of(context).size.height / 4) / 4,
+                            IconButton(
+                              padding: EdgeInsets.all(0),
+                              icon: Icon(
+                                Icons.share,
+                                size: (MediaQuery.of(context).size.height / 4) /
+                                    4,
+                              ),
+                              //color: Colors.red,
+                              onPressed: () {
+                                // Function call to what happens when the favorite icon is pressed
+                                Share.share("Fertile Affirmations is a mindfullness based tool created to help motivate and support you during your family building journey. Check it out at:\nhttp://fertileaffirmations.com/");
+                              },
                             ),
                           ],
                         ))

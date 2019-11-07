@@ -17,8 +17,10 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  flip_card: ^0.4.4
+  share: ^0.6.3+1
   shared_preferences: ^0.5.4
-
+  url_launcher: ^5.0.1
   path_provider: ^0.5.0+1
   auto_size_text: ^2.1.0
   flutter:

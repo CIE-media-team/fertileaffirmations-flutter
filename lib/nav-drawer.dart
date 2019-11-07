@@ -12,6 +12,9 @@ import 'collection-screen.dart';
 import 'package:flutter/foundation.dart';
 import 'card-class.dart';
 import 'main.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share/share.dart';
+
 
 
 
@@ -70,9 +73,9 @@ class MyNavigationDrawer extends StatelessWidget {
             menuItem("Reset", Icons.restore, MyHomePage(preference: true,), context), 
             menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
             Divider(), 
-            menuItem("Share", Icons.share, MyHomePage(preference: false,), context), 
-            menuItem("Learn More", Icons.mail, MyHomePage(preference: false,), context), 
-            menuItem("Purchase Deck", Icons.shopping_cart, MyHomePage(preference: false,), context)
+            menuItem("Share", Icons.share, null, context), 
+            menuItem("Learn More", Icons.mail, null, context), 
+            menuItem("Purchase Deck", Icons.shopping_cart, null, context)
           ],
         ),
       ),
@@ -92,16 +95,37 @@ class MyNavigationDrawer extends StatelessWidget {
 
                   resetApp();
                 }
-                if(title == "favorites"){
+                
+                else if (title == "Share"){
+                  Share.share('Fertile Affirmations is a mindfullness based tool created to help motivate and support you during your family building journey. Check it out at:\nhttp://fertileaffirmations.com/');
 
                 }
-                Navigator.of(context).pop();
+                else if(title =="Learn More"){
+                  _launchURL("https://fertileaffirmations.com");
                 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => routeTo,)
-                );
+                }
+                else if(title =="Purchase Deck"){
+                  _launchURL("https://fertileaffirmations.com/shop");
+                
+                }
+
+                if(routeTo != null){
+                  Navigator.of(context).pop();
+                  
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => routeTo,)
+                  );
+              }
               },
             );
+}
+  _launchURL(url) async {
+    
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
 }
