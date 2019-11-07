@@ -15,15 +15,13 @@ Inputting emojis in custom affirmation messes up the formatting of all of the ca
 this or somehow not allow the users to save an emoji in their card. 
 */
 
-class CustomAffirmation extends StatelessWidget {
-  final myController = TextEditingController();
+class CustomAffirmation extends StatefulWidget {
+  @override
+  _CustomAffirmationState createState() => _CustomAffirmationState();
+}
 
-  //Do not delete this code, IDK if we need it or not.
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   myController.dispose();
-  // }
+class _CustomAffirmationState extends State<CustomAffirmation> {
+  final myController = TextEditingController();
 
   final textController =
       TextEditingController(text: 'Enter your custom affirmation here.');
@@ -131,7 +129,4 @@ class CustomAffirmation extends StatelessWidget {
     }
 
   }
-  
-
-
 }
