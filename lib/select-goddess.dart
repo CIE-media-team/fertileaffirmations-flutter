@@ -55,8 +55,7 @@ class _SelectGoddess extends State<SelectGoddess> {
                     //         ));
                     //   },
                     // child:
-                    Expanded(
-                      child: Container(
+                    Container(
                         width: MediaQuery.of(context).size.width / 2 - 2.5,
                         // decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/warmfirst.png')),),
                         child: ConstrainedBox(
@@ -77,14 +76,14 @@ class _SelectGoddess extends State<SelectGoddess> {
                           ),
                         ),
                       ),
-                    ),
+                    
                     SizedBox(
                       width: 5,
                     ),
-                    Expanded(child:
+                    
                     GestureDetector(
                         onTap: () {
-                          debugPrint("Porcelain");
+                          debugPrint("GODDESS: Porcelain");
 
                           Navigator.of(context).pop();
                           Navigator.push(
@@ -99,7 +98,7 @@ class _SelectGoddess extends State<SelectGoddess> {
                           child:
                               Image.asset('assets/images/porcelainfirst.png'),
                         ))
-                    )],
+                    ],
                 )),
             SizedBox(height: MediaQuery.of(context).size.height / 12),
 
@@ -113,18 +112,18 @@ class _SelectGoddess extends State<SelectGoddess> {
             // SizedBox(height: MediaQuery.of(context).size.height / 6),
           ],
         ),
-        Scaffold(
-          drawer: MyNavigationDrawer(),
-          backgroundColor: Colors.transparent,
-          appBar: new AppBar(
-            iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          ),
-          body: new Container(
-            color: Colors.transparent,
-          ),
-        ),
+        // Scaffold(
+        //   drawer: MyNavigationDrawer(),
+        //   backgroundColor: Colors.transparent,
+        //   appBar: new AppBar(
+        //     iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
+        //     backgroundColor: Colors.transparent,
+        //     elevation: 0.0,
+        //   ),
+        //   body: new Container(
+        //     color: Colors.transparent,
+        //   ),
+        // ),
       ],
     );
   }

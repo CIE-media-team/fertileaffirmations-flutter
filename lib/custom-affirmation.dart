@@ -124,9 +124,16 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
     //How are we going to determine what number? Have the user choose? Can we have 2 of the same number?
     //Need to add favorite button so we can store if it is a favorite or not.
     if(myController.text != ""){
-      new CardClass("57", myController.text, "false", "false");
+      new CardClass(getNextNumber(), myController.text, "false", "false");
+      debugPrint(CardClass.getUserCards().toString());
       save();
     }
 
+  }
+
+  getNextNumber(){
+    int numcards = CardClass.getUserCards().length;
+    debugPrint("NextNumber: (100+numcards+1).toString()");
+    return (100+numcards+1).toString(); 
   }
 }
