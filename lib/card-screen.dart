@@ -1,5 +1,6 @@
 import 'package:share/share.dart';
 
+import 'collection-screen.dart';
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,16 @@ class _MyCard extends State<MyCard> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text('My Affirmation'),
+        automaticallyImplyLeading: true,
+        //`true` if you want Flutter to automatically add Back Button when needed,
+        //or `false` if you want to force your own back button every where
+        leading: IconButton(icon:Icon(Icons.arrow_back),
+          onPressed:() {
+            Navigator.pop(context);
+
+            return Navigator.push( context, MaterialPageRoute(builder: (context) => Collection(fave:false)));
+          },
+        )
       ),
       drawer: MyNavigationDrawer(),
       body: Center(

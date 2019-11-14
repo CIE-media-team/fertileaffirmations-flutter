@@ -350,6 +350,9 @@ class MyHomePage extends StatelessWidget {
       return 'assets/images/warmfirst.png';
     }
   }
+  bool getPreferenceValue(){
+    return this.preference;
+  }
 
 
 }
