@@ -19,6 +19,8 @@ import 'package:share/share.dart';
 
 
 class MyNavigationDrawer extends StatelessWidget {
+  Widget routeTo2;
+  
 
   Future<void> _ackAlert(BuildContext context) {
   return showDialog<void>(
@@ -33,11 +35,16 @@ class MyNavigationDrawer extends StatelessWidget {
             child: Text('Cancel'),
             onPressed: () {
             Navigator.of(context, rootNavigator: true).pop();
+            routeTo2=null;
+
             },
           ),
           FlatButton(
             child: Text('Ok'),
             onPressed: () {
+              resetApp();
+              routeTo2=MyHomePage(preference: true,);
+
               
             
             Navigator.of(context, rootNavigator: true).pop();
@@ -70,7 +77,7 @@ class MyNavigationDrawer extends StatelessWidget {
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, Collection(fave:true), context), 
             menuItem("Remind Me", Icons.alarm, MyHomePage(preference: true,), context), 
-            menuItem("Reset", Icons.restore, MyHomePage(preference: true,), context), 
+            menuItem("Reset", Icons.restore, null, context), 
             menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
             Divider(), 
             menuItem("Share", Icons.share, null, context), 
@@ -92,8 +99,8 @@ class MyNavigationDrawer extends StatelessWidget {
               onTap: () async {
                 if(title == "Reset"){
                   await _ackAlert(context);
+                  routeTo = this.routeTo2;
 
-                  resetApp();
                 }
                 
                 else if (title == "Share"){
