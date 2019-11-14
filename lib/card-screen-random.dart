@@ -80,7 +80,7 @@ class _MyCard extends State<MyCardRandom> {
                     height: (MediaQuery.of(context).size.height / 4) * 3,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage('assets/images/porcelain.png')),
+                      image: AssetImage(CardClass.getPreferenceImagePath())),
                 )))]),
               Container(
                   height: (MediaQuery.of(context).size.height / 8),
@@ -135,4 +135,6 @@ class _MyCard extends State<MyCardRandom> {
     }
     setState(() {});
   }
+
+    
 }

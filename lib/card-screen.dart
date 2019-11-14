@@ -127,7 +127,7 @@ class _MyCard extends State<MyCard> {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
-                                      'assets/images/porcelain.png')),
+                                      CardClass.getPreferenceImagePath())),
                             )))
                   ]),
                   Container(

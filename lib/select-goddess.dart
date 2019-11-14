@@ -1,3 +1,4 @@
+import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/main.dart';
 import "package:flutter/material.dart";
 import 'nav-drawer.dart';
@@ -64,6 +65,8 @@ class _SelectGoddess extends State<SelectGoddess> {
                             padding: EdgeInsets.all(0),
                             onPressed: () {
                               debugPrint("Warm");
+                              CardClass.setPreference(false);
+
                               Navigator.of(context).pop();
                               Navigator.push(
                                   context,
@@ -84,7 +87,8 @@ class _SelectGoddess extends State<SelectGoddess> {
                     GestureDetector(
                         onTap: () {
                           debugPrint("GODDESS: Porcelain");
-
+                          CardClass.setPreference(true);
+                             
                           Navigator.of(context).pop();
                           Navigator.push(
                               context,

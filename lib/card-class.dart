@@ -2,12 +2,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class CardClass {
   String cardText; 
   String cardID; 
   bool isFavorite = false; 
   bool isDefault = true;
   static List cards = [];
+  static bool preference;
   
 
   CardClass(String number, String text, String b, String isDefault)
@@ -114,6 +116,36 @@ static CardClass getRandomCard(){
       }
     }
     return l;
+  }
+
+  static bool getPreference(){
+    acquirePreference();
+    return preference;
+
+
+
+  }
+
+  static acquirePreference() async {
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    preference = (prefs.getBool('pref') ?? true);
+
+  }
+  static setPreference(bool b) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("pref", b);
+    preference = b;
+
+  }
+
+    static String getPreferenceImagePath (){ 
+    if (CardClass.getPreference() == true){ 
+      return 'assets/images/porcelainfirst.png';
+    }
+    else{
+      return 'assets/images/warmfirst.png';
+    }
   }
 
 

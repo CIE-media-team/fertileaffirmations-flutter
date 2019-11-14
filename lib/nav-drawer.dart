@@ -43,7 +43,7 @@ class MyNavigationDrawer extends StatelessWidget {
             child: Text('Ok'),
             onPressed: () {
               resetApp();
-              routeTo2=MyHomePage(preference: true,);
+              routeTo2=MyHomePage(preference: CardClass.getPreference(),);
 
               
             
@@ -76,7 +76,7 @@ class MyNavigationDrawer extends StatelessWidget {
             menuItem("Collection", Icons.apps, Collection(fave:false), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, Collection(fave:true), context), 
-            menuItem("Remind Me", Icons.alarm, MyHomePage(preference: true,), context), 
+            menuItem("Remind Me", Icons.alarm, MyHomePage(preference: CardClass.getPreference(),), context), 
             menuItem("Reset", Icons.restore, null, context), 
             menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
             Divider(), 

@@ -46,7 +46,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MyHomePage(
-                      preference: true,
+                      preference: CardClass.getPreference(),
                     ),
                   ));
             }
@@ -56,7 +56,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MyHomePage(
-                      preference: false,
+                      preference: CardClass.getPreference(),
                     ),
                   ));
               

@@ -51,6 +51,8 @@ Future firstLaunch() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var first = (prefs.getBool('firstLaunch') ?? true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
     prefs.setBool('firstLaunch', false); //set it to false after
+    bool pref = (prefs.getBool('pref')??true);
+    CardClass.setPreference(pref);
     var permcards = await rootBundle.loadString('assets/textfiles/permanentcardsfile.txt'); //this reads in the permcardsfile as a giant string
     //first=true;
     if(first){ //if it is the first run of the app, instantiate the user file and create the permanent preferences file with all default cards.
@@ -227,7 +229,7 @@ class MyApp extends StatelessWidget {
           primaryColorDark: Color(0xff3B4429),
           fontFamily: 'primary', 
           ),
-      home: MyHomePage(title: "Fertile Affirmations", preference: true,),
+      home: MyHomePage(title: "Fertile Affirmations", preference: CardClass.getPreference(),),
     );
   }
 }
@@ -277,7 +279,7 @@ class MyHomePage extends StatelessWidget {
                   children: <Widget>[
                     Image.asset('assets/images/fertilelogo.png'),
                     SizedBox(height: 5),
-                    Image.asset(getPreference()),
+                    Image.asset(CardClass.getPreferenceImagePath()),
                   ],
 
                 ),
@@ -342,17 +344,8 @@ class MyHomePage extends StatelessWidget {
   //     ), // This trailing comma makes auto-formatting nicer for build methods.
   //   );
   // }
-  String getPreference (){ 
-    if (preference == true){ 
-      return 'assets/images/porcelainfirst.png';
-    }
-    else{
-      return 'assets/images/warmfirst.png';
-    }
-  }
-  bool getPreferenceValue(){
-    return this.preference;
-  }
+
+ 
 
 
 }
