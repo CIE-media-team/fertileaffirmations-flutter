@@ -26,6 +26,26 @@ class _MyCard extends State<MyCardRandom> {
     return c;
   }
 
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => flip());
+  }
+
+
+  void flip() {
+    Future.delayed(const Duration(milliseconds: 700), () {
+      cardKey.currentState.toggleCard();
+
+
+  
+
+  });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +75,7 @@ class _MyCard extends State<MyCardRandom> {
             ),
             Column(children: <Widget>[
               Stack(children: <Widget>[
-                FlipCard(back: 
+                FlipCard(key:cardKey,back: 
                 Container(
                     height: (MediaQuery.of(context).size.height / 4) * 3,
                     decoration: BoxDecoration(

@@ -19,9 +19,9 @@ class MyCard extends StatefulWidget {
   @override
   _MyCard createState() => _MyCard();
 }
+
 void main(List<String> args) {
   //cardKey.currentState.toggleCard();
-
 }
 
 class _MyCard extends State<MyCard> {
@@ -41,20 +41,23 @@ class _MyCard extends State<MyCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('My Affirmation'),
-        automaticallyImplyLeading: true,
-        //`true` if you want Flutter to automatically add Back Button when needed,
-        //or `false` if you want to force your own back button every where
-        leading: IconButton(icon:Icon(Icons.arrow_back),
-          onPressed:() {
-            Navigator.pop(context);
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text('My Affirmation'),
+          automaticallyImplyLeading: true,
+          //`true` if you want Flutter to automatically add Back Button when needed,
+          //or `false` if you want to force your own back button every where
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
 
-            return Navigator.push( context, MaterialPageRoute(builder: (context) => Collection(fave:false)));
-          },
-        )
-      ),
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Collection(fave: false)));
+            },
+          )),
       drawer: MyNavigationDrawer(),
       body: Center(
           // Center is a layout widget. It takes a single child and positions it
@@ -99,36 +102,37 @@ class _MyCard extends State<MyCard> {
                 return Column(children: <Widget>[
                   Stack(children: <Widget>[
                     FlipCard(
-                        //key: cardKey,
-                        direction: FlipDirection.HORIZONTAL,
-                        back: Container(
-                            height:
-                                (MediaQuery.of(context).size.height / 4) * 3,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                              image: AssetImage('assets/images/cardblank.png'),
-                            )),
-                            child: Center(
-                                child: Padding(
-                                    padding: EdgeInsets.all(40),
-                                    child: AutoSizeText(
-                                        widget.cards[position].cardText,
-                                        minFontSize: 20,
-                                        maxFontSize: 40,
-                                        maxLines: 4,
-                                        style: TextStyle(
-                                            fontFamily: "fancy",
-                                            fontSize: 40,
-                                            height: 1.3),
-                                        textAlign: TextAlign.center)))),
-                        front: Container(
-                            height:
-                                (MediaQuery.of(context).size.height / 4) * 3,
-                            decoration: BoxDecoration(
+                      //key: cardKey,
+                      direction: FlipDirection.HORIZONTAL,
+                      front: Container(
+                          height: (MediaQuery.of(context).size.height / 4) * 3,
+                          decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(
-                                      CardClass.getPreferenceImagePath())),
-                            )))
+                            image: AssetImage('assets/images/cardblank.png'),
+                          )),
+                          child: Center(
+                              child: Padding(
+                                  padding: EdgeInsets.all(40),
+                                  child: AutoSizeText(
+                                      widget.cards[position].cardText,
+                                      minFontSize: 20,
+                                      maxFontSize: 40,
+                                      maxLines: 4,
+                                      style: TextStyle(
+                                          fontFamily: "fancy",
+                                          fontSize: 40,
+                                          height: 1.3),
+                                      textAlign: TextAlign.center)))),
+
+                      back: Container(
+                          height: (MediaQuery.of(context).size.height / 4) * 3,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    CardClass.getPreferenceImagePath())),
+                          )),
+                      
+                    )
                   ]),
                   Container(
                       height: (MediaQuery.of(context).size.height / 8),
@@ -178,7 +182,6 @@ class _MyCard extends State<MyCard> {
 
   //need functionality here to write to the file to change the saved status/show the new icon!
   void favorite(int position) {
-
     debugPrint("Favorite clicked!");
 // if (widget.card.isFavorite == false) {
     if (widget.cards[position].isFavorite == false) {

@@ -10,6 +10,7 @@ class CardClass {
   bool isDefault = true;
   static List cards = [];
   static bool preference;
+  static bool fave;
   
 
   CardClass(String number, String text, String b, String isDefault)
@@ -146,6 +147,13 @@ static CardClass getRandomCard(){
     else{
       return 'assets/images/warmfirst.png';
     }
+  }
+
+  static void setFave(bool b){
+    fave = b;
+  }
+  static bool getFave(){
+    return fave;
   }
 
 
