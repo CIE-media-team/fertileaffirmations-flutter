@@ -10,7 +10,7 @@ class CardClass {
   bool isDefault = true;
   static List cards = [];
   static bool preference;
-  static bool fave;
+  static bool fave = false;
   
 
   CardClass(String number, String text, String b, String isDefault)

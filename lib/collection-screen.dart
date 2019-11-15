@@ -221,8 +221,11 @@ class _Collection extends State<Collection> {
     // if(widget.fave && fave){
     //   fave = false;
     // }
+    CardClass.setFave(fave);
+
     if(fave){
       cards = CardClass.getFavorites();
+      
 
     }
     else{
