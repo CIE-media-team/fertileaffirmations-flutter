@@ -53,15 +53,8 @@ class _RemindMeState extends State<RemindMe> {
             child: Image.asset('assets/images/noleaves2.png'),
           ),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset('assets/images/fertilelogo.png'),
-            SizedBox(height: 5),
-            Image.asset(CardClass.getPreferenceImagePath()),
-            
-          ],
-        ),
+
+        
         Scaffold(
           drawer: MyNavigationDrawer(),
           backgroundColor: Colors.transparent,
@@ -70,16 +63,13 @@ class _RemindMeState extends State<RemindMe> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           ),
-          body: new Container(
-            color: Colors.transparent,
-          ),
-        ),
+          body: Center( child:
         RaisedButton(
               onPressed: _showNotification,
               child: new Text('Show Notification'),
             )
-      ],
-    );
+          ),
+    )]);
   }
 
   Future onSelectNotification(String payload) async {
