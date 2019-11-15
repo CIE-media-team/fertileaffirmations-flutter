@@ -116,6 +116,9 @@ class MyNavigationDrawer extends StatelessWidget {
                   _launchURL("https://fertileaffirmations.com/shop");
                 
                 }
+                else if(title=="Collection"){
+                  CardClass.setFave(false);
+                }
 
                 if(routeTo != null){
                   Navigator.of(context).pop();
