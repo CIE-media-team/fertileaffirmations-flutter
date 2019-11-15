@@ -14,6 +14,7 @@ import 'card-class.dart';
 import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
+import 'remind-me.dart';
 
 
 
@@ -76,7 +77,7 @@ class MyNavigationDrawer extends StatelessWidget {
             menuItem("Collection", Icons.apps, Collection(fave:false), context), 
             menuItem("Custom Affirmation", Icons.add, CustomAffirmation(), context), 
             menuItem("Favorites", Icons.favorite, Collection(fave:true), context), 
-            menuItem("Remind Me", Icons.alarm, MyHomePage(preference: CardClass.getPreference(),), context), 
+            menuItem("Remind Me", Icons.alarm, RemindMe(), context), 
             menuItem("Reset", Icons.restore, null, context), 
             menuItem("Select Your Goddess", Icons.people, SelectGoddess(), context), 
             Divider(), 
