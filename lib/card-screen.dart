@@ -100,8 +100,11 @@ class _MyCard extends State<MyCard> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+
         onWillPop: () {
-          Navigator.push(
+          Navigator.of(context).pop();
+
+          return Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Collection(fave: CardClass.getFave()),

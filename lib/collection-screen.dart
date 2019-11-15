@@ -44,7 +44,15 @@ class _Collection extends State<Collection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(preference: CardClass.getPreference()),
+              ));
+        },
+        child: Scaffold(
       appBar: AppBar(
        // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -54,7 +62,13 @@ class _Collection extends State<Collection> {
         //or `false` if you want to force your own back button every where
         leading: IconButton(icon:Icon(Icons.arrow_back),
           onPressed:() {
-            return Navigator.of(context).pop();
+            //Navigator.pop(context);
+
+                return Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MyHomePage(preference: CardClass.getPreference())));
           },
         )
       ),
@@ -197,7 +211,7 @@ class _Collection extends State<Collection> {
           )
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ));
   }
   setIcon(){
     fave = !fave;  
