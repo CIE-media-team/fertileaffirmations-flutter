@@ -156,6 +156,10 @@ static CardClass getRandomCard(){
     return fave;
   }
 
+  bool getIsDefault(){
+    return isDefault;
+  }
+
 
 }
 

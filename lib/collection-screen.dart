@@ -22,6 +22,7 @@ class _Collection extends State<Collection> {
   bool firstrun = true;
   String creationsText = "My Creations";
   List cards = CardClass.getCards();
+
   var faveCards = CardClass.getFavorites();
 
 

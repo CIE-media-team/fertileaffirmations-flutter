@@ -39,7 +39,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
-              if(myController.text != null){
+              if(myController.text != ""){
               createCard();
               Navigator.of(context).pop();
               Navigator.push(
@@ -51,14 +51,14 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   ));
             }
             else{
-              Navigator.of(context).pop();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      preference: CardClass.getPreference(),
-                    ),
-                  ));
+              // Navigator.of(context).pop();
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => MyHomePage(
+              //         preference: CardClass.getPreference(),
+              //       ),
+              //     ));
               
             }
             },

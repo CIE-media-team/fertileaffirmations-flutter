@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'card-class.dart';
 import 'package:flip_card/flip_card.dart';
+import 'main.dart';
 
 GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
@@ -26,6 +27,9 @@ void main(List<String> args) {
 
 class _MyCard extends State<MyCard> {
   // List cards = CardClass.getCards();
+  bool _isVisible;
+ 
+
 
   getFaveIcon(int position) {
     //debugPrint(widget.card.isFavorite.toString());
@@ -36,6 +40,52 @@ class _MyCard extends State<MyCard> {
       return Icons.favorite_border;
     }
   }
+
+  @override
+  void initState() {
+    _isVisible = getVisibility();
+    super.initState();
+  }
+
+  Future<void> _ackAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Delete Card?'),
+        content: const Text('Pressing "ok" will delete this card. Are you sure?')
+        ,
+        actions: <Widget>[
+            FlatButton(
+            child: Text('Cancel'),
+            onPressed: () {
+           // Navigator.of(context, rootNavigator: true).pop();
+            Navigator.of(context).pop();
+
+            },
+          ),
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              CardClass.cards.remove(widget.cards[widget.position]);
+              save();
+              Navigator.of(context).pop();                        
+            
+              Navigator.of(context, rootNavigator: true).pop();
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Collection(fave: false),)
+                  );
+            },
+          ),
+        
+        ],
+      );
+    },
+  );
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +107,24 @@ class _MyCard extends State<MyCard> {
                   MaterialPageRoute(
                       builder: (context) => Collection(fave: false)));
             },
-          )),
+          ),
+          actions: <Widget>[
+            Visibility(
+            visible: _isVisible,
+            child:
+          IconButton(
+            icon: Icon(Icons.delete,color:Colors.black),
+            onPressed: () async {
+            await _ackAlert(context);
+            
+
+
+            },
+          )
+            )],
+          
+          
+          ),
       drawer: MyNavigationDrawer(),
       body: Center(
           // Center is a layout widget. It takes a single child and positions it
@@ -72,6 +139,7 @@ class _MyCard extends State<MyCard> {
               image: AssetImage('assets/images/noleaves2.png'),
             ),
             PageView.builder(
+              onPageChanged: _pageChange,
               // child: Stack(children: <Widget>[
               //   Container(
               //       height: (MediaQuery.of(context).size.height / 4) * 3,
@@ -96,6 +164,7 @@ class _MyCard extends State<MyCard> {
               // ])),
               controller: PageController(
                   initialPage: widget.position,
+                
                   keepPage: true,
                   viewportFraction: 1),
               itemBuilder: (context, position) {
@@ -191,6 +260,22 @@ class _MyCard extends State<MyCard> {
       widget.cards[position].setFavorite(false);
       // widget.card.setFavorite(false);
     }
-    setState(() {});
   }
+  
+
+
+  getVisibility(){
+    return !CardClass.getCards()[widget.position].getIsDefault();
+  }
+  getPageVisibility(page){
+    return !CardClass.getCards()[page].getIsDefault();
+  }
+  _pageChange(page){
+    setState(() {
+      _isVisible = getPageVisibility(page);
+    });
+
+  }
+    
+
 }
