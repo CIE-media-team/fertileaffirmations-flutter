@@ -253,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Image.asset('assets/images/fertilelogo.png'),
             SizedBox(height: 5),
-            Image.asset(CardClass.getPreferenceImagePath()),
+            Image.asset(CardClass.getFirstPreferenceImagePath()),
             
           ],
         ),

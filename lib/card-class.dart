@@ -142,6 +142,15 @@ static CardClass getRandomCard(){
 
     static String getPreferenceImagePath (){ 
     if (CardClass.getPreference() == true){ 
+      return 'assets/images/porcelainroundsmall.png';
+    }
+    else{
+      return 'assets/images/warmround.png';
+    }
+  }
+
+     static String getFirstPreferenceImagePath (){ 
+    if (CardClass.getPreference() == true){ 
       return 'assets/images/porcelainfirst.png';
     }
     else{
