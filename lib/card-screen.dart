@@ -11,11 +11,12 @@ import 'main.dart';
 GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
 class MyCard extends StatefulWidget {
-  MyCard({Key key, this.card, @required this.cards, @required this.position})
+  MyCard({Key key, this.card, @required this.cards, @required this.position, this.myCreations = false})
       : super(key: key);
   final CardClass card;
   final int position;
   final List cards;
+  final bool myCreations;
 
   @override
   _MyCard createState() => _MyCard();
@@ -284,6 +285,10 @@ class _MyCard extends State<MyCard> {
   }
 
   getVisibility() {
+    if(widget.myCreations){
+      return !CardClass.getUserCards()[widget.position].getIsDefault();
+    }
+
     return !CardClass.getCards()[widget.position].getIsDefault();
   }
 
