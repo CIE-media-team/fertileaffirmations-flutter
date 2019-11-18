@@ -44,7 +44,7 @@ class MyNavigationDrawer extends StatelessWidget {
             child: Text('Ok'),
             onPressed: () {
               resetApp();
-              routeTo2=MyHomePage(preference: CardClass.getPreference(),);
+              routeTo2=SelectGoddess();
 
               
             
