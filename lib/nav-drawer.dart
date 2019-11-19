@@ -1,15 +1,11 @@
-import 'dart:io';
-import 'dart:math';
 
 import 'package:fertile_affirmations/card-class.dart';
-import 'package:fertile_affirmations/card-screen.dart';
 import 'package:fertile_affirmations/custom-affirmation.dart';
 import 'package:flutter/material.dart';
 import 'package:fertile_affirmations/main.dart';
 import 'card-screen-random.dart';
 import 'select-goddess.dart';
 import 'collection-screen.dart';
-import 'package:flutter/foundation.dart';
 import 'card-class.dart';
 import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';

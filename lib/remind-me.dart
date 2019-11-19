@@ -1,6 +1,4 @@
 import 'dart:async' show Future;
-
-import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/card-screen-random.dart';
 import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';

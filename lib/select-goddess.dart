@@ -1,7 +1,6 @@
 import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/main.dart';
 import "package:flutter/material.dart";
-import 'nav-drawer.dart';
 
 class SelectGoddess extends StatefulWidget {
   SelectGoddess({Key key}) : super(key: key);
