@@ -194,6 +194,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Color(0xff4F694C),
         primaryColorDark: Color(0xff3B4429),
+        primaryColorLight: Color(0xffD5E7CD),
         fontFamily: 'primary',
       ),
       home: _home
