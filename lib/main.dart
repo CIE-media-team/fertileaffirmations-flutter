@@ -63,6 +63,26 @@ Future firstLaunch() async {
 
   //debugPrint(combinedcontents.toString());
   readCards(combinedcontents);
+
+
+
+
+  readInstructions();
+}
+
+Future readInstructions() async {
+  var instructions = await rootBundle.loadString(
+      'assets/textfiles/instructions.txt');
+  List<String> strings = instructions.split("\n");
+  var i =0;
+  while(i<strings.length){
+    strings[i]=strings[i].replaceAll("*", "\n");
+    debugPrint(strings[i]);
+
+    i++;
+  }
+  CardClass.instructions = strings;
+
 }
 
 Future<String> get _localPath async {
@@ -75,10 +95,7 @@ Future<File> get _userFile async {
   return File('$path/usercards.txt');
 }
 
-Future<File> get _combinedFile async {
-  final path = await _localPath;
-  return File('$path/allCards.txt');
-}
+
 
 Future<File> get _permPreferencesFile async {
   final path = await _localPath;

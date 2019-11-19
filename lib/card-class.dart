@@ -12,6 +12,7 @@ class CardClass {
   static bool preference;
   static bool fave = false;
   static bool firstLaunch = true;
+  static List instructions =[];
   
 
   CardClass(String number, String text, String b, String isDefault)

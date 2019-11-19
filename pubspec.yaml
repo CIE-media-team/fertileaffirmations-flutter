@@ -58,7 +58,7 @@ flutter:
 
   assets: 
     - assets/images/
-    - assets/textfiles/permanentcardsfile.txt
+    - assets/textfiles/
     - assets/icon/
   
 
