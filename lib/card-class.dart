@@ -11,6 +11,7 @@ class CardClass {
   static List cards = [];
   static bool preference;
   static bool fave = false;
+  static bool firstLaunch = true;
   
 
   CardClass(String number, String text, String b, String isDefault)
@@ -36,6 +37,13 @@ class CardClass {
 
 
 
+
+  }
+  static bool getFirstLaunch(){
+    return firstLaunch;
+  }
+  static void setFirstLaunch(){
+    firstLaunch = false;
 
   }
   

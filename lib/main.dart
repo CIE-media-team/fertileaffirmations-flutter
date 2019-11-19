@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 // import 'package:flutter/material.dart';
 // import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'select-goddess.dart';
+
 // import 'package:url_launcher/url_launcher.dart';
 // ximport 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -39,6 +42,9 @@ Future firstLaunch() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var first = (prefs.getBool('firstLaunch') ??
       true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
+  if(!first){
+    CardClass.setFirstLaunch();
+  }
   prefs.setBool('firstLaunch', false); //set it to false after
   bool pref = (prefs.getBool('pref') ?? true);
   CardClass.setPreference(pref);
@@ -124,6 +130,7 @@ void resetApp() async {
   writeFile("permanentpreferences", permcards);
   //clear the 'cards' list inside the CardClass class.
   CardClass.resetCards();
+  CardClass.firstLaunch = true;
   //Initialize all cards again.
   readCards(permcards.toString());
 }
@@ -174,6 +181,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  Widget _home;
+  @override
+  void initState() {
+    // TODO: implement initState
+    getHome();
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -183,13 +196,26 @@ class _MyAppState extends State<MyApp> {
         primaryColorDark: Color(0xff3B4429),
         fontFamily: 'primary',
       ),
-      home: MyHomePage(
-        title: "Fertile Affirmations",
-        preference: CardClass.getPreference(),
-      ),
+      home: _home
     );
   }
+
+  getHome() {
+    bool first = CardClass.getFirstLaunch();
+
+    if(first){
+      _home = SelectGoddess();
+
+    }
+    else{
+      _home = MyHomePage(
+          title: "Fertile Affirmations",
+          preference: CardClass.getPreference(),
+        );
+    }
+    }
 }
+
 
 class MyHomePage extends StatefulWidget {
 // class MyHomePage extends StatelessWidget {
