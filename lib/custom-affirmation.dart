@@ -35,7 +35,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('Fertile Affirmations'),
+        title: Text('Custom Affirmation'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -94,7 +94,6 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     textAlign: TextAlign.center,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.multiline,
-                    
                   
                     textAlignVertical: TextAlignVertical.center,
 
@@ -115,7 +114,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     //autofocus: true,
                     autocorrect: true,
 
-                    //maxLengthEnforced: true,
+                    maxLengthEnforced: true,
                     //+expands: true,
 
                     maxLines: 8, minLines: 1,
