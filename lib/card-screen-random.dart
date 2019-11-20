@@ -86,7 +86,7 @@ class _MyCard extends State<MyCardRandom> {
                                       maxFontSize: 40,
                                       maxLines: 4,
                                       style: TextStyle(
-                                          fontFamily: "fancy",
+                                          fontFamily: "new",
                                           fontSize: 40,
                                           height: 1.3),
                                       textAlign: TextAlign.center)))),

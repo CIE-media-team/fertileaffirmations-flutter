@@ -187,16 +187,19 @@ class _MyCard extends State<MyCard> {
                                 child: Center(
                                     child: Padding(
                                         padding: EdgeInsets.all(40),
-                                        child: AutoSizeText(
+
+                                         child: AutoSizeText(
                                             widget.cards[position].cardText,
                                             minFontSize: 20,
                                             maxFontSize: 40,
                                             maxLines: 4,
                                             style: TextStyle(
-                                                fontFamily: "fancy",
+                                                fontFamily: "new",
                                                 fontSize: 40,
                                                 height: 1.3),
-                                            textAlign: TextAlign.center)))),
+                                            textAlign: TextAlign.center)
+                                            )
+                                            )),
 
                             back: Container(
                                 height:

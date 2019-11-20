@@ -119,7 +119,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
 
                     maxLines: 8, minLines: 1,
                     style: TextStyle(
-                        fontFamily: "fancy", fontSize: 30, height: 1.5),
+                        fontFamily: "new", fontSize: 30, height: 1.5),
                   ))))
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.

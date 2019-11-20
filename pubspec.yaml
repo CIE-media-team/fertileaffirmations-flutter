@@ -71,6 +71,10 @@ flutter:
       - family: fancy
         fonts: 
           - asset: assets/fonts/font.otf
+      - family: new
+        fonts: 
+          - asset: assets/fonts/new.ttf
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

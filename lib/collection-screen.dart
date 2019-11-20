@@ -153,7 +153,7 @@ class _Collection extends State<Collection>  {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColorDark,
-                                      fontFamily: "fancy",
+                                      fontFamily: "new",
                                       fontSize: 4,
                                       height: 1),
                                 ))
