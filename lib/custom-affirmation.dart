@@ -94,6 +94,8 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     textAlign: TextAlign.center,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.multiline,
+                    
+                  
                     textAlignVertical: TextAlignVertical.center,
 
                     controller: myController,
@@ -112,7 +114,8 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
 
                     //autofocus: true,
                     autocorrect: true,
-                    maxLengthEnforced: true,
+
+                    //maxLengthEnforced: true,
                     //+expands: true,
 
                     maxLines: 8, minLines: 1,

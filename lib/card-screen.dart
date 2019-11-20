@@ -86,6 +86,7 @@ class _MyCard extends State<MyCard> {
                 CardClass.cards.remove(widget.cards[widget.position]);
                 save();
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
 
                 
               },
