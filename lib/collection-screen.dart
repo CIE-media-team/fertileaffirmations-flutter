@@ -7,7 +7,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'card-screen.dart';
 import 'custom-affirmation.dart';
 
-class Collection extends StatefulWidget {
+class Collection extends StatefulWidget{
   Collection({Key key, @required this.fave}) : super(key: key);
   final bool fave;
 
@@ -21,36 +21,42 @@ class _Collection extends State<Collection> {
   bool firstrun = true;
   String creationsText = "My Creations";
   List cards = CardClass.getCards();
+  var counter = 0;
 
   var faveCards = CardClass.getFavorites();
 
   Size size() {
     return (MediaQuery.of(context).size);
   }
+  
 
-  getCards() {
-    if (widget.fave && firstrun) {
-      this.fave = true;
-      firstrun = false;
-      cards = faveCards;
-      return faveCards;
+  // getCards() {
+  //   if (widget.fave && firstrun) {
+  //     this.fave = true;
+  //     firstrun = false;
+  //     cards = faveCards;
+  //     return faveCards;
+  //   }
+
+  //   return cards;
+  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setCardList();
+    if (CardClass.creations) {
+      creationsText = "Back to Collection";
+    } else {
+      creationsText = "My Creations";
     }
 
-    return cards;
   }
+  
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    MyHomePage(preference: CardClass.getPreference()),
-              ));
-        },
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
               // Here we take the value from the MyHomePage object that was created by
               // the App.build method, and use it to set our appbar title.
@@ -97,14 +103,14 @@ class _Collection extends State<Collection> {
                             padding: EdgeInsets.all(0),
                             onPressed: () {
                               debugPrint(cards[position].cardText);
-                              Navigator.of(context).pop();
+                              //Navigator.of(context).pop();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => MyCard(
                                           position: position,
-                                          cards: getCards(),
-                                          myCreations: creations)));
+                                          cards: cards,
+                                           )));
                             },
                             child: Stack(
                               alignment: Alignment.center,
@@ -115,7 +121,7 @@ class _Collection extends State<Collection> {
                                   fit: BoxFit.cover,
                                 ),
                                 AutoSizeText(
-                                  getCards()[position].cardText,
+                                  cards[position].cardText,
                                   // maxFontSize: 10,
                                   minFontSize: 10,
                                   maxLines: 4,
@@ -129,7 +135,7 @@ class _Collection extends State<Collection> {
                               ],
                             )));
                   },
-                  itemCount: getCards().length,
+                  itemCount: cards.length,
                 ),
               ),
               Container(
@@ -150,7 +156,7 @@ class _Collection extends State<Collection> {
                         //     left: 50, top: 20, bottom: 20, right: 20),
                         onPressed: () {
                           myCreationsButton();
-                          if (creations) {
+                          if (CardClass.creations) {
                             creationsText = "Back to Collection";
                           } else {
                             creationsText = "My Creations";
@@ -173,10 +179,10 @@ class _Collection extends State<Collection> {
                           size: 30,
                         ),
                         onPressed: () {
-                          setIcon();
                           favoritesButton(); //this line HAS to be behind setIcon().
-
-                          setState(() {});
+                          setState(() {
+                            
+                          });
                         },
                       ),
                     ),
@@ -207,39 +213,45 @@ class _Collection extends State<Collection> {
               )
             ]),
           ), // This trailing comma makes auto-formatting nicer for build methods.
-        ));
+        );
   }
 
-  setIcon() {
-    fave = !fave;
-  }
+
 
   myCreationsButton() {
-    if (!creations) {
-      cards = CardClass.getUserCards();
-      creations = true;
-    } else {
-      cards = CardClass.getCards();
-      creations = false;
-    }
+    CardClass.creations = !CardClass.creations;
+    setCardList();
     setState(() {});
   }
+
+  setCardList(){
+    if (!CardClass.creations && CardClass.fave) {
+      cards = CardClass.getFavorites();
+    } else if(CardClass.creations && !CardClass.fave) {
+      cards = CardClass.getUserCards();
+    }else if( CardClass.fave && CardClass.creations){
+      cards = CardClass.getFaveCreations();
+    }else{
+      cards = CardClass.getCards();
+    }
+
+  }
+
 
   favoritesButton() {
     // if(widget.fave && fave){
     //   fave = false;
     // }
-    CardClass.setFave(fave);
+    CardClass.fave = !CardClass.fave;
 
-    if (fave) {
-      cards = CardClass.getFavorites();
-    } else {
-      cards = CardClass.getCards();
-    }
+    setCardList();
+    setState(() {
+      
+    });
   }
 
   getIcon() {
-    if (fave) {
+    if (CardClass.fave) {
       return Icons.favorite;
     } else {
       return Icons.favorite_border;

@@ -16,12 +16,11 @@ class MyCard extends StatefulWidget {
       this.card,
       @required this.cards,
       @required this.position,
-      this.myCreations = false})
+      })
       : super(key: key);
   final CardClass card;
   final int position;
   final List cards;
-  final bool myCreations;
 
   @override
   _MyCard createState() => _MyCard();
@@ -115,12 +114,15 @@ class _MyCard extends State<MyCard> {
       WillPopScope(
           onWillPop: () {
             Navigator.of(context).pop();
+          
 
-            return Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Collection(fave: CardClass.getFave()),
-                ));
+            // return Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => Collection(fave: CardClass.getFave()),
+
+            //     ));
+
           },
           child: Scaffold(
             appBar: AppBar(
@@ -133,7 +135,7 @@ class _MyCard extends State<MyCard> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.pop(context);
+                  //Navigator.pop(context);
 
                   return Navigator.push(
                       context,
@@ -294,15 +296,13 @@ class _MyCard extends State<MyCard> {
   }
 
   getVisibility() {
-    if (widget.myCreations) {
-      return !CardClass.getUserCards()[widget.position].getIsDefault();
+      return !widget.cards[widget.position].getIsDefault();
     }
 
-    return !CardClass.getCards()[widget.position].getIsDefault();
-  }
+  
 
   getPageVisibility(page) {
-    return !CardClass.getCards()[page].getIsDefault();
+    return !widget.cards[page].getIsDefault();
   }
 
   _pageChange(page) {

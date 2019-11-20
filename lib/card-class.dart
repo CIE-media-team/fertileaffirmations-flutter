@@ -1,5 +1,6 @@
 
 import 'dart:math';
+import 'main.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,8 @@ class CardClass {
   static bool fave = false;
   static bool firstLaunch = true;
   static List instructions =[];
+  static bool creations = false;
+
   
 
   CardClass(String number, String text, String b, String isDefault)
@@ -48,11 +51,10 @@ class CardClass {
 
   }
   
-  static List getCards(){
-    return cards;
-  }
+
   void setFavorite(bool b){
     this.isFavorite = b;
+    save();
   }
   
  
@@ -109,6 +111,10 @@ static CardClass getRandomCard(){
   static void resetCards(){
     cards.clear();
   }
+
+  static List getCards(){
+    return cards;
+  }
   static List getFavorites(){
     var l = [];
     for(CardClass c in cards){
@@ -122,6 +128,16 @@ static CardClass getRandomCard(){
     var l = [];
     for(CardClass c in cards){
       if(!c.isDefault){
+        l.add(c);
+      }
+    }
+    return l;
+  }
+
+    static List getFaveCreations(){
+    var l = [];
+    for(CardClass c in cards){
+      if(c.isFavorite && !c.isDefault){
         l.add(c);
       }
     }

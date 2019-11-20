@@ -115,6 +115,9 @@ class MyNavigationDrawer extends StatelessWidget {
                 else if(title=="Collection"){
                   CardClass.setFave(false);
                 }
+                else if(title=="Favorites"){
+                  CardClass.setFave(true);
+                }
 
                 if(routeTo != null){
                   Navigator.of(context).pop();

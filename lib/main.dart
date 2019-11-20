@@ -282,7 +282,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return WillPopScope(
+        onWillPop: () {
+          return null;
+        },
+        child:  Stack(
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width,
@@ -318,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //       child: new Text('Show Notification'),
         //     )
       ],
-    );
+    ));
   }
 
   // Future onSelectNotification(String payload) async {
@@ -367,4 +371,6 @@ class _MyHomePageState extends State<MyHomePage> {
   //   //     scheduledNotificationDateTime,
   //   //     platformChannelSpecifics);
   // }
+
+
 }

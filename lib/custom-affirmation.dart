@@ -42,13 +42,13 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
               if(myController.text != ""){
               createCard();
               Navigator.of(context).pop();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(
-                      preference: CardClass.getPreference(),
-                    ),
-                  ));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => MyHomePage(
+              //         preference: CardClass.getPreference(),
+              //       ),
+              //     ));
             }
             else{
               // Navigator.of(context).pop();
