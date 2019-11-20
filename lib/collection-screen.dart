@@ -19,7 +19,11 @@ class _Collection extends State<Collection> {
   bool fave = false;
   bool creations = false;
   bool firstrun = true;
+  bool _front = true;
+  String cardImage = 'assets/images/cardblank.png';
   String creationsText = "My Creations";
+  IconData ic = Icons.flip_to_back;
+  bool visible = true;
   List cards = CardClass.getCards();
   var counter = 0;
 
@@ -52,6 +56,30 @@ class _Collection extends State<Collection> {
     }
 
   }
+  void toggleFlip(){
+    _front = !_front;
+    if(_front){
+      cardImage = 'assets/images/cardblank.png';
+      ic = Icons.flip_to_back;
+
+    }
+    else{
+      bool pref = CardClass.getPreference();
+      if(!pref){
+        cardImage = 'assets/images/warmround.png';
+      }
+      else{
+        cardImage = 'assets/images/porcelainroundsmall.png';
+
+      }
+    ic = Icons.flip_to_front;
+
+    }
+    setState(() {
+      
+    });
+
+  }
   
 
   @override
@@ -75,7 +103,17 @@ class _Collection extends State<Collection> {
                           builder: (context) => MyHomePage(
                               preference: CardClass.getPreference())));
                 },
-              )),
+                
+              ),
+              actions: <Widget>[
+          IconButton(
+            icon: Icon(ic,color: Colors.black,),
+            onPressed: () {
+              toggleFlip();
+             
+            },
+          )
+        ],),
           backgroundColor: Theme.of(context).primaryColorLight,
           body: Center(
             child: Column(children: <Widget>[
@@ -116,11 +154,15 @@ class _Collection extends State<Collection> {
                               alignment: Alignment.center,
                               children: <Widget>[
                                 // Image.asset('assets/images/noleaves2.png'),
-                                Image.asset(
-                                  'assets/images/cardblank.png',
+                                Image.asset(cardImage
+                                  ,
                                   fit: BoxFit.cover,
                                 ),
+                                 Visibility(
+                                visible: _front,
+                                child:
                                 AutoSizeText(
+                                  
                                   cards[position].cardText,
                                   // maxFontSize: 10,
                                   minFontSize: 10,
@@ -131,7 +173,7 @@ class _Collection extends State<Collection> {
                                       fontFamily: "fancy",
                                       fontSize: 4,
                                       height: 1),
-                                )
+                                ))
                               ],
                             )));
                   },
