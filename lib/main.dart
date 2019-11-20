@@ -28,6 +28,7 @@ import 'select-goddess.dart';
 
 Future main() async {
   await firstLaunch();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(MyApp());
 
@@ -42,7 +43,7 @@ Future firstLaunch() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var first = (prefs.getBool('firstLaunch') ??
       true); //If there is no value for 'firstLaunch' stored, that means (obviously) it is the first launch, so it is set to true.
-  if(!first){
+  if (!first) {
     CardClass.setFirstLaunch();
   }
   prefs.setBool('firstLaunch', false); //set it to false after
@@ -64,25 +65,21 @@ Future firstLaunch() async {
   //debugPrint(combinedcontents.toString());
   readCards(combinedcontents);
 
-
-
-
   readInstructions();
 }
 
 Future readInstructions() async {
-  var instructions = await rootBundle.loadString(
-      'assets/textfiles/instructions.txt');
+  var instructions =
+      await rootBundle.loadString('assets/textfiles/instructions.txt');
   List<String> strings = instructions.split("\n");
-  var i =0;
-  while(i<strings.length){
-    strings[i]=strings[i].replaceAll("*", "\n");
+  var i = 0;
+  while (i < strings.length) {
+    strings[i] = strings[i].replaceAll("*", "\n");
     debugPrint(strings[i]);
 
     i++;
   }
   CardClass.instructions = strings;
-
 }
 
 Future<String> get _localPath async {
@@ -94,8 +91,6 @@ Future<File> get _userFile async {
   final path = await _localPath;
   return File('$path/usercards.txt');
 }
-
-
 
 Future<File> get _permPreferencesFile async {
   final path = await _localPath;
@@ -204,36 +199,33 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     getHome();
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fertile Affirmations',
-      theme: ThemeData(
-        primaryColor: Color(0xff4F694C),
-        primaryColorDark: Color(0xff3B4429),
-        primaryColorLight: Color(0xffD5E7CD),
-        fontFamily: 'primary',
-      ),
-      home: _home
-    );
+        title: 'Fertile Affirmations',
+        theme: ThemeData(
+          primaryColor: Color(0xff4F694C),
+          primaryColorDark: Color(0xff3B4429),
+          primaryColorLight: Color(0xffD5E7CD),
+          fontFamily: 'primary',
+        ),
+        home: _home);
   }
 
   getHome() {
     bool first = CardClass.getFirstLaunch();
 
-    if(first){
+    if (first) {
       _home = SelectGoddess();
-
-    }
-    else{
+    } else {
       _home = MyHomePage(
-          title: "Fertile Affirmations",
-          preference: CardClass.getPreference(),
-        );
+        title: "Fertile Affirmations",
+        preference: CardClass.getPreference(),
+      );
     }
-    }
+  }
 }
-
 
 class MyHomePage extends StatefulWidget {
 // class MyHomePage extends StatelessWidget {
@@ -286,43 +278,43 @@ class _MyHomePageState extends State<MyHomePage> {
         onWillPop: () {
           return null;
         },
-        child:  Stack(
-      children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: Image.asset('assets/images/noleaves2.png'),
-          ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: <Widget>[
-            Image.asset('assets/images/fertilelogo.png'),
-            SizedBox(height: 5),
-            Image.asset(CardClass.getFirstPreferenceImagePath()),
-            
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Image.asset('assets/images/noleaves2.png'),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset('assets/images/fertilelogo.png'),
+                SizedBox(height: 5),
+                Image.asset(CardClass.getFirstPreferenceImagePath()),
+              ],
+            ),
+            Scaffold(
+              drawer: MyNavigationDrawer(),
+              backgroundColor: Colors.transparent,
+              appBar: new AppBar(
+                iconTheme:
+                    IconThemeData(color: Theme.of(context).primaryColorDark),
+                backgroundColor: Colors.transparent,
+                elevation: 0.0,
+              ),
+              body: new Container(
+                color: Colors.transparent,
+              ),
+            ),
+            // RaisedButton(
+            //       onPressed: _showNotification,
+            //       child: new Text('Show Notification'),
+            //     )
           ],
-        ),
-        Scaffold(
-          drawer: MyNavigationDrawer(),
-          backgroundColor: Colors.transparent,
-          appBar: new AppBar(
-            iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-          ),
-          body: new Container(
-            color: Colors.transparent,
-          ),
-        ),
-        // RaisedButton(
-        //       onPressed: _showNotification,
-        //       child: new Text('Show Notification'),
-        //     )
-      ],
-    ));
+        ));
   }
 
   // Future onSelectNotification(String payload) async {
@@ -371,6 +363,5 @@ class _MyHomePageState extends State<MyHomePage> {
   //   //     scheduledNotificationDateTime,
   //   //     platformChannelSpecifics);
   // }
-
 
 }

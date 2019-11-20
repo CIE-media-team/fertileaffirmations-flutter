@@ -136,7 +136,6 @@ class _RemindMeState extends State<RemindMe> {
                 },
               ),
               DropdownButton(
-                
                 hint: Text("AM/PM"),
                 value: _selectedTOD,
                 items: tod.map((String value) {
@@ -154,9 +153,11 @@ class _RemindMeState extends State<RemindMe> {
             ],
           ),
           RaisedButton(
-            onPressed:(){ 
+            onPressed: () {
               _showDialog();
-              _dailyNotification(int.parse(_selectedHour), int.parse(_selectedMinute), _selectedTOD);},
+              _dailyNotification(int.parse(_selectedHour),
+                  int.parse(_selectedMinute), _selectedTOD);
+            },
             child: new Text('Show Daily Notification'),
           ),
         ])),
@@ -245,8 +246,8 @@ class _RemindMeState extends State<RemindMe> {
   }
 
   _dailyNotification(int hour, int minute, String tod) async {
-    if(tod == "PM"){
-      hour = hour + 12; 
+    if (tod == "PM") {
+      hour = hour + 12;
     }
     var time = new Time(hour, minute, 0);
     var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
@@ -263,16 +264,16 @@ class _RemindMeState extends State<RemindMe> {
         time,
         platformChannelSpecifics);
   }
-  
 
-  _showDialog(){
+  _showDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Daily Notification"),
-          content: new Text("You have chosen to recieve your daily affirmation reminder at $_selectedHour : $_selectedMinute $_selectedTOD"),
+          content: new Text(
+              "You have chosen to recieve your daily affirmation reminder at $_selectedHour : $_selectedMinute $_selectedTOD"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
@@ -286,6 +287,4 @@ class _RemindMeState extends State<RemindMe> {
       },
     );
   }
-  }
-  
-
+}

@@ -56,38 +56,38 @@ class _SelectGoddess extends State<SelectGoddess> {
                     //   },
                     // child:
                     Container(
-                        width: MediaQuery.of(context).size.width / 2 - 2.5,
-                        // decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/warmfirst.png')),),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints.expand(),
-                          child: FlatButton(
-                            padding: EdgeInsets.all(0),
-                            onPressed: () {
-                              debugPrint("Warm");
-                              CardClass.setPreference(false);
+                      width: MediaQuery.of(context).size.width / 2 - 2.5,
+                      // decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/warmfirst.png')),),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints.expand(),
+                        child: FlatButton(
+                          padding: EdgeInsets.all(0),
+                          onPressed: () {
+                            debugPrint("Warm");
+                            CardClass.setPreference(false);
 
-                              Navigator.of(context).pop();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        MyHomePage(preference: false),
-                                  ));
-                            },
-                            child: Image.asset('assets/images/warmfirst.png'),
-                          ),
+                            Navigator.of(context).pop();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      MyHomePage(preference: false),
+                                ));
+                          },
+                          child: Image.asset('assets/images/warmfirst.png'),
                         ),
                       ),
-                    
+                    ),
+
                     SizedBox(
                       width: 5,
                     ),
-                    
+
                     GestureDetector(
                         onTap: () {
                           debugPrint("GODDESS: Porcelain");
                           CardClass.setPreference(true);
-                             
+
                           Navigator.of(context).pop();
                           Navigator.push(
                               context,
@@ -101,7 +101,7 @@ class _SelectGoddess extends State<SelectGoddess> {
                           child:
                               Image.asset('assets/images/porcelainfirst.png'),
                         ))
-                    ],
+                  ],
                 )),
             SizedBox(height: MediaQuery.of(context).size.height / 12),
 

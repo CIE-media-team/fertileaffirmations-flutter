@@ -4,6 +4,7 @@ import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /*
 
@@ -35,32 +36,37 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text('Fertile Affirmations'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           IconButton(
             icon: Icon(Icons.check),
             onPressed: () {
-              if(myController.text != ""){
-              createCard();
-              Navigator.of(context).pop();
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => MyHomePage(
-              //         preference: CardClass.getPreference(),
-              //       ),
-              //     ));
-            }
-            else{
-              // Navigator.of(context).pop();
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => MyHomePage(
-              //         preference: CardClass.getPreference(),
-              //       ),
-              //     ));
-              
-            }
+              if (myController.text != "") {
+                createCard();
+                Navigator.of(context).pop();
+                Fluttertoast.showToast(
+                    msg: "Card added to your collection!",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.TOP,
+                    timeInSecForIos: 1,
+                    backgroundColor: Colors.black38,
+                    textColor: Colors.white,
+                    fontSize: 14.0);
+              }
             },
           )
         ],
@@ -95,8 +101,6 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     //   myController.clear();
                     // },
 
-                  
-
                     decoration: InputDecoration(
                       hintText:
                           'Enter text here and press submit to create your new card',
@@ -123,17 +127,16 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
   createCard() {
     //How are we going to determine what number? Have the user choose? Can we have 2 of the same number?
     //Need to add favorite button so we can store if it is a favorite or not.
-    if(myController.text != ""){
+    if (myController.text != "") {
       new CardClass(getNextNumber(), myController.text, "false", "false");
       debugPrint(CardClass.getUserCards().toString());
       save();
     }
-
   }
 
-  getNextNumber(){
+  getNextNumber() {
     int numcards = CardClass.getUserCards().length;
     debugPrint("NextNumber: (100+numcards+1).toString()");
-    return (100+numcards+1).toString(); 
+    return (100 + numcards + 1).toString();
   }
 }

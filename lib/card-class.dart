@@ -15,6 +15,7 @@ class CardClass {
   static bool firstLaunch = true;
   static List instructions =[];
   static bool creations = false;
+  static BuildContext context = null;
 
   
 

@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 
 import 'collection-screen.dart';
@@ -11,13 +12,12 @@ import 'main.dart';
 GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
 class MyCard extends StatefulWidget {
-  MyCard(
-      {Key key,
-      this.card,
-      @required this.cards,
-      @required this.position,
-      })
-      : super(key: key);
+  MyCard({
+    Key key,
+    this.card,
+    @required this.cards,
+    @required this.position,
+  }) : super(key: key);
   final CardClass card;
   final int position;
   final List cards;
@@ -111,20 +111,7 @@ class _MyCard extends State<MyCard> {
         fit: BoxFit.cover,
         image: AssetImage('assets/images/noleaves2.png'),
       ),
-      WillPopScope(
-          onWillPop: () {
-            Navigator.of(context).pop();
-          
-
-            // return Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => Collection(fave: CardClass.getFave()),
-
-            //     ));
-
-          },
-          child: Scaffold(
+      Scaffold(
             appBar: AppBar(
               // Here we take the value from the MyHomePage object that was created by
               // the App.build method, and use it to set our appbar title.
@@ -135,13 +122,9 @@ class _MyCard extends State<MyCard> {
               leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  //Navigator.pop(context);
+                  Navigator.pop(context);
 
-                  return Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Collection(fave: CardClass.getFave())));
+                  
                 },
               ),
               actions: <Widget>[
@@ -248,8 +231,22 @@ class _MyCard extends State<MyCard> {
                                   ),
                                   color: Colors.red,
                                   onPressed: () {
+                                    var msg;
                                     // Function call to what happens when the favorite icon is pressed
-                                    favorite(position);
+                                    var b = favorite(position);
+                                    if (b) {
+                                      msg = "Card added to your favorites";
+                                    } else {
+                                      msg = "Card removed from your favorites";
+                                    }
+                                    Fluttertoast.showToast(
+                                        msg: msg,
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.TOP,
+                                        timeInSecForIos: 1,
+                                        backgroundColor: Colors.black38,
+                                        textColor: Colors.white,
+                                        fontSize: 14.0);
                                   },
                                 ),
                                 SizedBox(
@@ -277,29 +274,31 @@ class _MyCard extends State<MyCard> {
                     itemCount: widget.cards.length,
                   ),
                 ])), // This trailing comma makes auto-formatting nicer for build methods.
-          ))
+          )
     ]);
   }
 
   //need functionality here to write to the file to change the saved status/show the new icon!
-  void favorite(int position) {
+  bool favorite(int position) {
     debugPrint("Favorite clicked!");
+    var b;
 // if (widget.card.isFavorite == false) {
     if (widget.cards[position].isFavorite == false) {
       widget.cards[position].setFavorite(true);
       // widget.card.setFavorite(true);
+      b = true;
     } else {
       widget.cards[position].setFavorite(false);
       // widget.card.setFavorite(false);
+      b = false;
     }
     getFaveIcon(position);
+    return b;
   }
 
   getVisibility() {
-      return !widget.cards[widget.position].getIsDefault();
-    }
-
-  
+    return !widget.cards[widget.position].getIsDefault();
+  }
 
   getPageVisibility(page) {
     return !widget.cards[page].getIsDefault();

@@ -1,3 +1,5 @@
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +116,22 @@ class _MyCard extends State<MyCardRandom> {
                           color: Colors.red,
                           onPressed: () {
                             // Function call to what happens when the favorite icon is pressed
-                            favorite();
+                            var msg;
+                            // Function call to what happens when the favorite icon is pressed
+                            var b = favorite();
+                            if (b) {
+                              msg = "Card added to your favorites";
+                            } else {
+                              msg = "Card removed from your favorites";
+                            }
+                            Fluttertoast.showToast(
+                                msg: msg,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                timeInSecForIos: 1,
+                                backgroundColor: Colors.black38,
+                                textColor: Colors.white,
+                                fontSize: 14.0);
                           },
                         ),
                         SizedBox(width: MediaQuery.of(context).size.width / 10),
@@ -140,13 +157,17 @@ class _MyCard extends State<MyCardRandom> {
   }
 
   //need functionality here to write to the file to change the saved status/show the new icon!
-  void favorite() {
+  bool favorite() {
+    var b;
     debugPrint("Favorite clicked!");
     if (getCard().isFavorite == false) {
       getCard().setFavorite(true);
+      b = true;
     } else {
       getCard().setFavorite(false);
+      b = false;
     }
     setState(() {});
+    return b;
   }
 }
