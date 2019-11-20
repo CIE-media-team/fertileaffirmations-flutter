@@ -87,13 +87,7 @@ class _MyCard extends State<MyCard> {
                 save();
                 Navigator.of(context).pop();
 
-                Navigator.of(context, rootNavigator: true).pop();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          Collection(fave: CardClass.getFave()),
-                    ));
+                
               },
             ),
           ],
