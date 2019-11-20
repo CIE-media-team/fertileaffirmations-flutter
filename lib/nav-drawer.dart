@@ -1,5 +1,6 @@
 import 'package:fertile_affirmations/card-class.dart';
 import 'package:fertile_affirmations/custom-affirmation.dart';
+import 'package:fertile_affirmations/instructions.dart';
 import 'package:flutter/material.dart';
 import 'package:fertile_affirmations/main.dart';
 import 'card-screen-random.dart';
@@ -57,7 +58,7 @@ class MyNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Divider(),
-            menuItem("Instructions", Icons.info, SelectGoddess(), context),
+            menuItem("Instructions", Icons.info, InstructionScreen(), context),
             menuItem(
                 "Affirmation", Icons.photo_library, MyCardRandom(), context),
             menuItem(
