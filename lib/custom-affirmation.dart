@@ -88,6 +88,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
           Padding(
               padding: EdgeInsets.all(30),
               child: Container(
+
                   alignment: Alignment.center,
                   child: Center(
                       child: TextField(

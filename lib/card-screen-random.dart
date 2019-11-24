@@ -79,8 +79,9 @@ class _MyCard extends State<MyCardRandom> {
                             image: AssetImage('assets/images/cardblank.png'),
                           )),
                           child: Center(
-                              child: Padding(
-                                  padding: EdgeInsets.all(40),
+                            child: Container(
+                            width:((MediaQuery.of(context).size.height / 4) *
+                                        3) * 0.63,
                                   child: AutoSizeText(getCard().cardText,
                                       minFontSize: 20,
                                       maxFontSize: 40,
@@ -94,6 +95,7 @@ class _MyCard extends State<MyCardRandom> {
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
                             image: DecorationImage(
+                              fit: BoxFit.fitHeight,
                                 image: AssetImage(
                                     CardClass.getPreferenceImagePath())),
                           )))

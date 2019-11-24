@@ -22,39 +22,17 @@ class RemindMe extends StatefulWidget {
 class _RemindMeState extends State<RemindMe> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-  List<String> hours = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12'
-  ];
-  List<String> minutes = [
-    '00',
-    '05',
-    '10',
-    '15',
-    '20',
-    '25',
-    '30',
-    '35',
-    '40',
-    '45',
-    '54',
-    '55'
-  ];
+  List<String> hours = new List<String>();
+  List<String> minutes  = new List<String>();
   List<String> tod = ['AM', 'PM'];
   String _selectedHour, _selectedMinute, _selectedTOD;
 
+
+
+
   @override
   initState() {
+    _populateLists(); 
     super.initState();
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     // If you have skipped STEP 3 then change app_icon to @mipmap/ic_launcher
@@ -66,6 +44,7 @@ class _RemindMeState extends State<RemindMe> {
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
+
     // initializationSettings, selectNotification: onSelectNotification);
   }
 
@@ -85,19 +64,26 @@ class _RemindMeState extends State<RemindMe> {
         backgroundColor: Colors.transparent,
         appBar: new AppBar(
           iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Theme.of(context).primaryColor,
+          title: Text("Remind Me"),
           elevation: 0.0,
         ),
-        body: Center(
+        body: 
+        Center(
             child: Column(children: <Widget>[
-          RaisedButton(
-            onPressed: _showNotification,
-            child: new Text('Show Notification'),
-          ),
-          RaisedButton(
-            onPressed: _scheduledNotification,
-            child: new Text('Show Scheduled Notification'),
-          ),
+          // RaisedButton(
+          //   onPressed: _showNotification,
+          //   child: new Text('Show Notification'),
+          // ),
+          // RaisedButton(
+          //   onPressed: _scheduledNotification,
+          //   child: new Text('Show Scheduled Notification'),
+          // ),
+          // Row(children: <Widget>[
+          //   Text(_selectedHour),
+          //   Text(_selectedMinute),
+          //   Text(_selectedTOD),
+          // ],),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -271,7 +257,7 @@ class _RemindMeState extends State<RemindMe> {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Daily Notification"),
+          title: new Text("Daily Notification", style: TextStyle(fontSize: 24),),
           content: new Text(
               "You have chosen to recieve your daily affirmation reminder at $_selectedHour : $_selectedMinute $_selectedTOD"),
           actions: <Widget>[
@@ -287,4 +273,18 @@ class _RemindMeState extends State<RemindMe> {
       },
     );
   }
-}
+
+  _populateLists(){
+    for(int i=1; i<=12; i++){
+      hours.add(i.toString());
+    } 
+    
+    for(int i=0; i<=60; i++){
+      if(i<10){
+      minutes.add("0"+i.toString());
+      }
+      else{minutes.add(i.toString());}
+      } 
+    }
+  }
+
