@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RemindMe extends StatefulWidget {
 // class MyHomePage extends StatelessWidget {
@@ -26,13 +27,39 @@ class _RemindMeState extends State<RemindMe> {
   List<String> minutes  = new List<String>();
   List<String> tod = ['AM', 'PM'];
   String _selectedHour, _selectedMinute, _selectedTOD;
+  SharedPreferences prefs;
 
 
+  getValues() async{
+    
+    prefs = await SharedPreferences.getInstance();
+    var prefSelectedHour = (prefs.getString('sharedPrefHours') ?? null); 
+    var prefSelectedMinute = (prefs.getString('sharedPrefMinutes') ?? null); 
+    var prefSelectedTOD = (prefs.getString('sharedPrefTod') ?? null); 
 
+    if(prefSelectedHour != null && prefSelectedMinute != null && prefSelectedTOD!=null){
+      setState(() {
+        
+      _selectedHour = prefSelectedHour; 
+      _selectedMinute = prefSelectedMinute;
+      _selectedTOD = prefSelectedTOD;
+            });
+
+    }
+
+      
+    
+
+  }
 
   @override
   initState() {
+
+    
+
     _populateLists(); 
+    getValues();
+
     super.initState();
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     // If you have skipped STEP 3 then change app_icon to @mipmap/ic_launcher
@@ -46,6 +73,8 @@ class _RemindMeState extends State<RemindMe> {
         onSelectNotification: onSelectNotification);
 
     // initializationSettings, selectNotification: onSelectNotification);
+
+
   }
 
   @override
@@ -89,13 +118,14 @@ class _RemindMeState extends State<RemindMe> {
             children: <Widget>[
               DropdownButton(
                 hint: Text("Hour"),
-                value: _selectedHour,
                 items: hours.map((String value) {
                   return new DropdownMenuItem<String>(
                     value: value,
                     child: new Text(value),
                   );
                 }).toList(),
+                value: _selectedHour,
+
                 onChanged: (newValue) {
                   setState(() {
                     _selectedHour = newValue;
@@ -232,6 +262,10 @@ class _RemindMeState extends State<RemindMe> {
   }
 
   _dailyNotification(int hour, int minute, String tod) async {
+    prefs.setString('sharedPrefHours', hour.toString()); 
+    prefs.setString('sharedPrefMinutes', _toTwoDigitString(minute)); 
+    prefs.setString('sharedPrefTod', tod); 
+
     if (tod == "PM") {
       hour = hour + 12;
     }
