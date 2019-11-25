@@ -79,9 +79,11 @@ class _MyCard extends State<MyCardRandom> {
                             image: AssetImage('assets/images/cardblank.png'),
                           )),
                           child: Center(
-                            child: Container(
+                            child: Stack(
+                              children: <Widget>[
+                              Container(
                             width:((MediaQuery.of(context).size.height / 4) *
-                                        3) * 0.63,
+                                        3) * 0.60,
                                   child: AutoSizeText(getCard().cardText,
                                       minFontSize: 20,
                                       maxFontSize: 40,
@@ -90,7 +92,16 @@ class _MyCard extends State<MyCardRandom> {
                                           fontFamily: "new",
                                           fontSize: 40,
                                           height: 1.3),
-                                      textAlign: TextAlign.center)))),
+                                      textAlign: TextAlign.center)), 
+                                      // Positioned(
+                                      //           left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2 + 5,
+                                      //           bottom: 30.0,
+                                      //           child: AutoSizeText(widget.cards[position].cardID, 
+                                      //           minFontSize: 20,
+                                      //         maxFontSize: 40,
+                                      //           style: TextStyle(fontFamily: "new"),),
+                                      //         ),
+                                              ]))),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(

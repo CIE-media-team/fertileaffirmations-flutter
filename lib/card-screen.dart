@@ -168,77 +168,73 @@ class _MyCard extends State<MyCard> {
                 itemBuilder: (context, position) {
                   return Column(children: <Widget>[
                     Stack(children: <Widget>[
-                      // Center(
-                      //     child: Container(
-                      //         height:
-                      //             (MediaQuery.of(context).size.height / 4) * 3,
-                      //         width: ((MediaQuery.of(context).size.height / 4) *
-                      //                 3) *
-                      //             0.65,
-                      //         decoration: new BoxDecoration(
-                      //             borderRadius:
-                      //                 new BorderRadius.all(Radius.circular(20)),
-                      //             image: DecorationImage(
-                      //               fit: BoxFit.cover,
-                      //               image: AssetImage(
-                      //                   'assets/images/noleaves2.png'),
-                      //             )))),
                       FlipCard(
                         //key: cardKey,
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
                                 height:
-                                    (MediaQuery.of(context).size.height / 4) *
-                                        3,
-                                width:
                                     ((MediaQuery.of(context).size.height / 4) *
+                                        3) - 10,
+                                width:
+                                    (((MediaQuery.of(context).size.height / 4) *
                                             3) *
-                                        0.65,
+                                        0.65) ,
                                 decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(18)),
                                     image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image:
-                                      AssetImage('assets/images/noleaves2.png'),
-                                )),
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(
+                                          'assets/images/noleaves2.png'),
+                                    )),
                                 child: Center(
-                                    child: Stack(children: <Widget>[Container(
-                                      child: 
-                                  Image.asset(
+                                    child: Stack(children: <Widget>[
+                                  Container(
+                                      child: Image.asset(
                                     'assets/images/cardblank.png',
                                     height:
                                         (MediaQuery.of(context).size.height /
                                                 4) *
                                             3,
-                                            
                                     width:
                                         ((MediaQuery.of(context).size.height /
                                                     4) *
                                                 3) *
                                             0.65,
                                   )),
-                                 Center(child: Container(
-                                      // decoration: BoxDecoration(
-                                      //     image: DecorationImage(
-                                      //   image: AssetImage(
-                                      //       'assets/images/cardblank.png'),
-                                      // )),
-                                      width:
-                                          ((MediaQuery.of(context).size.height /
+                                  Center(
+                                      child: Container(
+                                          // decoration: BoxDecoration(
+                                          //     image: DecorationImage(
+                                          //   image: AssetImage(
+                                          //       'assets/images/cardblank.png'),
+                                          // )),
+                                          width: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height /
                                                       4) *
                                                   3) *
-                                              0.63,
-                                      child: AutoSizeText(
-                                          widget.cards[position].cardText,
-                                          minFontSize: 20,
-                                          maxFontSize: 40,
-                                          maxLines: 4,
-                                          style: TextStyle(
-                                              fontFamily: "new",
-                                              fontSize: 40,
-                                              height: 1.3),
-                                          textAlign: TextAlign.center))
-                         ) ])))),
+                                              0.60,
+                                          child: AutoSizeText(
+                                              widget.cards[position].cardText,
+                                              minFontSize: 20,
+                                              maxFontSize: 40,
+                                              maxLines: 4,
+                                              style: TextStyle(
+                                                  fontFamily: "new",
+                                                  fontSize: 40,
+                                                  height: 1.3),
+                                              textAlign: TextAlign.center))),
+                                              Positioned(
+                                                left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
+                                                bottom: 30.0,
+                                                child: AutoSizeText(widget.cards[position].cardID, 
+                                                minFontSize: 20,
+                                              maxFontSize: 40,
+                                                style: TextStyle(fontFamily: "new"),),
+                                              ),
+                                ])))),
 
                         back: Container(
                             height:

@@ -156,8 +156,17 @@ class _Collection extends State<Collection>  {
                                       fontFamily: "new",
                                       fontSize: 4,
                                       height: 1),
-                                ))
-                          ],
+                                )), 
+                                Positioned(
+                                                bottom: 8,
+                                                child: Align(
+                                                  alignment: Alignment.bottomCenter,
+                                                  child: AutoSizeText(cards[position].cardID, 
+                                                minFontSize: 4,
+                                              maxFontSize: 10,
+                                                style: TextStyle(fontFamily: "new"),),
+                                              ),
+                                )],
                         )));
               },
               itemCount: cards.length,
