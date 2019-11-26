@@ -104,20 +104,22 @@ class _MyCard extends State<MyCardRandom> {
                               //           style: TextStyle(fontFamily: "new"),),
                               //         ),
                             ),
-                             Positioned(
-                              left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.66) /2,
+                            Positioned(
+                              left: (MediaQuery.of(context).size.width / 2.15),
                               bottom: 30.0,
-
-                              child: Align(
-                                alignment: Alignment.center, 
-                                child: AutoSizeText(
-                                getCard().cardID,
-                                minFontSize: 35,
-                                maxFontSize: 55,
-                                style: TextStyle(fontFamily: "new"),
+                              child: Center(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: AutoSizeText(
+                                    getCard().cardID,
+                                    minFontSize: 35,
+                                    maxFontSize: 55,
+                                    style: TextStyle(fontFamily: "new"),
+                                  ),
+                                ),
                               ),
-                            ),
-                      )])),
+                            )
+                          ])),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
