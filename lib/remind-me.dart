@@ -59,6 +59,7 @@ class _RemindMeState extends State<RemindMe> {
           child: Image.asset('assets/images/noleaves2.png'),
         ),
       ),
+      
       Scaffold(
         drawer: MyNavigationDrawer(),
         backgroundColor: Colors.transparent,
@@ -67,6 +68,10 @@ class _RemindMeState extends State<RemindMe> {
           backgroundColor: Theme.of(context).primaryColor,
           title: Text("Remind Me"),
           elevation: 0.0,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => Navigator.pop(context, false),
+            )
         ),
         body: 
         Center(
