@@ -57,7 +57,7 @@ class _Collection extends State<Collection>  {
   void toggleFlip() {
     _front = !_front;
     if (_front) {
-      cardImage = 'assets/images/cardblank.png';
+      cardImage = 'assets/images/cardBlanknew.png';
       ic = Icons.flip_to_back;
     } else {
       bool pref = CardClass.getPreference();

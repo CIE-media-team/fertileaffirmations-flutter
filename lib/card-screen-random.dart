@@ -66,17 +66,24 @@ class _MyCard extends State<MyCardRandom> {
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
             child: Stack(
+            
                 // alignment: AlignmentDirectional.centerStart,
                 children: <Widget>[
-              Column(children: <Widget>[
-                Stack(children: <Widget>[
+              Column(
+                
+                children: <Widget>[
+                Stack(
+                  
+                  children: <Widget>[
                   FlipCard(
                       key: cardKey,
                       back: Container(
+                        margin: EdgeInsets.only(top: 1),
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: AssetImage('assets/images/cardblank.png'),
+                                
+                            image: AssetImage('assets/images/cardBlanknew.png'),
                           )),
                           child: Stack(children: <Widget>[
                             Center(
@@ -104,21 +111,20 @@ class _MyCard extends State<MyCardRandom> {
                               //           style: TextStyle(fontFamily: "new"),),
                               //         ),
                             ),
-                            Positioned(
-                              left: (MediaQuery.of(context).size.width / 2.15),
-                              bottom: 30.0,
-                              child: Center(
-                                child: Align(
-                                  alignment: Alignment.center,
+                            Padding(
+                              padding: EdgeInsets.only( bottom: 30.0),
+                              child:  Align(
+                                  alignment: Alignment.bottomCenter,
                                   child: AutoSizeText(
                                     getCard().cardID,
                                     minFontSize: 35,
                                     maxFontSize: 55,
-                                    style: TextStyle(fontFamily: "new"),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontFamily: "new",),
                                   ),
                                 ),
                               ),
-                            )
+                            
                           ])),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
@@ -130,7 +136,7 @@ class _MyCard extends State<MyCardRandom> {
                           )))
                 ]),
                 Container(
-                    height: (MediaQuery.of(context).size.height / 8),
+                    height: (MediaQuery.of(context).size.height / 8 -1),
                     padding: EdgeInsets.all(0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
