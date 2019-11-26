@@ -105,15 +105,15 @@ class _MyCard extends State<MyCardRandom> {
                               //         ),
                             ),
                              Positioned(
-                              // left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
-                              bottom: 10.0,
+                              left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.66) /2,
+                              bottom: 30.0,
 
                               child: Align(
-                                                              alignment: Alignment.center, 
+                                alignment: Alignment.center, 
                                 child: AutoSizeText(
                                 getCard().cardID,
-                                minFontSize: 20,
-                                maxFontSize: 40,
+                                minFontSize: 35,
+                                maxFontSize: 55,
                                 style: TextStyle(fontFamily: "new"),
                               ),
                             ),
