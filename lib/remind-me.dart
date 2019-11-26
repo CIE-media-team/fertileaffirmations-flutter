@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RemindMe extends StatefulWidget {
 // class MyHomePage extends StatelessWidget {
@@ -26,13 +27,39 @@ class _RemindMeState extends State<RemindMe> {
   List<String> minutes  = new List<String>();
   List<String> tod = ['AM', 'PM'];
   String _selectedHour, _selectedMinute, _selectedTOD;
+  SharedPreferences prefs;
 
 
+  getValues() async{
+    
+    prefs = await SharedPreferences.getInstance();
+    var prefSelectedHour = (prefs.getString('sharedPrefHours') ?? null); 
+    var prefSelectedMinute = (prefs.getString('sharedPrefMinutes') ?? null); 
+    var prefSelectedTOD = (prefs.getString('sharedPrefTod') ?? null); 
 
+    if(prefSelectedHour != null && prefSelectedMinute != null && prefSelectedTOD!=null){
+      setState(() {
+        
+      _selectedHour = prefSelectedHour; 
+      _selectedMinute = prefSelectedMinute;
+      _selectedTOD = prefSelectedTOD;
+            });
+
+    }
+
+      
+    
+
+  }
 
   @override
   initState() {
+
+    
+
     _populateLists(); 
+    getValues();
+
     super.initState();
     // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     // If you have skipped STEP 3 then change app_icon to @mipmap/ic_launcher
@@ -46,6 +73,8 @@ class _RemindMeState extends State<RemindMe> {
         onSelectNotification: onSelectNotification);
 
     // initializationSettings, selectNotification: onSelectNotification);
+
+
   }
 
   @override
@@ -75,32 +104,28 @@ class _RemindMeState extends State<RemindMe> {
         ),
         body: 
         Center(
-            child: Column(children: <Widget>[
-          // RaisedButton(
-          //   onPressed: _showNotification,
-          //   child: new Text('Show Notification'),
-          // ),
-          // RaisedButton(
-          //   onPressed: _scheduledNotification,
-          //   child: new Text('Show Scheduled Notification'),
-          // ),
-          // Row(children: <Widget>[
-          //   Text(_selectedHour),
-          //   Text(_selectedMinute),
-          //   Text(_selectedTOD),
-          // ],),
+          
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text("Please ensure notifications are enabled and select a time you would like to be reminded to receive your daily Fertile Affirmation!", style: TextStyle(fontSize: 20), textAlign: TextAlign.center,), 
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height/10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               DropdownButton(
-                hint: Text("Hour"),
-                value: _selectedHour,
+                hint: Text("Hour", style: TextStyle(fontSize: 20)),
                 items: hours.map((String value) {
                   return new DropdownMenuItem<String>(
                     value: value,
-                    child: new Text(value),
+                    child: new Text(value, style: TextStyle(fontSize: 20)),
                   );
                 }).toList(),
+                value: _selectedHour,
+
                 onChanged: (newValue) {
                   setState(() {
                     _selectedHour = newValue;
@@ -109,15 +134,15 @@ class _RemindMeState extends State<RemindMe> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(":"),
+                child: Text(":", style: TextStyle(fontSize: 20)),
               ),
               DropdownButton(
-                hint: Text("Minute"),
+                hint: Text("Minute", style: TextStyle(fontSize: 20)),
                 value: _selectedMinute,
                 items: minutes.map((String value) {
                   return new DropdownMenuItem<String>(
                     value: value,
-                    child: new Text(value),
+                    child: new Text(value, style: TextStyle(fontSize: 20)),
                   );
                 }).toList(),
                 onChanged: (newValue) {
@@ -127,12 +152,12 @@ class _RemindMeState extends State<RemindMe> {
                 },
               ),
               DropdownButton(
-                hint: Text("AM/PM"),
+                hint: Text("AM/PM", style: TextStyle(fontSize: 20)),
                 value: _selectedTOD,
                 items: tod.map((String value) {
                   return new DropdownMenuItem<String>(
                     value: value,
-                    child: new Text(value),
+                    child: new Text(value, style: TextStyle(fontSize: 20),),
                   );
                 }).toList(),
                 onChanged: (newValue) {
@@ -144,12 +169,13 @@ class _RemindMeState extends State<RemindMe> {
             ],
           ),
           RaisedButton(
+            color: Theme.of(context).primaryColor,
             onPressed: () {
               _showDialog();
               _dailyNotification(int.parse(_selectedHour),
                   int.parse(_selectedMinute), _selectedTOD);
             },
-            child: new Text('Show Daily Notification'),
+            child: new Text('Set Daily Notification Time', style: TextStyle(color: Colors.white, fontSize: 18),)
           ),
         ])),
       )
@@ -164,16 +190,6 @@ class _RemindMeState extends State<RemindMe> {
         MaterialPageRoute(
           builder: (context) => MyCardRandom(),
         ));
-
-    // showDialog(
-    //   context: context,
-    //   builder: (_) {
-    //     return new AlertDialog(
-    //       title: Text("Its time!"),
-    //       content: Text("Select 'Affirmation' from the menu to get your daily affirmation!"),
-    //     );
-    //   },
-    // );
   }
 
   _showNotification() async {
@@ -187,32 +203,7 @@ class _RemindMeState extends State<RemindMe> {
         'Open the Fertile Affirmations app to recieve your daily affirmation!',
         platform);
   }
-  // var scheduledNotificationDateTime =
-  //     DateTime.now().add(Duration(seconds: 5));
 
-  // var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-  //     'your other channel id',
-  //     'your other channel name',
-  //     'your other channel description',
-  //     icon: 'secondary_icon',
-  //     sound: 'slow_spring_board',
-  //     largeIcon: 'sample_large_icon',
-  //     largeIconBitmapSource: BitmapSource.Drawable,
-  //     enableLights: true,
-  //     color: const Color.fromARGB(255, 255, 0, 0),
-  //     ledColor: const Color.fromARGB(255, 255, 0, 0),
-  //     ledOnMs: 1000,
-  //     ledOffMs: 500);
-  // var iOSPlatformChannelSpecifics =
-  //     IOSNotificationDetails(sound: "slow_spring_board.aiff");
-  // var platformChannelSpecifics = NotificationDetails(
-  //     androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-  // await flutterLocalNotificationsPlugin.schedule(
-  //     0,
-  //     'scheduled title',
-  //     'scheduled body',
-  //     scheduledNotificationDateTime,
-  //     platformChannelSpecifics);
 
   String _toTwoDigitString(int value) {
     return value.toString().padLeft(2, '0');
@@ -237,6 +228,10 @@ class _RemindMeState extends State<RemindMe> {
   }
 
   _dailyNotification(int hour, int minute, String tod) async {
+    prefs.setString('sharedPrefHours', hour.toString()); 
+    prefs.setString('sharedPrefMinutes', _toTwoDigitString(minute)); 
+    prefs.setString('sharedPrefTod', tod); 
+
     if (tod == "PM") {
       hour = hour + 12;
     }

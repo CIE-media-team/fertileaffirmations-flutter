@@ -145,6 +145,9 @@ void resetApp() async {
   CardClass.firstLaunch = true;
   //Initialize all cards again.
   readCards(permcards.toString());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.clear();
+
 }
 
 void save() async {

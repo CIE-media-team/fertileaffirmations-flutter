@@ -37,6 +37,7 @@ class CardClass {
     }
     else{
       this.isDefault = false;
+      this.cardID = "";
     }
     cards.add(this);
 
