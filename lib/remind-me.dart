@@ -3,6 +3,7 @@ import 'package:fertile_affirmations/card-screen-random.dart';
 import 'package:fertile_affirmations/nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -104,15 +105,17 @@ class _RemindMeState extends State<RemindMe> {
         ),
         body: 
         Center(
-          
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Text("Please ensure notifications are enabled and select a time you would like to be reminded to receive your daily Fertile Affirmation!", style: TextStyle(fontSize: 20), textAlign: TextAlign.center,), 
+                child: AutoSizeText("Please ensure notifications are enabled and select a time you would like to be reminded to receive your daily Fertile Affirmation!", 
+                maxFontSize: 40,
+                minFontSize: 20,
+                style: TextStyle(), textAlign: TextAlign.center,), 
               ),
-              SizedBox(height: MediaQuery.of(context).size.height/10,),
+              SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -245,8 +248,8 @@ class _RemindMeState extends State<RemindMe> {
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.showDailyAtTime(
         0,
-        'show daily title',
-        'Daily notification shown at approximately ${_toTwoDigitString(time.hour)}:${_toTwoDigitString(time.minute)}:${_toTwoDigitString(time.second)}',
+        'Pull My Fertile Affirmation!',
+        'Head over to the Fertile Affirmations app now!',
         time,
         platformChannelSpecifics);
   }

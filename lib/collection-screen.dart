@@ -125,7 +125,7 @@ class _Collection extends State<Collection>  {
                     child: FlatButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
-                          debugPrint(cards[position].cardText);
+                          // debugPrint(cards[position].cardText);
                           //Navigator.of(context).pop();
                           Navigator.push(
                               context,

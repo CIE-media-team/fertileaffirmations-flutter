@@ -88,7 +88,7 @@ class CardClass {
         usercards += c.toString();
       }
     }
-    debugPrint("User cards: " + usercards);
+    // debugPrint("User cards: " + usercards);
     list = [permpref,usercards];
     return list;
   }

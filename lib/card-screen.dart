@@ -220,7 +220,7 @@ class _MyCard extends State<MyCard> {
                                               0.60,
                                           child: AutoSizeText(
                                               widget.cards[position].cardText,
-                                              minFontSize: 20,
+                                              minFontSize: 19,
                                               maxFontSize: 40,
                                               maxLines: 4,
                                               style: TextStyle(

@@ -58,7 +58,7 @@ class MyNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Divider(),
-            menuItem("Instructions", Icons.info, InstructionScreen(), context),
+            menuItem("Instructions", Icons.info, InstructionScreen(position: 0, instructions: CardClass.instructions), context),
             menuItem(
                 "Affirmation", Icons.photo_library, MyCardRandom(), context),
             menuItem(

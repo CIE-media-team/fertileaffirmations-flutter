@@ -1,25 +1,41 @@
 import 'package:fertile_affirmations/card-class.dart';
-import 'package:fertile_affirmations/custom-affirmation.dart';
 import 'package:flutter/material.dart';
-import 'package:fertile_affirmations/main.dart';
-import 'package:flutter/semantics.dart';
-import 'card-screen-random.dart';
-import 'select-goddess.dart';
-import 'collection-screen.dart';
 import 'card-class.dart';
-import 'main.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:share/share.dart';
-import 'remind-me.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
-class InstructionScreen extends StatelessWidget {
+class InstructionScreen extends StatefulWidget {
+  InstructionScreen({
+    Key key,
+    this.card,
+    @required this.instructions,
+    @required this.position,
+  }) : super(key: key);
+  final CardClass card;
+  final int position;
+  final List instructions;
+
+  @override
+  _InstructionScreen createState() => _InstructionScreen();
+}
+
+class _InstructionScreen extends State<InstructionScreen> {
+  int totalDots;
+  double _currentPosition = 0.0;
   @override
   Widget build(BuildContext context) {
+    totalDots = widget.instructions.length - 1;
+    final decorator = DotsDecorator(
+      activeColor: Theme.of(context).primaryColorDark,
+      color: Theme.of(context).primaryColor,
+      activeSize: Size.square(18.0),
+    );
+
     return Stack(children: <Widget>[
       Image(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
         image: AssetImage('assets/images/noleaves2.png'),
       ),
       Scaffold(
@@ -38,28 +54,64 @@ class InstructionScreen extends StatelessWidget {
             ),
           ),
           backgroundColor: Colors.transparent,
-          body: 
+          body: Column(children: <Widget>[
+            Expanded(
+                child: PageView.builder(
+                    itemCount: CardClass.instructions.length - 1,
+                    onPageChanged: _pageChange,
+                    controller: PageController(
+                        initialPage: widget.position,
+                        keepPage: true,
+                        viewportFraction: 1),
+                    itemBuilder: (context, position) {
+                      return Column(children: <Widget>[
+                        Expanded(
+                            child: Stack(children: <Widget>[
+                          Container(
+                              height:
+                                  (MediaQuery.of(context).size.height / 5 * 4),
+                              alignment: Alignment.topCenter,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                'assets/images/cardBlanknew.png',
+                              ))),
+                              child: Center(
+                                  child: Container(
+                                      width:
+                                          ((MediaQuery.of(context).size.height /
+                                                      4) *
+                                                  3) *
+                                              0.60,
+                                      child: AutoSizeText(
+                                          widget.instructions[position],
+                                          minFontSize: 20,
+                                          maxFontSize: 40,
+                                          // maxLines: 4,
+                                          style: TextStyle(
+                                              fontSize: 14, height: 1.1),
+                                          textAlign: TextAlign.center))))
+                        ])),
+                      ]);
+                    })),
+            Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: DotsIndicator(
+                  dotsCount: totalDots,
+                  position: _currentPosition,
+                  decorator: decorator,
+                ))
+          ]))
+    ]);
+  }
 
-            ListView.builder(
-        itemCount: CardClass.instructions.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            title: Text(CardClass.instructions[index], style: TextStyle(fontSize: 20),),
-          );
-        },
-      
+  _pageChange(int position) {
+    setState(() => _currentPosition = _validPosition(position).toDouble());
+  }
 
-      ))]);
-          // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          //   child:Center(
-          //     child: SingleChildScrollView(
-          //       child: Text(
-          //   CardClass.instructions.toString(),
-          //   style: TextStyle(fontSize: 24),
-            
-          // ))))
-
+  int _validPosition(int position) {
+    if (position >= totalDots) return 0;
+    if (position < 0) return totalDots - 1;
+    return position;
   }
 }
