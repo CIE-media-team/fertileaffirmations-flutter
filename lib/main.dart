@@ -291,14 +291,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Image.asset('assets/images/noleaves2.png'),
               ),
             ),
-            Column(
+            Center(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset('assets/images/fertilelogo.png'),
+                Image.asset('assets/images/fertilelogo.png', width: MediaQuery.of(context).size.width/ 12 * 11,),
                 SizedBox(height: 5),
                 Image.asset(CardClass.getFirstPreferenceImagePath()),
               ],
-            ),
+            )),
             Scaffold(
               drawer: MyNavigationDrawer(),
               backgroundColor: Colors.transparent,
@@ -312,59 +312,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.transparent,
               ),
             ),
-            // RaisedButton(
-            //       onPressed: _showNotification,
-            //       child: new Text('Show Notification'),
-            //     )
           ],
         ));
   }
 
-  // Future onSelectNotification(String payload) async {
-  //   showDialog(
-  //     context: context,
-  //     builder: (_) {
-  //       return new AlertDialog(
-  //         title: Text("PayLoad"),
-  //         content: Text("Payload : $payload"),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // _showNotification() async {
-  //   var android = new AndroidNotificationDetails(
-  //       'channel id', 'channel NAME', 'CHANNEL DESCRIPTION');
-  //   var iOS = new IOSNotificationDetails();
-  //   var platform = new NotificationDetails(android, iOS);
-  //   await flutterLocalNotificationsPlugin.show(
-  //       0, 'Hey there!', 'Head on over to Fertile Affirmations app to recieve your daily affirmation!', platform);
-  //   // var scheduledNotificationDateTime =
-  //   //     DateTime.now().add(Duration(seconds: 5));
-
-  //   // var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-  //   //     'your other channel id',
-  //   //     'your other channel name',
-  //   //     'your other channel description',
-  //   //     icon: 'secondary_icon',
-  //   //     sound: 'slow_spring_board',
-  //   //     largeIcon: 'sample_large_icon',
-  //   //     largeIconBitmapSource: BitmapSource.Drawable,
-  //   //     enableLights: true,
-  //   //     color: const Color.fromARGB(255, 255, 0, 0),
-  //   //     ledColor: const Color.fromARGB(255, 255, 0, 0),
-  //   //     ledOnMs: 1000,
-  //   //     ledOffMs: 500);
-  //   // var iOSPlatformChannelSpecifics =
-  //   //     IOSNotificationDetails(sound: "slow_spring_board.aiff");
-  //   // var platformChannelSpecifics = NotificationDetails(
-  //   //     androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-  //   // await flutterLocalNotificationsPlugin.schedule(
-  //   //     0,
-  //   //     'scheduled title',
-  //   //     'scheduled body',
-  //   //     scheduledNotificationDateTime,
-  //   //     platformChannelSpecifics);
-  // }
 
 }
