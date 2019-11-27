@@ -248,8 +248,8 @@ class _RemindMeState extends State<RemindMe> {
         androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.showDailyAtTime(
         0,
-        'Pull My Fertile Affirmation!',
-        'Head over to the Fertile Affirmations app now!',
+        'My Fertile Affirmations',
+        'Time To Pause And Pull A Card!',
         time,
         platformChannelSpecifics);
   }

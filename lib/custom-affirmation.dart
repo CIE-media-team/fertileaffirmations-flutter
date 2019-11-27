@@ -29,8 +29,16 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack( children: <Widget>[
+      Image(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        fit: BoxFit.cover,
+        image: AssetImage('assets/images/noleaves2.png'),
+      ),
+      Scaffold(
       resizeToAvoidBottomInset: false,
+              backgroundColor: Colors.transparent,
 
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -76,22 +84,17 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Image.asset('assets/images/noleaves2.png'),
-            ),
-          ),
           Image.asset('assets/images/cardblank.png'),
-          Padding(
-              padding: EdgeInsets.all(30),
-              child: Container(
+          // Padding(
+          //     padding: EdgeInsets.all(30),
+          //     child: 
+              Container(
+                width: MediaQuery.of(context).size.height * 0.5,
 
                   alignment: Alignment.center,
                   child: Center(
                       child: TextField(
+                        
                     textAlign: TextAlign.center,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.multiline,
@@ -104,6 +107,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     // },
 
                     decoration: InputDecoration(
+                      
                       hintText:
                           'Enter text here and press submit to create your new card',
                       hintMaxLines: 4,
@@ -121,10 +125,11 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                     maxLines: 8, minLines: 1,
                     style: TextStyle(
                         fontFamily: "new", fontSize: 30, height: 1.5),
-                  ))))
+                  // )
+                  )))
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    )]);
   }
 
   createCard() {
