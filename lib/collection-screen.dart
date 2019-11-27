@@ -147,14 +147,14 @@ class _Collection extends State<Collection>  {
                                 visible: _front,
                                 child: AutoSizeText(
                                   cards[position].cardText,
-                                  // maxFontSize: 10,
-                                  minFontSize: 10,
+                                  maxFontSize: 10,
+                                  minFontSize: 4,
                                   maxLines: 4,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColorDark,
                                       fontFamily: "new",
-                                      fontSize: 4,
+                                      // fontSize: 4,
                                       height: 1),
                                 )), 
                                 Positioned(
