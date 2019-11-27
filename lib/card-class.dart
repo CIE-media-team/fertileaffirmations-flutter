@@ -16,6 +16,7 @@ class CardClass {
   static List instructions =[];
   static bool creations = false;
   static BuildContext context = null;
+  static String versionNumber;
 
   
 

@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 // import 'package:flutter/material.dart';
 // import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:package_info/package_info.dart';
 
 import 'select-goddess.dart';
 
@@ -27,10 +28,18 @@ import 'select-goddess.dart';
 //permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen. IE the user favorites card #13, so we have to store that here.
 
 Future main() async {
+
   await firstLaunch();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  
+  //PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  // String versionName = packageInfo.version;
+  // String versionCode = packageInfo.buildNumber;
+  // CardClass.versionNumber = versionCode;
 
   runApp(MyApp());
+
+
 
   //resetApp();
 }

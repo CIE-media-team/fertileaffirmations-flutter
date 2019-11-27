@@ -11,9 +11,15 @@ import 'main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 import 'remind-me.dart';
+import 'package:package_info/package_info.dart';
 
 class MyNavigationDrawer extends StatelessWidget {
+
+  
+
+  
   Widget routeTo2;
+  
 
   Future<void> _ackAlert(BuildContext context) {
     return showDialog<void>(
@@ -45,9 +51,28 @@ class MyNavigationDrawer extends StatelessWidget {
       },
     );
   }
+  
+
+  Future<String> getVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.buildNumber;
+  }
+  main(List<String> args) {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
+    var aboutChild = AboutListTile(
+        child: Text("Licenses",
+          style: TextStyle(
+              color: Theme.of(context).primaryColorDark,
+              fontWeight: FontWeight.bold,
+              fontSize: 18)),
+        applicationName: "Fertile Affirmations",
+        applicationVersion: "v1.0.0",
+        applicationIcon: new Tab(icon: new Image.asset("assets/icon/WarmlauncherIcon-03.png")),
+        icon: Icon(Icons.info_outline));
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -74,7 +99,8 @@ class MyNavigationDrawer extends StatelessWidget {
             Divider(),
             menuItem("Share", Icons.share, null, context),
             menuItem("Learn More", Icons.mail, null, context),
-            menuItem("Purchase Deck", Icons.shopping_cart, null, context)
+            menuItem("Purchase Deck", Icons.shopping_cart, null, context),
+            aboutChild
           ],
         ),
       ),
