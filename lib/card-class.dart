@@ -170,7 +170,7 @@ static CardClass getRandomCard(){
 
     static String getPreferenceImagePath (){ 
     if (CardClass.getPreference() == true){ 
-      return 'assets/images/porcelainroundsmall.png';
+      return 'assets/images/porcelainround.png';
     }
     else{
       return 'assets/images/warmround.png';
