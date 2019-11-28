@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 // import 'package:flutter/material.dart';
 // import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:package_info/package_info.dart';
 
 import 'select-goddess.dart';
 

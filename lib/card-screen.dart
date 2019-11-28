@@ -1,7 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 
-import 'collection-screen.dart';
 import 'nav-drawer.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';

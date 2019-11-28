@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "card-class.dart";
-import 'main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'card-screen.dart';
 import 'custom-affirmation.dart';

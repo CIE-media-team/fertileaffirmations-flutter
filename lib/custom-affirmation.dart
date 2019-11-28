@@ -1,7 +1,6 @@
 import 'package:fertile_affirmations/card-class.dart';
 
 import 'nav-drawer.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:fluttertoast/fluttertoast.dart';

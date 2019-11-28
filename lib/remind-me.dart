@@ -195,39 +195,10 @@ class _RemindMeState extends State<RemindMe> {
         ));
   }
 
-  _showNotification() async {
-    var android = new AndroidNotificationDetails(
-        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION');
-    var iOS = new IOSNotificationDetails();
-    var platform = new NotificationDetails(android, iOS);
-    await flutterLocalNotificationsPlugin.show(
-        0,
-        'Hey there!',
-        'Open the Fertile Affirmations app to recieve your daily affirmation!',
-        platform);
-  }
 
 
   String _toTwoDigitString(int value) {
     return value.toString().padLeft(2, '0');
-  }
-
-  _scheduledNotification() async {
-    var scheduledNotificationDateTime =
-        new DateTime.now().add(new Duration(seconds: 5));
-    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-        'your other channel id',
-        'your other channel name',
-        'your other channel description');
-    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
-    NotificationDetails platformChannelSpecifics = new NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.schedule(
-        0,
-        'scheduled title',
-        'scheduled body',
-        scheduledNotificationDateTime,
-        platformChannelSpecifics);
   }
 
   _dailyNotification(int hour, int minute, String tod) async {
