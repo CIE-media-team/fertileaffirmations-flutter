@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fertile_affirmations/card-class.dart';
 
 import 'nav-drawer.dart';
@@ -28,7 +29,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack( children: <Widget>[
+    return Stack(children: <Widget>[
       Image(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -36,99 +37,103 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
         image: AssetImage('assets/images/noleaves2.png'),
       ),
       Scaffold(
-      resizeToAvoidBottomInset: false,
-              backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.transparent,
 
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text('Custom Affirmation'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.close,
-              color: Colors.white,
-            ),
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text('Custom Affirmation'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
           ),
-          IconButton(
-            icon: Icon(Icons.check),
-            onPressed: () {
-              if (myController.text != "") {
-                createCard();
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
+              onPressed: () {
                 Navigator.of(context).pop();
-                Fluttertoast.showToast(
-                    msg: "Card added to your collection!",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.TOP,
-                    timeInSecForIos: 1,
-                    backgroundColor: Colors.black38,
-                    textColor: Colors.white,
-                    fontSize: 14.0);
-              }
-            },
-          )
-        ],
-      ),
-      drawer: MyNavigationDrawer(),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-          Image.asset('assets/images/cardblank.png'),
-          // Padding(
-          //     padding: EdgeInsets.all(30),
-          //     child: 
-              Container(
-                width: MediaQuery.of(context).size.height * 0.5,
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () {
+                if (myController.text != "") {
+                  createCard();
+                  Navigator.of(context).pop();
+                  Fluttertoast.showToast(
+                      msg: "Card added to your collection!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.TOP,
+                      timeInSecForIos: 1,
+                      backgroundColor: Colors.black38,
+                      textColor: Colors.white,
+                      fontSize: 14.0);
+                }
+              },
+            )
+          ],
+        ),
+        drawer: MyNavigationDrawer(),
+        body: Center(
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child:
+              Stack(alignment: AlignmentDirectional.center, children: <Widget>[
+            Image.asset('assets/images/cardblank.png'),
+            // Padding(
+            //     padding: EdgeInsets.all(30),
+            //     child:
+            Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.black)),
+                width: MediaQuery.of(context).size.width / 4 * 3,
+                height: MediaQuery.of(context).size.height / 5 * 3,
+                alignment: Alignment.center,
+                child: Center(
+                    child: TextField(
+                  textAlign: TextAlign.center,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.multiline,
 
-                  alignment: Alignment.center,
-                  child: Center(
-                      child: TextField(
-                        
-                    textAlign: TextAlign.center,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.multiline,
-                  
-                    textAlignVertical: TextAlignVertical.center,
+                  textAlignVertical: TextAlignVertical.center,
 
-                    controller: myController,
-                    // onSubmitted: (term){
-                    //   myController.clear();
-                    // },
+                  controller: myController,
+                  // onSubmitted: (term){
+                  //   myController.clear();
+                  // },
 
-                    decoration: InputDecoration(
-                      
-                      hintText:
-                          'Enter text here and press submit to create your new card',
-                      hintMaxLines: 4,
+                  decoration: InputDecoration(
+                    hintText: 
+                        'Enter text here and press submit to create your new card',
+                    // hintMaxLines: 4,
 
-                      border: InputBorder.none,
-                      // border: OutlineInputBorder(),
-                    ),
+                    // border: InputBorder.none,
+                    border: OutlineInputBorder(),
+                  ),
 
-                    //autofocus: true,
-                    autocorrect: true,
+                  //autofocus: true,
+                  autocorrect: true,
 
-                    maxLengthEnforced: true,
-                    //+expands: true,
+                  // maxLengthEnforced: true,
+                  expands: true,
 
-                    maxLines: 8, minLines: 1,
-                    style: TextStyle(
-                        fontFamily: "new", fontSize: 30, height: 1.5),
+                  maxLines: null, minLines: null,
+                  style: TextStyle(
+                      fontFamily: "new",
+                      fontSize: (MediaQuery.of(context).size.height) / 20,
+                      height: 1.5),
                   // )
-                  )))
-        ]),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    )]);
+                )))
+          ]),
+        ), // This trailing comma makes auto-formatting nicer for build methods.
+      )
+    ]);
   }
 
   createCard() {
