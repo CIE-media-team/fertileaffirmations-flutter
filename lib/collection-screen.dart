@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import "card-class.dart";
@@ -107,14 +108,14 @@ class _Collection extends State<Collection>  {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 5,
+                  mainAxisSpacing: MediaQuery.of(context).size.height/100,
+                  crossAxisSpacing: MediaQuery.of(context).size.height/150,
                   childAspectRatio: 50 / 75),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, position) {
                 return Container(
-                    height: 100,
-                    width: 50,
+                    // height: 100,
+                    // width: 50,
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage('assets/images/noleaves2.png'),
@@ -144,28 +145,34 @@ class _Collection extends State<Collection>  {
                             ),
                             Visibility(
                                 visible: _front,
-                                child: AutoSizeText(
+                                child: Container(
+                                  decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+                                  height: getHeight(),
+                                  width: ((MediaQuery.of(context).size.width/5.5)),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: AutoSizeText(
                                   cards[position].cardText,
-                                  maxFontSize: 10,
-                                  minFontSize: 4,
-                                  maxLines: 4,
+                                  // maxFontSize: 30,
+                                  minFontSize: 5,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColorDark,
                                       fontFamily: "new",
-                                      // fontSize: 4,
-                                      height: 1),
-                                )), 
-                                Positioned(
+                                      fontSize: getFontSize(),
+                                      height: 1.2),
+                                )))), 
+                                Visibility(
+                                  visible: _front,
+                                child: Positioned(
                                                 bottom: 8,
                                                 child: Align(
                                                   alignment: Alignment.bottomCenter,
                                                   child: AutoSizeText(cards[position].cardID, 
-                                                minFontSize: 4,
-                                              maxFontSize: 10,
-                                                style: TextStyle(fontFamily: "new"),),
+                                                style: TextStyle(fontFamily: "new",
+                                                fontSize: (MediaQuery.of(context).size.height)/75),),
                                               ),
-                                )],
+                                ))],
                         )));
               },
               itemCount: cards.length,
@@ -280,6 +287,20 @@ class _Collection extends State<Collection>  {
     } else {
       return Icons.favorite_border;
     }
+  }
+
+  double getHeight(){
+    if(MediaQuery.of(context).size.height>1000){
+      return ((MediaQuery.of(context).size.height /5));
+    }
+    return ((MediaQuery.of(context).size.height /7));
+  }
+
+  double getFontSize(){
+    if(MediaQuery.of(context).size.height>1000){
+      return ((MediaQuery.of(context).size.height)/54);
+    }
+    return (MediaQuery.of(context).size.height)/75;
   }
 
   

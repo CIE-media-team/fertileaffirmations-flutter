@@ -191,21 +191,26 @@ class _MyCard extends State<MyCard> {
                                 child: Center(
                                     child: Stack(children: <Widget>[
                                   Container(
-                                    padding: EdgeInsets.only(top: 1),
+                                      padding: EdgeInsets.only(top: 1),
                                       child: Image.asset(
-                                    'assets/images/cardBlanknew.png',
-                                    height:
-                                        (MediaQuery.of(context).size.height /
+                                        'assets/images/cardBlanknew.png',
+                                        height: (MediaQuery.of(context)
+                                                    .size
+                                                    .height /
                                                 4) *
                                             3,
-                                    width:
-                                        ((MediaQuery.of(context).size.height /
+                                        width: ((MediaQuery.of(context)
+                                                        .size
+                                                        .height /
                                                     4) *
                                                 3) *
                                             0.65,
-                                  )),
+                                      )),
                                   Center(
                                       child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.black)
+                                        ),
                                           // decoration: BoxDecoration(
                                           //     image: DecorationImage(
                                           //   image: AssetImage(
@@ -215,18 +220,24 @@ class _MyCard extends State<MyCard> {
                                                           .size
                                                           .height /
                                                       4) *
-                                                  3) *
-                                              0.60,
-                                          child: AutoSizeText(
+                                                  3) / 2,
+                                          height: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      4) *
+                                                  3) /3 *2,
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: AutoSizeText(
                                               widget.cards[position].cardText,
-                                              minFontSize: 19,
-                                              maxFontSize: 40,
-                                              maxLines: 4,
+                                              minFontSize: 10,
+                                              
+                                              // maxFontSize: 100,
                                               style: TextStyle(
                                                   fontFamily: "new",
-                                                  fontSize: 40,
-                                                  height: 1.3),
-                                              textAlign: TextAlign.center))),
+                                                  fontSize: (MediaQuery.of(context).size.height)/20,
+                                                  height: 1.5),
+                                              textAlign: TextAlign.center)))),
                                   // Positioned(
                                   //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
                                   //   bottom: 30.0,
@@ -349,5 +360,12 @@ class _MyCard extends State<MyCard> {
     setState(() {
       _isVisible = getPageVisibility(page);
     });
+  }
+
+  double _getFontSize(){
+    if(MediaQuery.of(context).size.height > 1000){
+      return 60; 
+    }
+    return 30;
   }
 }

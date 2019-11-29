@@ -104,7 +104,7 @@ class CardClass {
 static CardClass getRandomCard(){  
   final rng = new Random();
   CardClass c= cards[rng.nextInt(cards.length)];
-  debugPrint(c.toString());
+  // debugPrint(c.toString());
   return c;
 
 

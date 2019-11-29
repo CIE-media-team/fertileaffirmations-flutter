@@ -78,20 +78,29 @@ class _InstructionScreen extends State<InstructionScreen> {
                               ))),
                               child: Center(
                                   child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black)
+                                    ),
                                       width:
                                           ((MediaQuery.of(context).size.height /
                                                       4) *
                                                   3) *
-                                              0.60,
-                                      child: AutoSizeText(
+                                              0.55,
+
+                                      height: ((MediaQuery.of(context).size.height /
+                                                      4) *
+                                                  3)
+                                                  * 0.7,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: AutoSizeText(
                                           widget.instructions[position],
-                                          minFontSize: 20,
-                                          maxFontSize: 40,
-                                          // maxLines: 4,
+                                          // minFontSize: 12,
+                                          // maxFontSize: 40,
                                           style: TextStyle(
-                                              fontSize: 14, height: 1.1),
+                                              fontSize: (MediaQuery.of(context).size.height)/30, height: 1.1),
                                           textAlign: TextAlign.center))))
-                        ])),
+                        )])),
                       ]);
                     })),
             Padding(
