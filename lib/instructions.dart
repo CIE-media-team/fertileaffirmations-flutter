@@ -54,7 +54,11 @@ class _InstructionScreen extends State<InstructionScreen> {
             ),
           ),
           backgroundColor: Colors.transparent,
-          body: Column(children: <Widget>[
+          body: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+            
+            children: <Widget>[
             Expanded(
                 child: PageView.builder(
                     itemCount: CardClass.instructions.length - 1,
@@ -68,9 +72,10 @@ class _InstructionScreen extends State<InstructionScreen> {
                         Expanded(
                             child: Stack(children: <Widget>[
                           Container(
+                            padding: EdgeInsets.all(10),
                               height:
                                   (MediaQuery.of(context).size.height / 5 * 4),
-                              alignment: Alignment.topCenter,
+                              alignment: Alignment.center,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
@@ -78,9 +83,9 @@ class _InstructionScreen extends State<InstructionScreen> {
                               ))),
                               child: Center(
                                   child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black)
-                                    ),
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(color: Colors.black)
+                                    // ),
                                       width:
                                           ((MediaQuery.of(context).size.height /
                                                       4) *
@@ -98,7 +103,7 @@ class _InstructionScreen extends State<InstructionScreen> {
                                           // minFontSize: 12,
                                           // maxFontSize: 40,
                                           style: TextStyle(
-                                              fontSize: (MediaQuery.of(context).size.height)/30, height: 1.1),
+                                              fontSize: (MediaQuery.of(context).size.height)/35, height: 1.1, color: Color(0xff41311F)),
                                           textAlign: TextAlign.center))))
                         )])),
                       ]);
@@ -111,7 +116,7 @@ class _InstructionScreen extends State<InstructionScreen> {
                   decorator: decorator,
                 ))
           ]))
-    ]);
+     ) ]);
   }
 
   _pageChange(int position) {

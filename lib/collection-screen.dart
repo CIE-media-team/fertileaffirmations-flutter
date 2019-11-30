@@ -146,7 +146,6 @@ class _Collection extends State<Collection>  {
                             Visibility(
                                 visible: _front,
                                 child: Container(
-                                  decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                                   height: getHeight(),
                                   width: ((MediaQuery.of(context).size.width/5.5)),
                                   child: Align(
@@ -156,10 +155,11 @@ class _Collection extends State<Collection>  {
                                   // maxFontSize: 30,
                                   minFontSize: 5,
                                   textAlign: TextAlign.center,
+                                  
                                   style: TextStyle(
-                                      color: Theme.of(context).primaryColorDark,
                                       fontFamily: "new",
                                       fontSize: getFontSize(),
+                                      color: Color(0xff41311F),
                                       height: 1.2),
                                 )))), 
                                 Visibility(
@@ -170,6 +170,8 @@ class _Collection extends State<Collection>  {
                                                   alignment: Alignment.bottomCenter,
                                                   child: AutoSizeText(cards[position].cardID, 
                                                 style: TextStyle(fontFamily: "new",
+                                                color: Color(0xff41311F),
+
                                                 fontSize: (MediaQuery.of(context).size.height)/75),),
                                               ),
                                 ))],

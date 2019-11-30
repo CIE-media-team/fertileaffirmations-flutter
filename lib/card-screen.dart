@@ -208,9 +208,9 @@ class _MyCard extends State<MyCard> {
                                       )),
                                   Center(
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.black)
-                                        ),
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(color: Colors.black)
+                                        // ),
                                           // decoration: BoxDecoration(
                                           //     image: DecorationImage(
                                           //   image: AssetImage(
@@ -236,7 +236,7 @@ class _MyCard extends State<MyCard> {
                                               style: TextStyle(
                                                   fontFamily: "new",
                                                   fontSize: (MediaQuery.of(context).size.height)/20,
-                                                  height: 1.5),
+                                                  height: 1.5, color: Color(0xff41311F)),
                                               textAlign: TextAlign.center)))),
                                   // Positioned(
                                   //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
@@ -251,7 +251,7 @@ class _MyCard extends State<MyCard> {
                                           minFontSize: 35,
                                           maxFontSize: 55,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(fontFamily: "new"),
+                                          style: TextStyle(fontFamily: "new", color: Color(0xff41311F)),
                                         ),
                                       ))
                                   // ),

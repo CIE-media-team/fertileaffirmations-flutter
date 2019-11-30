@@ -66,48 +66,45 @@ class _MyCard extends State<MyCardRandom> {
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
             child: Stack(
-            
-                // alignment: AlignmentDirectional.centerStart,
                 children: <Widget>[
               Column(
-                
                 children: <Widget>[
-                Stack(
-                  
-                  children: <Widget>[
+                
+                Stack(children: <Widget>[
                   FlipCard(
                       key: cardKey,
                       back: Container(
-                        margin: EdgeInsets.only(top: 1),
+                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height / 50),
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                
                             image: AssetImage('assets/images/cardBlanknew.png'),
                           )),
                           child: Stack(children: <Widget>[
                             Center(
-                              child: Container(
-                                decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                                                                         width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) / 2,
-                                          height: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) /3 *2,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: AutoSizeText(getCard().cardText,
+                                child: Container(
+                              // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+                              width: ((MediaQuery.of(context).size.height / 4) *
+                                      3) /
+                                  2,
+                              height:
+                                  ((MediaQuery.of(context).size.height / 4) *
+                                          3) /
+                                      3 *
+                                      2,
+                              child: Align(
+                                  alignment: Alignment.center,
+                                  child: AutoSizeText(getCard().cardText,
                                       // minFontSize: 20,
                                       // maxFontSize: 40,
                                       // maxLines: 4,
                                       style: TextStyle(
                                           fontFamily: "new",
-                                          fontSize: (MediaQuery.of(context).size.height)/20,
+                                          color: Color(0xff41311F),
+                                          fontSize: (MediaQuery.of(context)
+                                                  .size
+                                                  .height) /
+                                              20,
                                           height: 1.5),
                                       textAlign: TextAlign.center)),
 
@@ -121,19 +118,23 @@ class _MyCard extends State<MyCardRandom> {
                               //         ),
                             )),
                             Padding(
-                              padding: EdgeInsets.only( bottom: 30.0),
-                              child:  Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: AutoSizeText(
-                                    getCard().cardID,
-                                    // minFontSize: 35,
-                                    // maxFontSize: 55,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontFamily: "new", fontSize: (MediaQuery.of(context).size.height)/20),
-                                  ),
+                              padding: EdgeInsets.only(bottom: 30.0),
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: AutoSizeText(
+                                  getCard().cardID,
+                                  // minFontSize: 35,
+                                  // maxFontSize: 55,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: "new",
+                                      color: Color(0xff41311F),
+                                      fontSize:
+                                          (MediaQuery.of(context).size.height) /
+                                              20),
                                 ),
                               ),
-                            
+                            ),
                           ])),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
@@ -145,7 +146,7 @@ class _MyCard extends State<MyCardRandom> {
                           )))
                 ]),
                 Container(
-                    height: (MediaQuery.of(context).size.height / 8 -1),
+                    height: (MediaQuery.of(context).size.height / 12),
                     padding: EdgeInsets.all(0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

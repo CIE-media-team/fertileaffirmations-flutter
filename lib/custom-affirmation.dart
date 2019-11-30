@@ -90,8 +90,8 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
             //     padding: EdgeInsets.all(30),
             //     child:
             Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.black)),
+                // decoration:
+                //     BoxDecoration(border: Border.all(color: Colors.black)),
                 width: MediaQuery.of(context).size.width / 4 * 3,
                 height: MediaQuery.of(context).size.height / 5 * 3,
                 alignment: Alignment.center,
@@ -111,10 +111,10 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   decoration: InputDecoration(
                     hintText: 
                         'Enter text here and press submit to create your new card',
-                    // hintMaxLines: 4,
+                    hintMaxLines: 5,
 
-                    // border: InputBorder.none,
-                    border: OutlineInputBorder(),
+                    border: InputBorder.none,
+                    // border: OutlineInputBorder(),
                   ),
 
                   //autofocus: true,
@@ -126,6 +126,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   maxLines: null, minLines: null,
                   style: TextStyle(
                       fontFamily: "new",
+                      color: Color(0xff41311F),
                       fontSize: (MediaQuery.of(context).size.height) / 20,
                       height: 1.5),
                   // )
