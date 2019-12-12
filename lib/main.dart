@@ -1,5 +1,6 @@
 //Kinsley Sigmund and Dylan Woodworth
 import 'dart:async' show Future;
+import 'dart:ffi';
 
 // import 'dart:math';
 import 'package:fertile_affirmations/card-class.dart';
@@ -28,6 +29,7 @@ import 'select-goddess.dart';
 //permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen. IE the user favorites card #13, so we have to store that here.
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await firstLaunch();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
@@ -287,23 +289,29 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               body: new Container(
                 color: Colors.transparent,
-              ),
-            ),
-            // MaterialButton(
-            //   // width: MediaQuery.of(context).size.width,
-            //   height: MediaQuery.of(context).size.height,
+                child: GestureDetector(
+                  onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyCardRandom(),
+                )
+              
+            // ButtonTheme(
+            //   minWidth: MediaQuery.of(context).size.width,
+            //   height: MediaQuery.of(context).size.height -  AppBar().preferredSize.height,
+            //   child: RaisedButton(
             //   color: Colors.transparent,
             //   onPressed: () {
             //     Navigator.of(context).pop();
-
             //     Navigator.push(
             //         context,
             //         MaterialPageRoute(
             //           builder: (context) => MyCardRandom(),
             //         ));
             //   },
-            // )
-          ],
+            // ))
+              );} )))],
         ));
   }
 }

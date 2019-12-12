@@ -107,7 +107,7 @@ class _MyCard extends State<MyCard> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text('My Card'),
+          title: Text('My Card', style: TextStyle(fontSize: 30)),
           automaticallyImplyLeading: true,
           //`true` if you want Flutter to automatically add Back Button when needed,
           //or `false` if you want to force your own back button every where

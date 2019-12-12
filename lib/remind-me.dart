@@ -96,7 +96,7 @@ class _RemindMeState extends State<RemindMe> {
         appBar: new AppBar(
           iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
           backgroundColor: Theme.of(context).primaryColor,
-          title: Text("Remind Me"),
+          title: Text("Remind Me", style: TextStyle(fontSize: 30)),
           elevation: 0.0,
           leading: IconButton(
               icon: Icon(Icons.arrow_back),

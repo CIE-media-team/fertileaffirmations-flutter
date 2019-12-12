@@ -43,7 +43,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text('Custom Affirmation'),
+          title: Text('Custom Affirmation', style: TextStyle(fontSize: 30)),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
