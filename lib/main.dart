@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 // import 'package:flutter/material.dart';
 // import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'card-screen-random.dart';
 
 import 'select-goddess.dart';
 
@@ -27,18 +28,15 @@ import 'select-goddess.dart';
 //permanentpreferencesfile.txt -> this will store the permanent card's changeable values that the user has chosen. IE the user favorites card #13, so we have to store that here.
 
 Future main() async {
-
   await firstLaunch();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  
+
   //PackageInfo packageInfo = await PackageInfo.fromPlatform();
   // String versionName = packageInfo.version;
   // String versionCode = packageInfo.buildNumber;
   // CardClass.versionNumber = versionCode;
 
   runApp(MyApp());
-
-
 
   //resetApp();
 }
@@ -155,7 +153,6 @@ void resetApp() async {
   readCards(permcards.toString());
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.clear();
-
 }
 
 void save() async {
@@ -251,38 +248,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // bool preference;
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     // This call to setState tells the Flutter framework that something has
-  //     // changed in this State, which causes it to rerun the build method below
-  //     // so that the display can reflect the updated values. If we changed
-  //     // _counter without calling setState(), then the build method would not be
-  //     // called again, and so nothing would appear to happen.
-  //     _counter++;
-  //   });
-  // }
-
-  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
-  // @override
-  // initState() {
-  //   super.initState();
-  //   // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  //   // If you have skipped STEP 3 then change app_icon to @mipmap/ic_launcher
-  //   var initializationSettingsAndroid =
-  //       new AndroidInitializationSettings('app_icon');
-  //   var initializationSettingsIOS = new IOSInitializationSettings();
-  //   var initializationSettings = new InitializationSettings(
-  //       initializationSettingsAndroid, initializationSettingsIOS);
-  //   flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
-  //   flutterLocalNotificationsPlugin.initialize(initializationSettings,
-  //       onSelectNotification: onSelectNotification);
-  //   // initializationSettings, selectNotification: onSelectNotification);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -299,10 +264,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Image.asset('assets/images/noleaves2.png'),
               ),
             ),
-            Center(child: Column(
+            Center(
+                child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset('assets/images/fertilelogo.png', width: MediaQuery.of(context).size.width/ 12 * 11,),
+                Image.asset(
+                  'assets/images/fertilelogo.png',
+                  width: MediaQuery.of(context).size.width / 12 * 11,
+                ),
                 SizedBox(height: 5),
                 Image.asset(CardClass.getFirstPreferenceImagePath()),
               ],
@@ -320,9 +289,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.transparent,
               ),
             ),
+            // MaterialButton(
+            //   // width: MediaQuery.of(context).size.width,
+            //   height: MediaQuery.of(context).size.height,
+            //   color: Colors.transparent,
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => MyCardRandom(),
+            //         ));
+            //   },
+            // )
           ],
         ));
   }
-
-
 }

@@ -150,10 +150,12 @@ class _Collection extends State<Collection>  {
                                   width: ((MediaQuery.of(context).size.width/5.5)),
                                   child: Align(
                                     alignment: Alignment.center,
-                                    child: AutoSizeText(
+                                    child: 
+                                    // AutoSizeText(
+                                      Text(
                                   cards[position].cardText,
                                   // maxFontSize: 30,
-                                  minFontSize: 5,
+                                  // minFontSize: 5,
                                   textAlign: TextAlign.center,
                                   
                                   style: TextStyle(
@@ -172,7 +174,7 @@ class _Collection extends State<Collection>  {
                                                 style: TextStyle(fontFamily: "new",
                                                 color: Color(0xff41311F),
 
-                                                fontSize: (MediaQuery.of(context).size.height)/75),),
+                                                fontSize: getFontSize()),),
                                               ),
                                 ))],
                         )));
