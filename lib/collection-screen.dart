@@ -148,7 +148,7 @@ class _Collection extends State<Collection> {
                                     //     border:
                                     //         Border.all(color: Colors.black)),
                                     height: getHeight(),
-                                    width: (MediaQuery.of(context).size.width),
+                                    width: (MediaQuery.of(context).size.width) * .9,
                                     child: Align(
                                         alignment: Alignment.center,
                                         child:
@@ -296,6 +296,9 @@ class _Collection extends State<Collection> {
   }
 
   double getHeight() {
+    if (MediaQuery.of(context).size.height > 700) {
+      return ((MediaQuery.of(context).size.height / 6));
+    }
     if (MediaQuery.of(context).size.height > 1000) {
       return ((MediaQuery.of(context).size.height / 4));
     }
@@ -303,9 +306,19 @@ class _Collection extends State<Collection> {
   }
 
   double getFontSize() {
-    if (MediaQuery.of(context).size.height > 1000) {
-      return ((MediaQuery.of(context).size.height) / 54);
+    double fontsize = (MediaQuery.of(context).size.height) / 75; 
+    if (MediaQuery.of(context).size.height >= 812) {
+      fontsize= ((MediaQuery.of(context).size.height) / 90);
     }
-    return (MediaQuery.of(context).size.height) / 75;
+    if (MediaQuery.of(context).size.height >= 896) {
+      fontsize = ((MediaQuery.of(context).size.height) / 70);
+    }
+    if (MediaQuery.of(context).size.height > 1000) {
+      fontsize = ((MediaQuery.of(context).size.height) / 65);
+    }
+    if (MediaQuery.of(context).size.height > 1200) {
+      fontsize = ((MediaQuery.of(context).size.height) / 54);
+    }
+    return fontsize ;
   }
 }

@@ -150,12 +150,10 @@ class _MyCard extends State<MyCard> {
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
-                                margin: EdgeInsets.only(top: MediaQuery.of(context).size.height / 50),
-
-                                height:
-                                    ((MediaQuery.of(context).size.height / 4) *
-                                            3) -
-                                        10,
+                                margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height /
+                                        50),
+                                height: getHeight(), 
                                 width:
                                     (((MediaQuery.of(context).size.height / 4) *
                                             3) *
@@ -188,39 +186,47 @@ class _MyCard extends State<MyCard> {
                                       )),
                                   Center(
                                       child: Container(
-                                        // decoration: BoxDecoration(
-                                        //   border: Border.all(color: Colors.black)
-                                        // ),
+                                          // decoration: BoxDecoration(
+                                          //   border: Border.all(color: Colors.black)
+                                          // ),
                                           // decoration: BoxDecoration(
                                           //     image: DecorationImage(
                                           //   image: AssetImage(
                                           //       'assets/images/cardblank.png'),
                                           // )),
                                           width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) ,
+                                                        .size
+                                                        .height /
+                                                    4) *
+                                                3) *
+                                            0.65,
                                           height: ((MediaQuery.of(context)
                                                           .size
                                                           .height /
                                                       4) *
-                                                  3) /3 *2.4,
+                                                  3) /
+                                              3 *
+                                              2.4,
                                           child: Align(
-                                            alignment: Alignment.center,
-                                            child: 
-                                            // AutoSizeText(
-                                              Text(
-                                              widget.cards[position].cardText,
-                                              // minFontSize: 10,
-                                              
-                                              // maxFontSize: 100,
-                                              style: TextStyle(
-                                                  fontFamily: "new",
-                                                  fontSize: (MediaQuery.of(context).size.height) /
-                                              22,
-                                                  height: 1.6, color: Color(0xff41311F)),
-                                              textAlign: TextAlign.center)))),
+                                              alignment: Alignment.center,
+                                              child:
+                                                  // AutoSizeText(
+                                                  Text(
+                                                      widget.cards[position]
+                                                          .cardText,
+                                                      style: TextStyle(
+                                                          fontFamily: "new",
+                                                          fontSize:
+                                                              (MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height) /
+                                                                  22,
+                                                          height: 1.6,
+                                                          color: Color(
+                                                              0xff41311F)),
+                                                      textAlign:
+                                                          TextAlign.center)))),
                                   // Positioned(
                                   //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
                                   //   bottom: 30.0,
@@ -234,8 +240,13 @@ class _MyCard extends State<MyCard> {
                                           // minFontSize: 35,
                                           // maxFontSize: 55,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(fontFamily: "new", color: Color(0xff41311F), fontSize: (MediaQuery.of(context).size.height) /
-                                              22),
+                                          style: TextStyle(
+                                              fontFamily: "new",
+                                              color: Color(0xff41311F),
+                                              fontSize: (MediaQuery.of(context)
+                                                      .size
+                                                      .height) /
+                                                  22),
                                         ),
                                       ))
                                   // ),
@@ -344,6 +355,24 @@ class _MyCard extends State<MyCard> {
     setState(() {
       _isVisible = getPageVisibility(page);
     });
+  }
+
+  getHeight() {
+    debugPrint(MediaQuery.of(context).size.height.toString()); 
+    if(MediaQuery.of(context).size.height >= 812){
+      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
+  
+    else{
+    return ((MediaQuery.of(context).size.height / 4) * 3) - 10;}
+  }
+
+    getWidth() {
+    debugPrint(MediaQuery.of(context).size.height.toString()); 
+    if(MediaQuery.of(context).size.height >= 812){
+      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
+  
+    else{
+    return ((MediaQuery.of(context).size.height / 4) * 3) - 10;}
   }
 
   // double getFontSize(){

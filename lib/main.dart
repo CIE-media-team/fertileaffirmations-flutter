@@ -83,7 +83,7 @@ Future readInstructions() async {
   var i = 0;
   while (i < strings.length) {
     strings[i] = strings[i].replaceAll("*", "\n");
-    debugPrint(strings[i]);
+    // debugPrint(strings[i]);
 
     i++;
   }
