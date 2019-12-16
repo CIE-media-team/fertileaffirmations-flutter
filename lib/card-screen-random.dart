@@ -85,13 +85,12 @@ class _MyCard extends State<MyCardRandom> {
                                 child: Container(
                               // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                               width: ((MediaQuery.of(context).size.height / 4) *
-                                      3) /
-                                  2,
+                                      3),
                               height:
                                   ((MediaQuery.of(context).size.height / 4) *
                                           3) /
                                       3 *
-                                      2,
+                                      2.4,
                               child: Align(
                                   alignment: Alignment.center,
                                   child: AutoSizeText(getCard().cardText,
@@ -101,11 +100,9 @@ class _MyCard extends State<MyCardRandom> {
                                       style: TextStyle(
                                           fontFamily: "new",
                                           color: Color(0xff41311F),
-                                          fontSize: (MediaQuery.of(context)
-                                                  .size
-                                                  .height) /
-                                              20,
-                                          height: 1.5),
+                                          fontSize: (MediaQuery.of(context).size.height) /
+                                              22, 
+                                          height: 1.6),
                                       textAlign: TextAlign.center)),
 
                               // Positioned(
@@ -121,7 +118,7 @@ class _MyCard extends State<MyCardRandom> {
                               padding: EdgeInsets.only(bottom: 30.0),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
-                                child: AutoSizeText(
+                                child: Text(
                                   getCard().cardID,
                                   // minFontSize: 35,
                                   // maxFontSize: 55,
@@ -131,11 +128,11 @@ class _MyCard extends State<MyCardRandom> {
                                       color: Color(0xff41311F),
                                       fontSize:
                                           (MediaQuery.of(context).size.height) /
-                                              20),
+                                              22),
                                 ),
                               ),
                             ),
-                          ])),
+                      ])),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(

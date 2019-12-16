@@ -1,6 +1,6 @@
 //Kinsley Sigmund and Dylan Woodworth
 import 'dart:async' show Future;
-import 'dart:ffi';
+// import 'dart:ffi';
 
 // import 'dart:math';
 import 'package:fertile_affirmations/card-class.dart';
@@ -279,39 +279,24 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             )),
             Scaffold(
-              drawer: MyNavigationDrawer(),
-              backgroundColor: Colors.transparent,
-              appBar: new AppBar(
-                iconTheme:
-                    IconThemeData(color: Theme.of(context).primaryColorDark),
+                drawer: MyNavigationDrawer(),
                 backgroundColor: Colors.transparent,
-                elevation: 0.0,
-              ),
-              body: new Container(
-                color: Colors.transparent,
-                child: GestureDetector(
-                  onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyCardRandom(),
-                )
-              
-            // ButtonTheme(
-            //   minWidth: MediaQuery.of(context).size.width,
-            //   height: MediaQuery.of(context).size.height -  AppBar().preferredSize.height,
-            //   child: RaisedButton(
-            //   color: Colors.transparent,
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => MyCardRandom(),
-            //         ));
-            //   },
-            // ))
-              );} )))],
+                appBar: new AppBar(
+                  iconTheme:
+                      IconThemeData(color: Theme.of(context).primaryColorDark),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
+                ),
+                body: new Container(
+                    color: Colors.transparent,
+                    child: GestureDetector(onTap: () {    // added functionality to get random affirmation if user just taps front screen
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyCardRandom(),
+                          ));
+                    })))
+          ],
         ));
   }
 }

@@ -14,7 +14,7 @@ class Collection extends StatefulWidget {
   _Collection createState() => _Collection();
 }
 
-class _Collection extends State<Collection>  {
+class _Collection extends State<Collection> {
   bool fave = false;
   bool creations = false;
   bool firstrun = true;
@@ -85,8 +85,6 @@ class _Collection extends State<Collection>  {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
-
-            
           },
         ),
         actions: <Widget>[
@@ -108,8 +106,8 @@ class _Collection extends State<Collection>  {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  mainAxisSpacing: MediaQuery.of(context).size.height/100,
-                  crossAxisSpacing: MediaQuery.of(context).size.height/150,
+                  mainAxisSpacing: MediaQuery.of(context).size.height / 100,
+                  crossAxisSpacing: MediaQuery.of(context).size.height / 150,
                   childAspectRatio: 50 / 75),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, position) {
@@ -146,37 +144,43 @@ class _Collection extends State<Collection>  {
                             Visibility(
                                 visible: _front,
                                 child: Container(
-                                  height: getHeight(),
-                                  width: ((MediaQuery.of(context).size.width/5.5)),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: 
-                                    // AutoSizeText(
-                                      Text(
-                                  cards[position].cardText,
-                                  // maxFontSize: 30,
-                                  // minFontSize: 5,
-                                  textAlign: TextAlign.center,
-                                  
-                                  style: TextStyle(
-                                      fontFamily: "new",
-                                      fontSize: getFontSize(),
-                                      color: Color(0xff41311F),
-                                      height: 1.2),
-                                )))), 
-                                Visibility(
-                                  visible: _front,
-                                child: Positioned(
-                                                bottom: 8,
-                                                child: Align(
-                                                  alignment: Alignment.bottomCenter,
-                                                  child: AutoSizeText(cards[position].cardID, 
-                                                style: TextStyle(fontFamily: "new",
-                                                color: Color(0xff41311F),
+                                    // decoration: BoxDecoration(
+                                    //     border:
+                                    //         Border.all(color: Colors.black)),
+                                    height: getHeight(),
+                                    width: (MediaQuery.of(context).size.width),
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child:
+                                            // AutoSizeText(
+                                            Text(
+                                          cards[position].cardText,
+                                          // maxFontSize: 30,
+                                          // minFontSize: 5,
+                                          textAlign: TextAlign.center,
 
-                                                fontSize: getFontSize()),),
-                                              ),
-                                ))],
+                                          style: TextStyle(
+                                              fontFamily: "new",
+                                              fontSize: getFontSize(),
+                                              color: Color(0xff41311F),
+                                              height: 1.4),
+                                        )))),
+                            Visibility(
+                                visible: _front,
+                                child: Positioned(
+                                  bottom: 8,
+                                  child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: AutoSizeText(
+                                      cards[position].cardID,
+                                      style: TextStyle(
+                                          fontFamily: "new",
+                                          color: Color(0xff41311F),
+                                          fontSize: getFontSize(),
+                                    ),
+                                  ),
+                                ))
+                            )],
                         )));
               },
               itemCount: cards.length,
@@ -191,8 +195,6 @@ class _Collection extends State<Collection>  {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerRight,
                   width: (MediaQuery.of(context).size.width / 2 - 30),
                   child: FlatButton(
@@ -293,19 +295,17 @@ class _Collection extends State<Collection>  {
     }
   }
 
-  double getHeight(){
-    if(MediaQuery.of(context).size.height>1000){
-      return ((MediaQuery.of(context).size.height /5));
+  double getHeight() {
+    if (MediaQuery.of(context).size.height > 1000) {
+      return ((MediaQuery.of(context).size.height / 4));
     }
-    return ((MediaQuery.of(context).size.height /7));
+    return ((MediaQuery.of(context).size.height / 7));
   }
 
-  double getFontSize(){
-    if(MediaQuery.of(context).size.height>1000){
-      return ((MediaQuery.of(context).size.height)/54);
+  double getFontSize() {
+    if (MediaQuery.of(context).size.height > 1000) {
+      return ((MediaQuery.of(context).size.height) / 54);
     }
-    return (MediaQuery.of(context).size.height)/75;
+    return (MediaQuery.of(context).size.height) / 75;
   }
-
-  
 }
