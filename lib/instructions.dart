@@ -35,7 +35,7 @@ class _InstructionScreen extends State<InstructionScreen> {
       Image(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
         image: AssetImage('assets/images/noleaves2.png'),
       ),
       Scaffold(
