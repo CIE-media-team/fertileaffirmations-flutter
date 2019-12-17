@@ -103,7 +103,7 @@ class _InstructionScreen extends State<InstructionScreen> {
                                           // minFontSize: 12,
                                           // maxFontSize: 40,
                                           style: TextStyle(
-                                              fontSize: (MediaQuery.of(context).size.height)/35, height: 1.1, color: Color(0xff41311F)),
+                                              fontSize: getFontSize(), height: 1.1, color: Color(0xff41311F)),
                                           textAlign: TextAlign.center))))
                         )])),
                       ]);
@@ -127,5 +127,13 @@ class _InstructionScreen extends State<InstructionScreen> {
     if (position >= totalDots) return 0;
     if (position < 0) return totalDots - 1;
     return position;
+  }
+
+  double getFontSize(){
+    double fontsize = (MediaQuery.of(context).size.height)/35; 
+    if(MediaQuery.of(context).size.height > 800){
+      fontsize = (MediaQuery.of(context).size.height)/40; 
+    }
+    return fontsize; 
   }
 }

@@ -19,7 +19,7 @@ class _Collection extends State<Collection> {
   bool creations = false;
   bool firstrun = true;
   bool _front = true;
-  String cardImage = 'assets/images/cardblank.png';
+  String cardImage = 'assets/images/filledBlank.png';
   String creationsText = "My Creations";
   IconData ic = Icons.flip_to_back;
   bool visible = true;
@@ -57,7 +57,7 @@ class _Collection extends State<Collection> {
   void toggleFlip() {
     _front = !_front;
     if (_front) {
-      cardImage = 'assets/images/cardBlanknew.png';
+      cardImage = 'assets/images/filledBlank.png';
       ic = Icons.flip_to_back;
     } else {
       bool pref = CardClass.getPreference();
@@ -296,13 +296,14 @@ class _Collection extends State<Collection> {
   }
 
   double getHeight() {
+    double height = (MediaQuery.of(context).size.height / 7);
     if (MediaQuery.of(context).size.height > 700) {
-      return ((MediaQuery.of(context).size.height / 6));
+      height = ((MediaQuery.of(context).size.height / 6));
     }
     if (MediaQuery.of(context).size.height > 1000) {
-      return ((MediaQuery.of(context).size.height / 4));
+      height = ((MediaQuery.of(context).size.height / 4));
     }
-    return ((MediaQuery.of(context).size.height / 7));
+    return height;
   }
 
   double getFontSize() {
@@ -311,10 +312,10 @@ class _Collection extends State<Collection> {
       fontsize= ((MediaQuery.of(context).size.height) / 90);
     }
     if (MediaQuery.of(context).size.height >= 896) {
-      fontsize = ((MediaQuery.of(context).size.height) / 70);
+      fontsize = ((MediaQuery.of(context).size.height) / 90);
     }
-    if (MediaQuery.of(context).size.height > 1000) {
-      fontsize = ((MediaQuery.of(context).size.height) / 65);
+    if (MediaQuery.of(context).size.height >= 1000) {
+      fontsize = ((MediaQuery.of(context).size.height) / 60);
     }
     if (MediaQuery.of(context).size.height > 1200) {
       fontsize = ((MediaQuery.of(context).size.height) / 54);

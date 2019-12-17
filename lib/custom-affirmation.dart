@@ -85,7 +85,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
           // in the middle of the parent.
           child:
               Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-            Image.asset('assets/images/cardblank.png'),
+            Image.asset('assets/images/cardBlanknew.png'),
             // Padding(
             //     padding: EdgeInsets.all(30),
             //     child:

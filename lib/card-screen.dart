@@ -154,46 +154,39 @@ class _MyCard extends State<MyCard> {
                                     top: MediaQuery.of(context).size.height /
                                         50),
                                 height: getHeight(), 
-                                width:
-                                    (((MediaQuery.of(context).size.height / 4) *
-                                            3) *
-                                        0.65),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(18)),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: AssetImage(
-                                          'assets/images/noleaves2.png'),
-                                    )),
+                                width: 
+                                    (((MediaQuery.of(context).size.height *.4875))),
+                                // decoration: BoxDecoration(
+                                //     // borderRadius:
+                                //     //     BorderRadius.all(Radius.circular(18)),
+                                //     image: DecorationImage(
+                                //       fit: BoxFit.cover,
+                                //       image: AssetImage(
+                                //           'assets/images/noleaves2.png'),
+                                //     )),
                                 child: Center(
                                     child: Stack(children: <Widget>[
                                   Container(
-                                      padding: EdgeInsets.only(top: 1),
+                                      // padding: EdgeInsets.only(top: 1),
+                                      alignment: Alignment.center,
                                       child: Image.asset(
-                                        'assets/images/cardBlanknew.png',
-                                        height: (MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                4) *
-                                            3,
-                                        width: ((MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    4) *
-                                                3) *
-                                            0.65,
+                                        
+                                        'assets/images/filledBlank.png',
+                                        fit: BoxFit.fitWidth,
+                                        // height: (MediaQuery.of(context)
+                                        //             .size
+                                        //             .height /
+                                        //         4) *
+                                        //     3,
+                                        // width: ((MediaQuery.of(context)
+                                        //                 .size
+                                        //                 .height /
+                                        //             4) *
+                                        //         3),
                                       )),
                                   Center(
                                       child: Container(
-                                          // decoration: BoxDecoration(
-                                          //   border: Border.all(color: Colors.black)
-                                          // ),
-                                          // decoration: BoxDecoration(
-                                          //     image: DecorationImage(
-                                          //   image: AssetImage(
-                                          //       'assets/images/cardblank.png'),
-                                          // )),
+                                        
                                           width: ((MediaQuery.of(context)
                                                         .size
                                                         .height /
@@ -358,7 +351,7 @@ class _MyCard extends State<MyCard> {
   }
 
   getHeight() {
-    debugPrint(MediaQuery.of(context).size.height.toString()); 
+    // debugPrint(MediaQuery.of(context).size.height.toString()); 
     if(MediaQuery.of(context).size.height >= 812){
       return ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
   
@@ -366,13 +359,13 @@ class _MyCard extends State<MyCard> {
     return ((MediaQuery.of(context).size.height / 4) * 3) - 10;}
   }
 
-    getWidth() {
-    debugPrint(MediaQuery.of(context).size.height.toString()); 
+    double getWidth() {
+      double height = ((MediaQuery.of(context).size.height / 4) * 3) - 10;
+    // debugPrint(MediaQuery.of(context).size.width.toString()); 
     if(MediaQuery.of(context).size.height >= 812){
-      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
+      height = ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
   
-    else{
-    return ((MediaQuery.of(context).size.height / 4) * 3) - 10;}
+    return height; 
   }
 
   // double getFontSize(){
