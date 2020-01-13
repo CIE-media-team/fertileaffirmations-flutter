@@ -65,7 +65,7 @@ class CardClass {
     debugPrint(s);
 
     if (this.isDefault == false){
-      return "assets/images/noleaves2.png";
+      return "assets/images/filledBlank.png";
     }
 
     return s;
@@ -116,7 +116,8 @@ static CardClass getRandomCard(){
   final rng = new Random();
   CardClass c= cards[rng.nextInt(cards.length-1)];
   // debugPrint(c.toString());
-  return c;
+  //return c;
+  return cards[56];
 
 
   }

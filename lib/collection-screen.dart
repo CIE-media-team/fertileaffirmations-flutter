@@ -116,7 +116,9 @@ class _Collection extends State<Collection> {
                     // width: 50,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/noleaves2.png'),
+                          //  image: AssetImage('assets/images/noleaves2.png'),
+                          image: AssetImage(cards[position].getImage()),
+
                             fit: BoxFit.fill),
                         // border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -133,6 +135,8 @@ class _Collection extends State<Collection> {
                                         cards: cards,
                                       )));
                         },
+                        child:Visibility(
+                            visible: !cards[position].getIsDefault(),
                         child: Stack(
                           alignment: Alignment.center,
                           children: <Widget>[
@@ -181,7 +185,7 @@ class _Collection extends State<Collection> {
                                   ),
                                 ))
                             )],
-                        )));
+                ))));
               },
               itemCount: cards.length,
             ),

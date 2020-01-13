@@ -84,10 +84,11 @@ class _MyCard extends State<MyCardRandom> {
                           )),
 
                           ///////////
-                         child:Visibility(
-                          visible: !getCard().getIsDefault(),
+                        
                           child: Stack(children: <Widget>[
                             Center(
+                              child:Visibility(
+                                 visible: !getCard().getIsDefault(),
                                 child: Container(
                               // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                               width: ((MediaQuery.of(context).size.height / 4) *
@@ -99,6 +100,7 @@ class _MyCard extends State<MyCardRandom> {
                                       2.4,
                               child: Align(
                                   alignment: Alignment.center,
+                                   
                                   child: AutoSizeText(getCard().cardText,
                                       // minFontSize: 20,
                                       // maxFontSize: 40,
@@ -119,11 +121,13 @@ class _MyCard extends State<MyCardRandom> {
                               //         maxFontSize: 40,
                               //           style: TextStyle(fontFamily: "new"),),
                               //         ),
-                            )),
+                             ) )),
                             Padding(
                               padding: EdgeInsets.only(bottom: 30.0),
                               child: Align(
                                 alignment: Alignment.bottomCenter,
+                                child:Visibility(
+                                 visible: !getCard().getIsDefault(),
                                 child: Text(
                                   getCard().cardID,
                                   // minFontSize: 35,
@@ -135,11 +139,11 @@ class _MyCard extends State<MyCardRandom> {
                                       fontSize:
                                           (MediaQuery.of(context).size.height) /
                                               22),
-                                ),
+                                )),
                               ),
                             ),
                       ]
-                         ))
+                         )
 
                       /////////
                       
