@@ -78,8 +78,14 @@ class _MyCard extends State<MyCardRandom> {
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                            image: AssetImage('assets/images/cardBlanknew.png'),
+                            //image: AssetImage('assets/images/cardBlanknew.png'),
+                            image: AssetImage(getCard().getImage()),
+
                           )),
+
+                          ///////////
+                         child:Visibility(
+                          visible: !getCard().getIsDefault(),
                           child: Stack(children: <Widget>[
                             Center(
                                 child: Container(
@@ -132,7 +138,12 @@ class _MyCard extends State<MyCardRandom> {
                                 ),
                               ),
                             ),
-                      ])),
+                      ]
+                         ))
+
+                      /////////
+                      
+                      ),
                       front: Container(
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(

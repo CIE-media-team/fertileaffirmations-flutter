@@ -153,9 +153,16 @@ class _MyCard extends State<MyCard> {
                                 margin: EdgeInsets.only(
                                     top: MediaQuery.of(context).size.height /
                                         50),
-                                height: getHeight(), 
-                                width: 
-                                    (((MediaQuery.of(context).size.height *.4875))),
+                                height: getHeight(),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                  //image: AssetImage('assets/images/cardBlanknew.png'),
+                                  image: AssetImage(widget.cards[position].getImage()),
+
+                                  )),
+                                width: (((MediaQuery.of(context).size.height *
+                                    .4875))
+                                    ),
                                 // decoration: BoxDecoration(
                                 //     // borderRadius:
                                 //     //     BorderRadius.all(Radius.circular(18)),
@@ -164,86 +171,91 @@ class _MyCard extends State<MyCard> {
                                 //       image: AssetImage(
                                 //           'assets/images/noleaves2.png'),
                                 //     )),
-                                child: Center(
-                                    child: Stack(children: <Widget>[
-                                  Container(
-                                      // padding: EdgeInsets.only(top: 1),
-                                      alignment: Alignment.center,
-                                      child: Image.asset(
-                                        
-                                        'assets/images/filledBlank.png',
-                                        fit: BoxFit.fitWidth,
-                                        // height: (MediaQuery.of(context)
-                                        //             .size
-                                        //             .height /
-                                        //         4) *
-                                        //     3,
-                                        // width: ((MediaQuery.of(context)
-                                        //                 .size
-                                        //                 .height /
-                                        //             4) *
-                                        //         3),
-                                      )),
-                                  Center(
-                                      child: Container(
-                                        
-                                          width: ((MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    4) *
-                                                3) *
-                                            0.65,
-                                          height: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) /
-                                              3 *
-                                              2.4,
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child:
-                                                  // AutoSizeText(
-                                                  Text(
-                                                      widget.cards[position]
-                                                          .cardText,
-                                                      style: TextStyle(
-                                                          fontFamily: "new",
-                                                          fontSize:
-                                                              (MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height) /
-                                                                  22,
-                                                          height: 1.6,
-                                                          color: Color(
-                                                              0xff41311F)),
-                                                      textAlign:
-                                                          TextAlign.center)))),
-                                  // Positioned(
-                                  //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
-                                  //   bottom: 30.0,
-                                  //   child:
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      child: Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Text(
-                                          widget.cards[position].cardID,
-                                          // minFontSize: 35,
-                                          // maxFontSize: 55,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: "new",
-                                              color: Color(0xff41311F),
-                                              fontSize: (MediaQuery.of(context)
-                                                      .size
-                                                      .height) /
-                                                  22),
-                                        ),
-                                      ))
-                                  // ),
-                                ])))),
+                               
+                                // child: 
+                                // Center(
+                                //     child: Stack(children: <Widget>[
+                                //   Container(
+                                //       // padding: EdgeInsets.only(top: 1),
+                                //       alignment: Alignment.center,
+                                //       child: Image.asset(
+                                //         'assets/images/filledBlank.png',
+                                //         fit: BoxFit.fitWidth,
+                                //         // height: (MediaQuery.of(context)
+                                //         //             .size
+                                //         //             .height /
+                                //         //         4) *
+                                //         //     3,
+                                //         // width: ((MediaQuery.of(context)
+                                //         //                 .size
+                                //         //                 .height /
+                                //         //             4) *
+                                //         //         3),
+                                //       )),
+                                //   Center(
+                                //       child: Container(
+                                //           width: ((MediaQuery.of(context)
+                                //                           .size
+                                //                           .height /
+                                //                       4) *
+                                //                   3) *
+                                //               0.65,
+                                //           height:
+                                //               ((MediaQuery.of(context)
+                                //                               .size
+                                //                               .height /
+                                //                           4) *
+                                //                       3) /
+                                //                   3 *
+                                //                   2.4,
+                                //           child: Align(
+                                //               alignment: Alignment.center,
+                                //               child:
+                                //                   // AutoSizeText(
+                                //                   Text(
+                                //                       widget.cards[position]
+                                //                           .cardText,
+                                //                       style: TextStyle(
+                                //                           fontFamily: "new",
+                                //                           fontSize:
+                                //                               (MediaQuery.of(
+                                //                                           context)
+                                //                                       .size
+                                //                                       .height) /
+                                //                                   22,
+                                //                           height: 1.6,
+                                //                           color: Color(
+                                //                               0xff41311F)),
+                                //                       textAlign:
+                                //                           TextAlign.center)))),
+                                //   // Positioned(
+                                //   //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
+                                //   //   bottom: 30.0,
+                                //   //   child:
+                                //   Padding(
+                                //       padding: EdgeInsets.only(bottom: 20),
+                                //       child: Align(
+                                //         alignment: Alignment.bottomCenter,
+                                //         child: Text(
+                                //           widget.cards[position].cardID,
+                                //           // minFontSize: 35,
+                                //           // maxFontSize: 55,
+                                //           textAlign: TextAlign.center,
+                                //           style: TextStyle(
+                                //               fontFamily: "new",
+                                //               color: Color(0xff41311F),
+                                //               fontSize: (MediaQuery.of(context)
+                                //                       .size
+                                //                       .height) /
+                                //                   22),
+                                //         ),
+                                //       ))
+                                //   // ),
+                                // ]
+                                // )
+                                // )
+                                )
+                                ),
 
                         back: Container(
                             height:
@@ -351,21 +363,22 @@ class _MyCard extends State<MyCard> {
   }
 
   getHeight() {
-    // debugPrint(MediaQuery.of(context).size.height.toString()); 
-    if(MediaQuery.of(context).size.height >= 812){
-      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
-  
-    else{
-    return ((MediaQuery.of(context).size.height / 4) * 3) - 10;}
+    // debugPrint(MediaQuery.of(context).size.height.toString());
+    if (MediaQuery.of(context).size.height >= 812) {
+      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;
+    } else {
+      return ((MediaQuery.of(context).size.height / 4) * 3) - 10;
+    }
   }
 
-    double getWidth() {
-      double height = ((MediaQuery.of(context).size.height / 4) * 3) - 10;
-    // debugPrint(MediaQuery.of(context).size.width.toString()); 
-    if(MediaQuery.of(context).size.height >= 812){
-      height = ((MediaQuery.of(context).size.height / 4) * 3) - 35;}
-  
-    return height; 
+  double getWidth() {
+    double height = ((MediaQuery.of(context).size.height / 4) * 3) - 10;
+    // debugPrint(MediaQuery.of(context).size.width.toString());
+    if (MediaQuery.of(context).size.height >= 812) {
+      height = ((MediaQuery.of(context).size.height / 4) * 3) - 35;
+    }
+
+    return height;
   }
 
   // double getFontSize(){

@@ -188,7 +188,8 @@ void readCards(String stringCards) async {
     //Verify file is being read correctly.
     cards[index] = new CardClass(
         strings[i], strings[i + 1], strings[i + 2], strings[i + 3]);
-    //debugPrint(cards[index].toString());
+    //debugPrint(cards[index].getImage());
+
     i += 4;
     index += 1;
   }

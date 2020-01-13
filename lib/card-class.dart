@@ -59,6 +59,17 @@ class CardClass {
     this.isFavorite = b;
     save();
   }
+  String getImage(){
+    var cardstr = "card" + cardID;
+    String s = "assets/images/$cardstr.png";
+    debugPrint(s);
+
+    if (this.isDefault == false){
+      return "assets/images/noleaves2.png";
+    }
+
+    return s;
+  }
   
  
   //Needs to replicate EXACTLY how the cards are stored.
