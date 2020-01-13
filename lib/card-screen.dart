@@ -144,25 +144,32 @@ class _MyCard extends State<MyCard> {
                     viewportFraction: 1),
                 itemBuilder: (context, position) {
                   return Column(children: <Widget>[
-                    Stack(children: <Widget>[
+                    Stack(
+                      children: <Widget>[
                       FlipCard(
                         //key: cardKey,
+                      
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
-                                margin: EdgeInsets.only(
-                                    top: MediaQuery.of(context).size.height /
+                              
+                                margin: EdgeInsets.all(
+                                   MediaQuery.of(context).size.height /
                                         50),
-                                height: getHeight(),
+                                    
+                                height: MediaQuery.of(context).size.height / 6* 4,
+                                // width: MediaQuery.of(context).size.width/6 * 5, 
                                 decoration: BoxDecoration(
+                                  border: Border.all(),
                                   image: DecorationImage(
                                   //image: AssetImage('assets/images/cardBlanknew.png'),
                                   image: AssetImage(widget.cards[position].getImage()),
+                                  fit: BoxFit.contain,
 
                                   )),
-                                width: (((MediaQuery.of(context).size.height *
-                                    .4875))
-                                    ),
+                                // width: (((MediaQuery.of(context).size.height *
+                                //     .4875))
+                                //     ),
 /////////////////////////
 
                                 child: 
@@ -175,7 +182,7 @@ class _MyCard extends State<MyCard> {
                                       alignment: Alignment.center,
                                       child: Image.asset(
                                         'assets/images/filledBlank.png',
-                                        fit: BoxFit.fitWidth,
+                                        fit: BoxFit.fitHeight,
                                         // height: (MediaQuery.of(context)
                                         //             .size
                                         //             .height /
@@ -194,7 +201,7 @@ class _MyCard extends State<MyCard> {
                                                           .height /
                                                       4) *
                                                   3) *
-                                              0.65,
+                                              0.67,
                                           height:
                                               ((MediaQuery.of(context)
                                                               .size
@@ -254,19 +261,23 @@ class _MyCard extends State<MyCard> {
                                 )
                         )),
 
-                        back: Container(
+                        back:  Container(
+                          margin: EdgeInsets.all(
+                                   MediaQuery.of(context).size.height /
+                                        50),
                             height:
-                                (MediaQuery.of(context).size.height / 4) * 3,
+                                MediaQuery.of(context).size.height / 6* 4,
+                            // width: MediaQuery.of(context).size.width/6*5,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  fit: BoxFit.fitHeight,
+                                  fit: BoxFit.contain,
                                   image: AssetImage(
                                       CardClass.getPreferenceImagePath())),
                             )),
                       )
                     ]),
                     Container(
-                        height: (MediaQuery.of(context).size.height / 8),
+                        // height: MediaQuery.of(context).size.height / 6,
                         padding: EdgeInsets.all(0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,

@@ -119,7 +119,7 @@ class _Collection extends State<Collection> {
                           //  image: AssetImage('assets/images/noleaves2.png'),
                           image: AssetImage(cards[position].getImage()),
 
-                            fit: BoxFit.fill),
+                            fit: BoxFit.fitHeight),
                         // border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: FlatButton(
