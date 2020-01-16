@@ -71,6 +71,23 @@ class _Collection extends State<Collection> {
     setState(() {});
   }
 
+  String getImage(int position) {
+    var cardImage;
+    if (!_front) {
+      bool pref = CardClass.getPreference();
+      if (!pref) {
+        cardImage = 'assets/images/warmround.png';
+      } else {
+        cardImage = 'assets/images/porcelainroundsmall.png';
+      }
+    } else {
+      cardImage = cards[position].getImage();
+
+
+    }
+    return cardImage;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,9 +133,8 @@ class _Collection extends State<Collection> {
                     // width: 50,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          //  image: AssetImage('assets/images/noleaves2.png'),
-                          image: AssetImage(cards[position].getImage()),
-
+                            //  image: AssetImage('assets/images/noleaves2.png'),
+                            image: AssetImage(getImage(position)),
                             fit: BoxFit.fitHeight),
                         // border: Border.all(color: Colors.black, width: 1),
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -135,57 +151,60 @@ class _Collection extends State<Collection> {
                                         cards: cards,
                                       )));
                         },
-                        child:Visibility(
+                        child: Visibility(
                             visible: !cards[position].getIsDefault(),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: <Widget>[
-                            // Image.asset('assets/images/noleaves2.png'),
-                            Image.asset(
-                              cardImage,
-                              fit: BoxFit.cover,
-                            ),
-                            Visibility(
-                                visible: _front,
-                                child: Container(
-                                    // decoration: BoxDecoration(
-                                    //     border:
-                                    //         Border.all(color: Colors.black)),
-                                    height: getHeight(),
-                                    width: (MediaQuery.of(context).size.width) * .9,
-                                    child: Align(
-                                        alignment: Alignment.center,
-                                        child:
-                                            // AutoSizeText(
-                                            Text(
-                                          cards[position].cardText,
-                                          // maxFontSize: 30,
-                                          // minFontSize: 5,
-                                          textAlign: TextAlign.center,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                // Image.asset('assets/images/noleaves2.png'),
+                                Image.asset(
+                                  cardImage,
+                                  fit: BoxFit.cover,
+                                ),
+                                Visibility(
+                                    visible: _front,
+                                    child: Container(
+                                        // decoration: BoxDecoration(
+                                        //     border:
+                                        //         Border.all(color: Colors.black)),
+                                        height: getHeight(),
+                                        width: (MediaQuery.of(context)
+                                                .size
+                                                .width) *
+                                            .9,
+                                        child: Align(
+                                            alignment: Alignment.center,
+                                            child:
+                                                // AutoSizeText(
+                                                Text(
+                                              cards[position].cardText,
+                                              // maxFontSize: 30,
+                                              // minFontSize: 5,
+                                              textAlign: TextAlign.center,
 
-                                          style: TextStyle(
+                                              style: TextStyle(
+                                                  fontFamily: "new",
+                                                  fontSize: getFontSize(),
+                                                  color: Color(0xff41311F),
+                                                  height: 1.4),
+                                            )))),
+                                Visibility(
+                                    visible: _front,
+                                    child: Positioned(
+                                        bottom: 8,
+                                        child: Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child: AutoSizeText(
+                                            cards[position].cardID,
+                                            style: TextStyle(
                                               fontFamily: "new",
-                                              fontSize: getFontSize(),
                                               color: Color(0xff41311F),
-                                              height: 1.4),
-                                        )))),
-                            Visibility(
-                                visible: _front,
-                                child: Positioned(
-                                  bottom: 8,
-                                  child: Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: AutoSizeText(
-                                      cards[position].cardID,
-                                      style: TextStyle(
-                                          fontFamily: "new",
-                                          color: Color(0xff41311F),
-                                          fontSize: getFontSize(),
-                                    ),
-                                  ),
-                                ))
-                            )],
-                ))));
+                                              fontSize: getFontSize(),
+                                            ),
+                                          ),
+                                        )))
+                              ],
+                            ))));
               },
               itemCount: cards.length,
             ),
@@ -311,9 +330,9 @@ class _Collection extends State<Collection> {
   }
 
   double getFontSize() {
-    double fontsize = (MediaQuery.of(context).size.height) / 75; 
+    double fontsize = (MediaQuery.of(context).size.height) / 75;
     if (MediaQuery.of(context).size.height >= 812) {
-      fontsize= ((MediaQuery.of(context).size.height) / 90);
+      fontsize = ((MediaQuery.of(context).size.height) / 90);
     }
     if (MediaQuery.of(context).size.height >= 896) {
       fontsize = ((MediaQuery.of(context).size.height) / 90);
@@ -324,6 +343,6 @@ class _Collection extends State<Collection> {
     if (MediaQuery.of(context).size.height > 1200) {
       fontsize = ((MediaQuery.of(context).size.height) / 54);
     }
-    return fontsize ;
+    return fontsize;
   }
 }
