@@ -72,11 +72,15 @@ class _MyCard extends State<MyCardRandom> {
                 
                 Stack(children: <Widget>[
                   FlipCard(
+                    
                       key: cardKey,
                       back: Container(
-                          margin: EdgeInsets.only(top: MediaQuery.of(context).size.height / 50),
+                         margin: EdgeInsets.only(
+                                  top:  MediaQuery.of(context).size.height / 50),
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
+                                                        border: Border.all(),
+
                               image: DecorationImage(
                             //image: AssetImage('assets/images/cardBlanknew.png'),
                             image: AssetImage(getCard().getImage()),
@@ -91,13 +95,12 @@ class _MyCard extends State<MyCardRandom> {
                                  visible: !getCard().getIsDefault(),
                                 child: Container(
                               // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              width: ((MediaQuery.of(context).size.height / 4) *
-                                      3),
-                              height:
-                                  ((MediaQuery.of(context).size.height / 4) *
-                                          3) /
-                                      3 *
-                                      2.4,
+                              width: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height *.35)),
+                                                  height: ((MediaQuery.of(context).size.height * .75) /
+                                                      3 *
+                                                      1.75),
                               child: Align(
                                   alignment: Alignment.center,
                                    
@@ -149,10 +152,12 @@ class _MyCard extends State<MyCardRandom> {
                       
                       ),
                       front: Container(
-                          height: (MediaQuery.of(context).size.height / 4) * 3,
+                          margin: EdgeInsets.all(
+                                 MediaQuery.of(context).size.height / 50),
+height: (MediaQuery.of(context).size.height / 4) * 3,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                fit: BoxFit.fitHeight,
+                              fit: BoxFit.contain,
                                 image: AssetImage(
                                     CardClass.getPreferenceImagePath())),
                           )))

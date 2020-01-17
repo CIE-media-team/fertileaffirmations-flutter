@@ -134,12 +134,12 @@ class _Collection extends State<Collection> {
                     decoration: BoxDecoration(
                         image: DecorationImage(
                           //  image: AssetImage('assets/images/noleaves2.png'),
-                          image: AssetImage(cards[position].getImage()),
+                          // image: AssetImage(cards[position].getImage()),
 
-                            fit: BoxFit.fitHeight),),
+                          //   fit: BoxFit.fitHeight),),
                             // //  image: AssetImage('assets/images/noleaves2.png'),
-                            // image: AssetImage(getImage(position)),
-                            // fit: BoxFit.fitHeight),
+                            image: AssetImage(getImage(position)),
+                            fit: BoxFit.fitHeight)),
                         // border: Border.all(color: Colors.black, width: 1),
                         // borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: FlatButton(

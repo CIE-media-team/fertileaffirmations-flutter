@@ -151,10 +151,9 @@ class _MyCard extends State<MyCard> {
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
-                                margin: EdgeInsets.all(
-                                    MediaQuery.of(context).size.height / 50),
-                                height:
-                                    MediaQuery.of(context).size.height / 6 * 4,
+                                margin: EdgeInsets.only(
+                                  top:  MediaQuery.of(context).size.height / 50),
+                          height: (MediaQuery.of(context).size.height / 4) * 3,
                                 // width: MediaQuery.of(context).size.width/6 * 5,
                                 decoration: BoxDecoration(
                                     border: Border.all(),
@@ -244,9 +243,9 @@ class _MyCard extends State<MyCard> {
 
 
                         back: Container(
-                            margin: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height / 50),
-                            height: MediaQuery.of(context).size.height / 6 * 4,
+                            margin: EdgeInsets.all(
+                                 MediaQuery.of(context).size.height / 50),
+height: (MediaQuery.of(context).size.height / 4) * 3,
                             // width: MediaQuery.of(context).size.width/6*5,
                             decoration: BoxDecoration(
                               image: DecorationImage(
@@ -256,9 +255,11 @@ class _MyCard extends State<MyCard> {
                             )),
                       )
                     ]),
-                    Container(
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                    child: Container(
                         // height: MediaQuery.of(context).size.height / 6,
-                        padding: EdgeInsets.all(0),
+                        padding: EdgeInsets.only(bottom: 10),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -308,7 +309,7 @@ class _MyCard extends State<MyCard> {
                             ),
                           ],
                         ))
-                  ]);
+                  )]);
                 },
                 itemCount: widget.cards.length,
               ),
