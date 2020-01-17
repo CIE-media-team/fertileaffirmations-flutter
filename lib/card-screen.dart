@@ -144,129 +144,109 @@ class _MyCard extends State<MyCard> {
                     viewportFraction: 1),
                 itemBuilder: (context, position) {
                   return Column(children: <Widget>[
-                    Stack(
-                      children: <Widget>[
+                    Stack(children: <Widget>[
                       FlipCard(
                         //key: cardKey,
-                      
+
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
-                              
                                 margin: EdgeInsets.all(
-                                   MediaQuery.of(context).size.height /
-                                        50),
-                                    
-                                height: MediaQuery.of(context).size.height / 6* 4,
-                                // width: MediaQuery.of(context).size.width/6 * 5, 
+                                    MediaQuery.of(context).size.height / 50),
+                                height:
+                                    MediaQuery.of(context).size.height / 6 * 4,
+                                // width: MediaQuery.of(context).size.width/6 * 5,
                                 decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  image: DecorationImage(
-                                  //image: AssetImage('assets/images/cardBlanknew.png'),
-                                  image: AssetImage(widget.cards[position].getImage()),
-                                  fit: BoxFit.contain,
-
-                                  )),
+                                    border: Border.all(),
+                                    image: DecorationImage(
+                                      //image: AssetImage('assets/images/cardBlanknew.png'),
+                                      image: AssetImage(
+                                          widget.cards[position].getImage()),
+                                      fit: BoxFit.contain,
+                                    )),
                                 // width: (((MediaQuery.of(context).size.height *
                                 //     .4875))
                                 //     ),
 /////////////////////////
 
-                                child: 
-                                Center(
-                                   child:Visibility(
-                                  visible: !widget.cards[position].getIsDefault(),
-                                    child: Stack(children: <Widget>[
-                                  Container(
-                                      // padding: EdgeInsets.only(top: 1),
-                                      alignment: Alignment.center,
-                                      child: Image.asset(
-                                        'assets/images/filledBlank.png',
-                                        fit: BoxFit.fitHeight,
-                                        // height: (MediaQuery.of(context)
-                                        //             .size
-                                        //             .height /
-                                        //         4) *
-                                        //     3,
-                                        // width: ((MediaQuery.of(context)
-                                        //                 .size
-                                        //                 .height /
-                                        //             4) *
-                                        //         3),
-                                      )),
-                                  Center(
-                                      child: Container(
-                                          width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) *
-                                              0.67,
-                                          height:
-                                              ((MediaQuery.of(context)
-                                                              .size
-                                                              .height /
-                                                          4) *
-                                                      3) /
-                                                  3 *
-                                                  2.4,
-                                          child: Align(
+                                child: Center(
+                                    child: Visibility(
+                                        visible: !widget.cards[position]
+                                            .getIsDefault(),
+                                        child: Stack(children: <Widget>[
+                                          Container(
+                                              // padding: EdgeInsets.only(top: 1),
                                               alignment: Alignment.center,
-                                              child:
-                                                  // AutoSizeText(
-                                                  Text(
-                                                      widget.cards[position]
-                                                          .cardText,
-                                                      style: TextStyle(
-                                                          fontFamily: "new",
-                                                          fontSize:
-                                                              (MediaQuery.of(
-                                                                          context)
+                                              child: Image.asset(
+                                                'assets/images/cardBlanknew.png',
+                                                fit: BoxFit.fitHeight,
+                                                // height: (MediaQuery.of(context)
+                                                //             .size
+                                                //             .height /
+                                                //         4) *
+                                                //     3,
+                                                // width: ((MediaQuery.of(context)
+                                                //                 .size
+                                                //                 .height /
+                                                //             4) *
+                                                //         3),
+                                              )),
+                                          Center(
+                                              child: Container(
+                                                  width: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height *.35)),
+                                                  height: ((MediaQuery.of(context).size.height * .75) /
+                                                      3 *
+                                                      1.75),
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all()),
+                                                  child: Align(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: SingleChildScrollView(
+                                                        controller: ScrollController(),
+                                                          child:Text(widget.cards[position].cardText,
+                                                          style: TextStyle(
+                                                              fontFamily: "new",
+                                                              fontSize: (MediaQuery.of(context)
                                                                       .size
                                                                       .height) /
                                                                   22,
-                                                          height: 1.6,
-                                                          color: Color(
-                                                              0xff41311F)),
-                                                      textAlign:
-                                                          TextAlign.center)))),
-                                  // Positioned(
-                                  //   left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2,
-                                  //   bottom: 30.0,
-                                  //   child:
-                                  Padding(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      child: Align(
-                                        alignment: Alignment.bottomCenter,
-                                        child: Text(
-                                          widget.cards[position].cardID,
-                                          // minFontSize: 35,
-                                          // maxFontSize: 55,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: "new",
-                                              color: Color(0xff41311F),
-                                              fontSize: (MediaQuery.of(context)
-                                                      .size
-                                                      .height) /
-                                                  22),
-                                        ),
-                                      ))
-                                  // ),
-                                ]
-                                )
-                                )
+                                                              height: 1.6,
+                                                              color: Color(0xff41311F)),
+                                                          textAlign: TextAlign.center))))),
 
-                                /////////////////////////////////////////////////
-                                )
-                        )),
+                                          Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 20),
+                                              child: Align(
+                                                alignment:
+                                                    Alignment.bottomCenter,
+                                                child: Text(
+                                                  widget.cards[position].cardID,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: "new",
+                                                      color: Color(0xff41311F),
+                                                      fontSize: (MediaQuery.of(
+                                                                  context)
+                                                              .size
+                                                              .height) /
+                                                          22),
+                                                ),
+                                              ))
+                                          // ),
+                                        ]))
 
-                        back:  Container(
-                          margin: EdgeInsets.all(
-                                   MediaQuery.of(context).size.height /
-                                        50),
-                            height:
-                                MediaQuery.of(context).size.height / 6* 4,
+                                    /////////////////////////////////////////////////
+                                    ))),
+
+
+                        back: Container(
+                            margin: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height / 50),
+                            height: MediaQuery.of(context).size.height / 6 * 4,
                             // width: MediaQuery.of(context).size.width/6*5,
                             decoration: BoxDecoration(
                               image: DecorationImage(

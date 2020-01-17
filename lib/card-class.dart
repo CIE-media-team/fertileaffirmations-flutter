@@ -65,7 +65,7 @@ class CardClass {
     debugPrint(s);
 
     if (this.isDefault == false){
-      return "assets/images/filledBlank.png";
+      return "assets/images/cardBlanknew.png";
     }
 
     return s;

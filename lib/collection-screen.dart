@@ -19,7 +19,7 @@ class _Collection extends State<Collection> {
   bool creations = false;
   bool firstrun = true;
   bool _front = true;
-  String cardImage = 'assets/images/filledBlank.png';
+  String cardImage = 'assets/images/cardBlanknew.png';
   String creationsText = "My Creations";
   IconData ic = Icons.flip_to_back;
   bool visible = true;
@@ -57,7 +57,7 @@ class _Collection extends State<Collection> {
   void toggleFlip() {
     _front = !_front;
     if (_front) {
-      cardImage = 'assets/images/filledBlank.png';
+      cardImage = 'assets/images/cardBlanknew.png';
       ic = Icons.flip_to_back;
     } else {
       bool pref = CardClass.getPreference();
@@ -119,9 +119,9 @@ class _Collection extends State<Collection> {
                           //  image: AssetImage('assets/images/noleaves2.png'),
                           image: AssetImage(cards[position].getImage()),
 
-                            fit: BoxFit.fitHeight),
+                            fit: BoxFit.fitHeight),),
                         // border: Border.all(color: Colors.black, width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                        // borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: FlatButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
