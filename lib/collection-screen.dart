@@ -128,7 +128,20 @@ class _Collection extends State<Collection> {
                   childAspectRatio: 50 / 75),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, position) {
-                return Container(
+                return 
+                    Container(
+                    // height: 100,
+                    // width: 50,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                          //  image: AssetImage('assets/images/noleaves2.png'),
+                          // image: AssetImage(cards[position].getImage()),
+
+                          //   fit: BoxFit.fitHeight),),
+                            // //  image: AssetImage('assets/images/noleaves2.png'),
+                            image: AssetImage('assets/images/noleaves2.png'),
+                            fit: BoxFit.fitHeight)),
+                    child: Container(
                     // height: 100,
                     // width: 50,
                     decoration: BoxDecoration(
@@ -139,7 +152,7 @@ class _Collection extends State<Collection> {
                           //   fit: BoxFit.fitHeight),),
                             // //  image: AssetImage('assets/images/noleaves2.png'),
                             image: AssetImage(getImage(position)),
-                            fit: BoxFit.fitHeight)),
+                            fit: BoxFit.contain)),
                         // border: Border.all(color: Colors.black, width: 1),
                         // borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: FlatButton(
@@ -208,7 +221,7 @@ class _Collection extends State<Collection> {
                                           ),
                                         )))
                               ],
-                            ))));
+                            )))));
               },
               itemCount: cards.length,
             ),

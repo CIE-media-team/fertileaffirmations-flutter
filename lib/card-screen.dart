@@ -151,8 +151,8 @@ class _MyCard extends State<MyCard> {
                         direction: FlipDirection.HORIZONTAL,
                         front: Center(
                             child: Container(
-                                margin: EdgeInsets.only(
-                                  top:  MediaQuery.of(context).size.height / 50),
+                                margin: EdgeInsets.all(
+                                    MediaQuery.of(context).size.height / 50),
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                                 // width: MediaQuery.of(context).size.width/6 * 5,
                                 decoration: BoxDecoration(
