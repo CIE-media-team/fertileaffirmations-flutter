@@ -182,13 +182,14 @@ class _Collection extends State<Collection> {
                                     visible: _front,
                                     child: Container(
                                         // decoration: BoxDecoration(
-                                        //     border:
-                                        //         Border.all(color: Colors.black)),
-                                        height: getHeight(),
+                                            // border:
+                                            //     Border.all(color: Colors.black)),
+                                        height: (MediaQuery.of(context)
+                                                .size
+                                                .height) / 8,
                                         width: (MediaQuery.of(context)
                                                 .size
-                                                .width) *
-                                            .9,
+                                                .width) / 6,
                                         child: Align(
                                             alignment: Alignment.center,
                                             child:
@@ -201,6 +202,7 @@ class _Collection extends State<Collection> {
 
                                               style: TextStyle(
                                                   fontFamily: "new",
+                                                  
                                                   fontSize: getFontSize(),
                                                   color: Color(0xff41311F),
                                                   height: 1.4),

@@ -156,7 +156,7 @@ class _MyCard extends State<MyCard> {
                           height: (MediaQuery.of(context).size.height / 4) * 3,
                                 // width: MediaQuery.of(context).size.width/6 * 5,
                                 decoration: BoxDecoration(
-                                    border: Border.all(),
+                                    // border: Border.all(),
                                     image: DecorationImage(
                                       //image: AssetImage('assets/images/cardBlanknew.png'),
                                       image: AssetImage(
@@ -198,8 +198,8 @@ class _MyCard extends State<MyCard> {
                                                   height: ((MediaQuery.of(context).size.height * .75) /
                                                       3 *
                                                       1.75),
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all()),
+                                                  // decoration: BoxDecoration(
+                                                  //     border: Border.all()),
                                                   child: Align(
                                                       alignment:
                                                           Alignment.center,
@@ -211,7 +211,7 @@ class _MyCard extends State<MyCard> {
                                                               fontSize: (MediaQuery.of(context)
                                                                       .size
                                                                       .height) /
-                                                                  22,
+                                                                  25,
                                                               height: 1.6,
                                                               color: Color(0xff41311F)),
                                                           textAlign: TextAlign.center))))),

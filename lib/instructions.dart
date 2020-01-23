@@ -42,7 +42,7 @@ class _InstructionScreen extends State<InstructionScreen> {
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: Text('Instructions',  style: TextStyle(fontSize: 30)),
+            title: Text('Instructions', style: TextStyle(fontSize: 30)),
             automaticallyImplyLeading: true,
             //`true` if you want Flutter to automatically add Back Button when needed,
             //or `false` if you want to force your own back button every where
@@ -55,68 +55,75 @@ class _InstructionScreen extends State<InstructionScreen> {
           ),
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
-            
-            children: <Widget>[
-            Expanded(
-                child: PageView.builder(
-                    itemCount: CardClass.instructions.length - 1,
-                    onPageChanged: _pageChange,
-                    controller: PageController(
-                        initialPage: widget.position,
-                        keepPage: true,
-                        viewportFraction: 1),
-                    itemBuilder: (context, position) {
-                      return Column(children: <Widget>[
-                        Expanded(
-                            child: Stack(children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(10),
-                              height:
-                                  (MediaQuery.of(context).size.height / 5 * 4),
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                'assets/images/cardBlanknew.png',
-                              ))),
-                              child: Center(
-                                  child: Container(
-                                    // decoration: BoxDecoration(
-                                    //   border: Border.all(color: Colors.black)
-                                    // ),
-                                      width:
-                                          ((MediaQuery.of(context).size.height /
+              padding: EdgeInsets.only(top: 10),
+              child: Column(children: <Widget>[
+                Expanded(
+                    child: PageView.builder(
+                        itemCount: CardClass.instructions.length - 1,
+                        onPageChanged: _pageChange,
+                        controller: PageController(
+                            initialPage: widget.position,
+                            keepPage: true,
+                            viewportFraction: 1),
+                        itemBuilder: (context, position) {
+                          return Column(children: <Widget>[
+                            Expanded(
+                                child: Stack(children: <Widget>[
+                              Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  height: (MediaQuery.of(context).size.height /
+                                      5 *
+                                      4),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                    'assets/images/cardBlanknew.png',
+                                  ))),
+                                  child: Center(
+                                      child: Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 20),
+
+                                          // decoration: BoxDecoration(
+                                          //   border: Border.all(color: Colors.black)
+                                          // ),
+                                          width: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height /
                                                       4) *
                                                   3) *
                                               0.55,
-
-                                      height: ((MediaQuery.of(context).size.height /
+                                          height: ((MediaQuery.of(context)
+                                                          .size
+                                                          .height /
                                                       4) *
-                                                  3)
-                                                  * 0.7,
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: AutoSizeText(
-                                          widget.instructions[position],
-                                          // minFontSize: 12,
-                                          // maxFontSize: 40,
-                                          style: TextStyle(
-                                              fontSize: getFontSize(), height: 1.1, color: Color(0xff41311F)),
-                                          textAlign: TextAlign.center))))
-                        )])),
-                      ]);
-                    })),
-            Padding(
-                padding: EdgeInsets.only(bottom: 5),
-                child: DotsIndicator(
-                  dotsCount: totalDots,
-                  position: _currentPosition,
-                  decorator: decorator,
-                ))
-          ]))
-     ) ]);
+                                                  3) *
+                                              0.7,
+                                          child: Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                  widget.instructions[position],
+                                                  // minFontSize: 12,
+                                                  // maxFontSize: 40,
+                                                  style: TextStyle(
+                                                      fontSize: getFontSize(),
+                                                      height: 1.1,
+                                                      color: Color(0xff41311F)),
+                                                  textAlign:
+                                                      TextAlign.center)))))
+                            ])),
+                          ]);
+                        })),
+                Padding(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: DotsIndicator(
+                      dotsCount: totalDots,
+                      position: _currentPosition,
+                      decorator: decorator,
+                    ))
+              ])))
+    ]);
   }
 
   _pageChange(int position) {
@@ -129,11 +136,11 @@ class _InstructionScreen extends State<InstructionScreen> {
     return position;
   }
 
-  double getFontSize(){
-    double fontsize = (MediaQuery.of(context).size.height)/35; 
-    if(MediaQuery.of(context).size.height > 800){
-      fontsize = (MediaQuery.of(context).size.height)/40; 
+  double getFontSize() {
+    double fontsize = (MediaQuery.of(context).size.height) / 35;
+    if (MediaQuery.of(context).size.height > 800) {
+      fontsize = (MediaQuery.of(context).size.height) / 40;
     }
-    return fontsize; 
+    return fontsize;
   }
 }

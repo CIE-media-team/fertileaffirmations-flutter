@@ -65,72 +65,68 @@ class _MyCard extends State<MyCardRandom> {
         body: Center(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
-            child: Stack(
-                children: <Widget>[
-              Column(
-                children: <Widget>[
-                
-                Stack(children: <Widget>[
-                  FlipCard(
-                    
-                      key: cardKey,
-                      back: Container(
-                         margin: EdgeInsets.all(
-                                    MediaQuery.of(context).size.height / 50),
-                          height: (MediaQuery.of(context).size.height / 4) * 3,
-                          decoration: BoxDecoration(
-                                                        border: Border.all(),
+            child: Stack(children: <Widget>[
+          Column(children: <Widget>[
+            Stack(children: <Widget>[
+              FlipCard(
+                  key: cardKey,
+                  back: Container(
+                      margin: EdgeInsets.all(
+                          MediaQuery.of(context).size.height / 50),
+                      height: (MediaQuery.of(context).size.height / 4) * 3,
+                      decoration: BoxDecoration(
+                          // border: Border.all(),
 
-                              image: DecorationImage(
-                            //image: AssetImage('assets/images/cardBlanknew.png'),
-                            image: AssetImage(getCard().getImage()),
+                          image: DecorationImage(
+                        //image: AssetImage('assets/images/cardBlanknew.png'),
+                        image: AssetImage(getCard().getImage()),
+                      )),
 
-                          )),
+                      ///////////
 
-                          ///////////
-                        
-                          child: Stack(children: <Widget>[
-                            Center(
-                              child:Visibility(
-                                 visible: !getCard().getIsDefault(),
+                      child: Stack(children: <Widget>[
+                        Center(
+                            child: Visibility(
+                                visible: !getCard().getIsDefault(),
                                 child: Container(
-                              // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                              width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height *.35)),
-                                                  height: ((MediaQuery.of(context).size.height * .75) /
-                                                      3 *
-                                                      1.75),
-                              child: Align(
-                                  alignment: Alignment.center,
-                                   
-                                  child: AutoSizeText(getCard().cardText,
-                                      // minFontSize: 20,
-                                      // maxFontSize: 40,
-                                      // maxLines: 4,
-                                      style: TextStyle(
-                                          fontFamily: "new",
-                                          color: Color(0xff41311F),
-                                          fontSize: (MediaQuery.of(context).size.height) /
-                                              22, 
-                                          height: 1.6),
-                                      textAlign: TextAlign.center)),
+                                  // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+                                  width: ((MediaQuery.of(context).size.height *
+                                      .35)),
+                                  height: ((MediaQuery.of(context).size.height *
+                                          .75) /
+                                      3 *
+                                      1.75),
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: AutoSizeText(getCard().cardText,
+                                          // minFontSize: 20,
+                                          // maxFontSize: 40,
+                                          // maxLines: 4,
+                                          style: TextStyle(
+                                              fontFamily: "new",
+                                              color: Color(0xff41311F),
+                                              fontSize: (MediaQuery.of(context)
+                                                      .size
+                                                      .height) /
+                                                  25,
+                                              height: 1.6),
+                                          textAlign: TextAlign.center)),
 
-                              // Positioned(
-                              //           left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2 + 5,
-                              //           bottom: 30.0,
-                              //           child: AutoSizeText(widget.cards[position].cardID,
-                              //           minFontSize: 20,
-                              //         maxFontSize: 40,
-                              //           style: TextStyle(fontFamily: "new"),),
-                              //         ),
-                             ) )),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 30.0),
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child:Visibility(
-                                 visible: !getCard().getIsDefault(),
+                                  // Positioned(
+                                  //           left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2 + 5,
+                                  //           bottom: 30.0,
+                                  //           child: AutoSizeText(widget.cards[position].cardID,
+                                  //           minFontSize: 20,
+                                  //         maxFontSize: 40,
+                                  //           style: TextStyle(fontFamily: "new"),),
+                                  //         ),
+                                ))),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 30.0),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Visibility(
+                                visible: !getCard().getIsDefault(),
                                 child: Text(
                                   getCard().cardID,
                                   // minFontSize: 35,
@@ -143,79 +139,78 @@ class _MyCard extends State<MyCardRandom> {
                                           (MediaQuery.of(context).size.height) /
                                               22),
                                 )),
-                              ),
-                            ),
-                      ]
-                         )
+                          ),
+                        ),
+                      ])
 
                       /////////
-                      
+
                       ),
-                      front: Container(
-                          margin: EdgeInsets.all(
-                                 MediaQuery.of(context).size.height / 50),
-height: (MediaQuery.of(context).size.height / 4) * 3,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.contain,
-                                image: AssetImage(
-                                    CardClass.getPreferenceImagePath())),
-                          )))
-                ]),
-                Container(
-                    height: (MediaQuery.of(context).size.height / 12),
-                    padding: EdgeInsets.all(0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        IconButton(
-                          padding: EdgeInsets.all(0),
-                          icon: Icon(
-                            getCard().isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            size: (MediaQuery.of(context).size.height / 4) / 4,
-                          ),
-                          color: Colors.red,
-                          onPressed: () {
-                            // Function call to what happens when the favorite icon is pressed
-                            var msg;
-                            // Function call to what happens when the favorite icon is pressed
-                            var b = favorite();
-                            if (b) {
-                              msg = "Card added to your favorites";
-                            } else {
-                              msg = "Card removed from your favorites";
-                            }
-                            Fluttertoast.showToast(
-                                msg: msg,
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.TOP,
-                                timeInSecForIos: 1,
-                                backgroundColor: Colors.black38,
-                                textColor: Colors.white,
-                                fontSize: 14.0);
-                          },
-                        ),
-                        SizedBox(width: MediaQuery.of(context).size.width / 10),
-                        IconButton(
-                          padding: EdgeInsets.all(0),
-                          icon: Icon(
-                            Icons.share,
-                            size: (MediaQuery.of(context).size.height / 4) / 4,
-                          ),
-                          //color: Colors.red,
-                          onPressed: () {
-                            // Function call to what happens when the favorite icon is pressed
-                            Share.share(
-                                "I just received my Fertile Affirmation. You can too at fertileaffirmations.com!");
-                          },
-                        ),
-                      ],
-                    ))
-              ]),
-            ])), // This trailing comma makes auto-formatting nicer for build methods.
+                  front: Container(
+                      margin: EdgeInsets.all(
+                          MediaQuery.of(context).size.height / 50),
+                      height: (MediaQuery.of(context).size.height / 4) * 3,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image:
+                                AssetImage(CardClass.getPreferenceImagePath())),
+                      )))
+            ]),
+            Container(
+                height: (MediaQuery.of(context).size.height / 12),
+                padding: EdgeInsets.all(0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    IconButton(
+                      padding: EdgeInsets.all(0),
+                      icon: Icon(
+                        getCard().isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        size: (MediaQuery.of(context).size.height / 4) / 4,
+                      ),
+                      color: Colors.red,
+                      onPressed: () {
+                        // Function call to what happens when the favorite icon is pressed
+                        var msg;
+                        // Function call to what happens when the favorite icon is pressed
+                        var b = favorite();
+                        if (b) {
+                          msg = "Card added to your favorites";
+                        } else {
+                          msg = "Card removed from your favorites";
+                        }
+                        Fluttertoast.showToast(
+                            msg: msg,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.TOP,
+                            timeInSecForIos: 1,
+                            backgroundColor: Colors.black38,
+                            textColor: Colors.white,
+                            fontSize: 14.0);
+                      },
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width / 10),
+                    IconButton(
+                      padding: EdgeInsets.all(0),
+                      icon: Icon(
+                        Icons.share,
+                        size: (MediaQuery.of(context).size.height / 4) / 4,
+                      ),
+                      //color: Colors.red,
+                      onPressed: () {
+                        // Function call to what happens when the favorite icon is pressed
+                        Share.share(
+                            "I just received my Fertile Affirmation. You can too at fertileaffirmations.com!");
+                      },
+                    ),
+                  ],
+                ))
+          ]),
+        ])), // This trailing comma makes auto-formatting nicer for build methods.
       )
     ]);
   }

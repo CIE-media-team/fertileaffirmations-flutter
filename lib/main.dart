@@ -251,6 +251,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -280,9 +282,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             )),
             Scaffold(
+              key: _scaffoldKey,
                 drawer: MyNavigationDrawer(),
                 backgroundColor: Colors.transparent,
                 appBar: new AppBar(
+                  leading: IconButton(
+                    icon: Icon(Icons.view_list),
+                    onPressed: () => _scaffoldKey.currentState.openDrawer()
+                    // MaterialPageRoute(builder: (context) => MyNavigationDrawer())
+                    
+                  ),
                   iconTheme:
                       IconThemeData(color: Theme.of(context).primaryColorDark),
                   backgroundColor: Colors.transparent,

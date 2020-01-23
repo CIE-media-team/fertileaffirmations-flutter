@@ -84,8 +84,11 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child:
-              Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-            Image.asset('assets/images/cardBlanknew.png'),
+              Stack(alignment: AlignmentDirectional.center, 
+              children: <Widget>[
+                Container(
+                margin: EdgeInsets.all(10),
+            child:Image.asset('assets/images/cardBlanknew.png'),),
             // Padding(
             //     padding: EdgeInsets.all(30),
             //     child:
@@ -93,7 +96,7 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                 // decoration:
                 //     BoxDecoration(border: Border.all(color: Colors.black)),
                 width: MediaQuery.of(context).size.width / 4 * 3,
-                height: MediaQuery.of(context).size.height / 5 * 3,
+                height: getHeight(),
                 alignment: Alignment.center,
                 child: Center(
                     child: TextField(
@@ -151,5 +154,13 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
     int numcards = CardClass.getUserCards().length;
     debugPrint("NextNumber: (100+numcards+1).toString()");
     return (100 + numcards + 1).toString();
+  }
+  getHeight(){
+    double height = MediaQuery.of(context).size.height;
+    if (height > 800){
+      return (MediaQuery.of(context).size.height / 6) * 2.8; }
+    else{
+      return (MediaQuery.of(context).size.height / 6) * 3.5;
+    }
   }
 }
