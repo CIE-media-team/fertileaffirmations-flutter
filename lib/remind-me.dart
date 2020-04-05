@@ -9,7 +9,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RemindMe extends StatefulWidget {
-// class MyHomePage extends StatelessWidget {
 
   RemindMe({
     Key key,
@@ -62,8 +61,6 @@ class _RemindMeState extends State<RemindMe> {
     getValues();
 
     super.initState();
-    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    // If you have skipped STEP 3 then change app_icon to @mipmap/ic_launcher
     var initializationSettingsAndroid =
         new AndroidInitializationSettings('app_icon');
     var initializationSettingsIOS = new IOSInitializationSettings();
@@ -72,9 +69,6 @@ class _RemindMeState extends State<RemindMe> {
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
-
-    // initializationSettings, selectNotification: onSelectNotification);
-
 
   }
 
@@ -180,6 +174,12 @@ class _RemindMeState extends State<RemindMe> {
             },
             child: new Text('Set Daily Notification Time', style: TextStyle(color: Colors.white, fontSize: 18),)
           ),
+          RaisedButton(
+            color: Theme.of(context).primaryColor,
+            onPressed: () {
+              _showCancelDialog();},
+            child: new Text('Cancel All Notifications', style: TextStyle(color: Colors.white, fontSize: 18),)
+          ),
         ])),
       )
     ]);
@@ -247,13 +247,56 @@ class _RemindMeState extends State<RemindMe> {
       },
     );
   }
+  _showCancelDialog() {
+    showDialog(
+    context: context,
+    builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Cancel Daily Notifications", style: TextStyle(fontSize: 24),),
+          content: new Text(
+              "Are you sure you want to cancel all future daily reminders?"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("No"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("Yes"),
+              onPressed: () async {
+                await flutterLocalNotificationsPlugin.cancelAll();
+                setState(() {
+                  setCancelledSharedTime();
+                  getValues();
+                       
+                _selectedHour = null;
+                _selectedMinute = null;
+                _selectedTOD = null;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  setCancelledSharedTime() async{
+      prefs = await SharedPreferences.getInstance();
+      prefs.setString("sharedPrefHours", null);
+      prefs.setString("sharedPrefMinutes", null);
+      prefs.setString("sharedPrefTOD",null);
+  }
 
   _populateLists(){
     for(int i=1; i<=12; i++){
       hours.add(i.toString());
     } 
     
-    for(int i=0; i<=60; i++){
+    for(int i=0; i<=59; i++){
       if(i<10){
       minutes.add("0"+i.toString());
       }

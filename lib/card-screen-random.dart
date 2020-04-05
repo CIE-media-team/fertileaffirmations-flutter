@@ -63,8 +63,6 @@ class _MyCard extends State<MyCardRandom> {
         drawer: MyNavigationDrawer(),
         backgroundColor: Colors.transparent,
         body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
             child: Stack(children: <Widget>[
           Column(children: <Widget>[
             Stack(children: <Widget>[
@@ -73,12 +71,9 @@ class _MyCard extends State<MyCardRandom> {
                   back: Container(
                       margin: EdgeInsets.all(
                           MediaQuery.of(context).size.height / 50),
-                      height: (MediaQuery.of(context).size.height / 4) * 3,
+                      height: getHeight(),
                       decoration: BoxDecoration(
-                          // border: Border.all(),
-
                           image: DecorationImage(
-                        //image: AssetImage('assets/images/cardBlanknew.png'),
                         image: AssetImage(getCard().getImage()),
                       )),
 
@@ -89,7 +84,6 @@ class _MyCard extends State<MyCardRandom> {
                             child: Visibility(
                                 visible: !getCard().getIsDefault(),
                                 child: Container(
-                                  // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                                   width: ((MediaQuery.of(context).size.height *
                                       .35)),
                                   height: ((MediaQuery.of(context).size.height *
@@ -99,9 +93,6 @@ class _MyCard extends State<MyCardRandom> {
                                   child: Align(
                                       alignment: Alignment.center,
                                       child: AutoSizeText(getCard().cardText,
-                                          // minFontSize: 20,
-                                          // maxFontSize: 40,
-                                          // maxLines: 4,
                                           style: TextStyle(
                                               fontFamily: "new",
                                               color: Color(0xff41311F),
@@ -111,15 +102,6 @@ class _MyCard extends State<MyCardRandom> {
                                                   25,
                                               height: 1.6),
                                           textAlign: TextAlign.center)),
-
-                                  // Positioned(
-                                  //           left: (((MediaQuery.of(context).size.height / 4) * 3) * 0.60) /2 + 5,
-                                  //           bottom: 30.0,
-                                  //           child: AutoSizeText(widget.cards[position].cardID,
-                                  //           minFontSize: 20,
-                                  //         maxFontSize: 40,
-                                  //           style: TextStyle(fontFamily: "new"),),
-                                  //         ),
                                 ))),
                         Padding(
                           padding: EdgeInsets.only(bottom: 30.0),
@@ -129,8 +111,6 @@ class _MyCard extends State<MyCardRandom> {
                                 visible: !getCard().getIsDefault(),
                                 child: Text(
                                   getCard().cardID,
-                                  // minFontSize: 35,
-                                  // maxFontSize: 55,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       fontFamily: "new",
@@ -149,7 +129,7 @@ class _MyCard extends State<MyCardRandom> {
                   front: Container(
                       margin: EdgeInsets.all(
                           MediaQuery.of(context).size.height / 50),
-                      height: (MediaQuery.of(context).size.height / 4) * 3,
+                      height: getHeight(),
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.contain,
@@ -176,7 +156,6 @@ class _MyCard extends State<MyCardRandom> {
                       onPressed: () {
                         // Function call to what happens when the favorite icon is pressed
                         var msg;
-                        // Function call to what happens when the favorite icon is pressed
                         var b = favorite();
                         if (b) {
                           msg = "Card added to your favorites";
@@ -200,7 +179,6 @@ class _MyCard extends State<MyCardRandom> {
                         Icons.share,
                         size: (MediaQuery.of(context).size.height / 4) / 4,
                       ),
-                      //color: Colors.red,
                       onPressed: () {
                         // Function call to what happens when the favorite icon is pressed
                         Share.share(
@@ -215,10 +193,17 @@ class _MyCard extends State<MyCardRandom> {
     ]);
   }
 
+  getHeight() {
+    if (MediaQuery.of(context).size.height < 600) {
+      return ((MediaQuery.of(context).size.height / 3) * 2);
+    } else {
+      return ((MediaQuery.of(context).size.height / 4) * 3);
+    }
+  }
+
   //need functionality here to write to the file to change the saved status/show the new icon!
   bool favorite() {
     var b;
-    debugPrint("Favorite clicked!");
     if (getCard().isFavorite == false) {
       getCard().setFavorite(true);
       b = true;

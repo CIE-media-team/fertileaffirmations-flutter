@@ -166,6 +166,7 @@ class _Collection extends State<Collection> {
                                   builder: (context) => MyCard(
                                         position: position,
                                         cards: cards,
+                                        firstFlip : true
                                       )));
                         },
                         child: Visibility(

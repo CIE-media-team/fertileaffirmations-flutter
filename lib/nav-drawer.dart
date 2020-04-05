@@ -14,10 +14,6 @@ import 'remind-me.dart';
 import 'package:package_info/package_info.dart';
 
 class MyNavigationDrawer extends StatelessWidget {
-
-  
-
-  
   Widget routeTo2;
   
 

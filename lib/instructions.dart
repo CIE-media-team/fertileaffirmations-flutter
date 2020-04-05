@@ -1,7 +1,6 @@
 import 'package:fertile_affirmations/card-class.dart';
 import 'package:flutter/material.dart';
 import 'card-class.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 class InstructionScreen extends StatefulWidget {
@@ -40,12 +39,8 @@ class _InstructionScreen extends State<InstructionScreen> {
       ),
       Scaffold(
           appBar: AppBar(
-            // Here we take the value from the MyHomePage object that was created by
-            // the App.build method, and use it to set our appbar title.
             title: Text('Instructions', style: TextStyle(fontSize: 30)),
             automaticallyImplyLeading: true,
-            //`true` if you want Flutter to automatically add Back Button when needed,
-            //or `false` if you want to force your own back button every where
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
@@ -84,10 +79,6 @@ class _InstructionScreen extends State<InstructionScreen> {
                                       child: Container(
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 20),
-
-                                          // decoration: BoxDecoration(
-                                          //   border: Border.all(color: Colors.black)
-                                          // ),
                                           width: ((MediaQuery.of(context)
                                                           .size
                                                           .height /
@@ -104,8 +95,6 @@ class _InstructionScreen extends State<InstructionScreen> {
                                               alignment: Alignment.center,
                                               child: Text(
                                                   widget.instructions[position],
-                                                  // minFontSize: 12,
-                                                  // maxFontSize: 40,
                                                   style: TextStyle(
                                                       fontSize: getFontSize(),
                                                       height: 1.1,

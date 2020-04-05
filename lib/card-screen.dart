@@ -2,13 +2,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
 
 import 'nav-drawer.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'card-class.dart';
 import 'package:flip_card/flip_card.dart';
 import 'main.dart';
-
-GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
 class MyCard extends StatefulWidget {
   MyCard({
@@ -16,27 +13,26 @@ class MyCard extends StatefulWidget {
     this.card,
     @required this.cards,
     @required this.position,
+    this.firstFlip,
   }) : super(key: key);
   final CardClass card;
   final int position;
   final List cards;
+  final bool firstFlip;
 
   @override
   _MyCard createState() => _MyCard();
 }
 
-void main(List<String> args) {
-  //cardKey.currentState.toggleCard();
-}
+void main(List<String> args) {}
 
 class _MyCard extends State<MyCard> {
-  // List cards = CardClass.getCards();
   bool _isVisible;
   IconData _icon;
+  GlobalKey<FlipCardState> cardKey;
+  bool firstFlip;
 
   getFaveIcon(int position) {
-    //debugPrint(widget.card.isFavorite.toString());
-    // if (widget.card.isFavorite) {
     IconData icon;
     if (widget.cards[position].isFavorite) {
       icon = Icons.favorite;
@@ -56,11 +52,33 @@ class _MyCard extends State<MyCard> {
     }
   }
 
+  getFirstFlip() {
+    if (firstFlip == null) {
+      firstFlip = widget.firstFlip;
+      cardKey = GlobalKey<FlipCardState>();
+      WidgetsBinding.instance.addPostFrameCallback((_) => flip());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   void initState() {
+    firstFlip = getFirstFlip();
     _isVisible = getVisibility();
     _icon = getInitialIcon(widget.position);
     super.initState();
+  }
+
+  void flip() {
+    Future.delayed(const Duration(milliseconds: 700), () {
+      cardKey.currentState.toggleCard();
+    });
+    Future.delayed(const Duration(milliseconds: 705), () {
+      cardKey = null;
+      firstFlip = false;
+    });
   }
 
   Future<void> _ackAlert(BuildContext context) {
@@ -131,134 +149,19 @@ class _MyCard extends State<MyCard> {
         drawer: MyNavigationDrawer(),
         backgroundColor: Colors.transparent,
         body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: Stack(
-                // alignment: AlignmentDirectional.centerStart,
-                children: <Widget>[
-              PageView.builder(
-                onPageChanged: _pageChange,
-                controller: PageController(
-                    initialPage: widget.position,
-                    keepPage: true,
-                    viewportFraction: 1),
-                itemBuilder: (context, position) {
-                  return Column(children: <Widget>[
-                    Stack(children: <Widget>[
-                      FlipCard(
-                        //key: cardKey,
-
-                        direction: FlipDirection.HORIZONTAL,
-                        front: Center(
-                            child: Container(
-                                margin: EdgeInsets.all(
-                                    MediaQuery.of(context).size.height / 50),
-                          height: (MediaQuery.of(context).size.height / 4) * 3,
-                                // width: MediaQuery.of(context).size.width/6 * 5,
-                                decoration: BoxDecoration(
-                                    // border: Border.all(),
-                                    image: DecorationImage(
-                                      //image: AssetImage('assets/images/cardBlanknew.png'),
-                                      image: AssetImage(
-                                          widget.cards[position].getImage()),
-                                      fit: BoxFit.contain,
-                                    )),
-                                // width: (((MediaQuery.of(context).size.height *
-                                //     .4875))
-                                //     ),
-/////////////////////////
-
-                                child: Center(
-                                    child: Visibility(
-                                        visible: !widget.cards[position]
-                                            .getIsDefault(),
-                                        child: Stack(children: <Widget>[
-                                          Container(
-                                              // padding: EdgeInsets.only(top: 1),
-                                              alignment: Alignment.center,
-                                              child: Image.asset(
-                                                'assets/images/cardBlanknew.png',
-                                                fit: BoxFit.fitHeight,
-                                                // height: (MediaQuery.of(context)
-                                                //             .size
-                                                //             .height /
-                                                //         4) *
-                                                //     3,
-                                                // width: ((MediaQuery.of(context)
-                                                //                 .size
-                                                //                 .height /
-                                                //             4) *
-                                                //         3),
-                                              )),
-                                          Center(
-                                              child: Container(
-                                                  width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height *.35)),
-                                                  height: ((MediaQuery.of(context).size.height * .75) /
-                                                      3 *
-                                                      1.75),
-                                                  // decoration: BoxDecoration(
-                                                  //     border: Border.all()),
-                                                  child: Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: SingleChildScrollView(
-                                                        controller: ScrollController(),
-                                                          child:Text(widget.cards[position].cardText,
-                                                          style: TextStyle(
-                                                              fontFamily: "new",
-                                                              fontSize: (MediaQuery.of(context)
-                                                                      .size
-                                                                      .height) /
-                                                                  25,
-                                                              height: 1.6,
-                                                              color: Color(0xff41311F)),
-                                                          textAlign: TextAlign.center))))),
-
-                                          Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 20),
-                                              child: Align(
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: Text(
-                                                  widget.cards[position].cardID,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontFamily: "new",
-                                                      color: Color(0xff41311F),
-                                                      fontSize: (MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .height) /
-                                                          22),
-                                                ),
-                                              ))
-                                          // ),
-                                        ]))
-
-                                    /////////////////////////////////////////////////
-                                    ))),
-
-
-                        back: Container(
-                            margin: EdgeInsets.all(
-                                 MediaQuery.of(context).size.height / 50),
-height: (MediaQuery.of(context).size.height / 4) * 3,
-                            // width: MediaQuery.of(context).size.width/6*5,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image: AssetImage(
-                                      CardClass.getPreferenceImagePath())),
-                            )),
-                      )
-                    ]),
-                    Align(
-                      alignment: Alignment.bottomCenter,
+            child: Stack(children: <Widget>[
+          PageView.builder(
+            onPageChanged: _pageChange,
+            controller: PageController(
+                initialPage: widget.position,
+                keepPage: true,
+                viewportFraction: 1),
+            itemBuilder: (context, position) {
+              return Column(children: <Widget>[
+                getFlipCard(position),
+                Align(
+                    alignment: Alignment.bottomCenter,
                     child: Container(
-                        // height: MediaQuery.of(context).size.height / 6,
                         padding: EdgeInsets.only(bottom: 10),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -308,28 +211,24 @@ height: (MediaQuery.of(context).size.height / 4) * 3,
                               },
                             ),
                           ],
-                        ))
-                  )]);
-                },
-                itemCount: widget.cards.length,
-              ),
-            ])), // This trailing comma makes auto-formatting nicer for build methods.
+                        )))
+              ]);
+            },
+            itemCount: widget.cards.length,
+          ),
+        ])), // This trailing comma makes auto-formatting nicer for build methods.
       )
     ]);
   }
 
   //need functionality here to write to the file to change the saved status/show the new icon!
   bool favorite(int position) {
-    debugPrint("Favorite clicked!");
     var b;
-// if (widget.card.isFavorite == false) {
     if (widget.cards[position].isFavorite == false) {
       widget.cards[position].setFavorite(true);
-      // widget.card.setFavorite(true);
       b = true;
     } else {
       widget.cards[position].setFavorite(false);
-      // widget.card.setFavorite(false);
       b = false;
     }
     getFaveIcon(position);
@@ -344,36 +243,186 @@ height: (MediaQuery.of(context).size.height / 4) * 3,
     return !widget.cards[page].getIsDefault();
   }
 
+  FlipCard getFlipCard(position) {
+    if (firstFlip) {
+      return FlipCard(
+        key: cardKey,
+        direction: FlipDirection.HORIZONTAL,
+        back: Center(
+            child: Container(
+                margin: EdgeInsets.all(MediaQuery.of(context).size.height / 50),
+                height: getHeight(),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage(widget.cards[position].getImage()),
+                  fit: BoxFit.contain,
+                )),
+/////////////////////////
+
+                child: Center(
+                    child: Visibility(
+                        visible: !widget.cards[position].getIsDefault(),
+                        child: Stack(children: <Widget>[
+                          Container(
+                              // padding: EdgeInsets.only(top: 1),
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                'assets/images/cardBlanknew.png',
+                                fit: BoxFit.fitHeight,
+                              )),
+                          Center(
+                              child: Container(
+                                  width: ((MediaQuery.of(context).size.height *
+                                      .35)),
+                                  height: ((MediaQuery.of(context).size.height *
+                                          .75) /
+                                      3 *
+                                      1.75),
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: SingleChildScrollView(
+                                          controller: ScrollController(),
+                                          child: Text(
+                                              widget.cards[position].cardText,
+                                              style: TextStyle(
+                                                  fontFamily: "new",
+                                                  fontSize:
+                                                      (MediaQuery.of(context)
+                                                              .size
+                                                              .height) /
+                                                          25,
+                                                  height: 1.6,
+                                                  color: Color(0xff41311F)),
+                                              textAlign: TextAlign.center))))),
+                          Padding(
+                              padding: EdgeInsets.only(bottom: 20),
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  widget.cards[position].cardID,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: "new",
+                                      color: Color(0xff41311F),
+                                      fontSize:
+                                          (MediaQuery.of(context).size.height) /
+                                              22),
+                                ),
+                              ))
+                        ]))
+
+                    /////////////////////////////////////////////////
+                    ))),
+        front: Container(
+            margin: EdgeInsets.all(MediaQuery.of(context).size.height / 50),
+            height: getHeight(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(CardClass.getPreferenceImagePath())),
+            )),
+      );
+    } else {
+      cardKey = null;
+      return FlipCard(
+        direction: FlipDirection.HORIZONTAL,
+        front: Center(
+            child: Container(
+                margin: EdgeInsets.all(MediaQuery.of(context).size.height / 50),
+                height: getHeight(),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: AssetImage(widget.cards[position].getImage()),
+                  fit: BoxFit.contain,
+                )),
+/////////////////////////
+
+                child: Center(
+                    child: Visibility(
+                        visible: !widget.cards[position].getIsDefault(),
+                        child: Stack(children: <Widget>[
+                          Container(
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                'assets/images/cardBlanknew.png',
+                                fit: BoxFit.fitHeight,
+                              )),
+                          Center(
+                              child: Container(
+                                  width: ((MediaQuery.of(context).size.height *
+                                      .35)),
+                                  height: ((MediaQuery.of(context).size.height *
+                                          .75) /
+                                      3 *
+                                      1.75),
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: SingleChildScrollView(
+                                          controller: ScrollController(),
+                                          child: Text(
+                                              widget.cards[position].cardText,
+                                              style: TextStyle(
+                                                  fontFamily: "new",
+                                                  fontSize:
+                                                      (MediaQuery.of(context)
+                                                              .size
+                                                              .height) /
+                                                          25,
+                                                  height: 1.6,
+                                                  color: Color(0xff41311F)),
+                                              textAlign: TextAlign.center))))),
+                          Padding(
+                              padding: EdgeInsets.only(bottom: 20),
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  widget.cards[position].cardID,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: "new",
+                                      color: Color(0xff41311F),
+                                      fontSize:
+                                          (MediaQuery.of(context).size.height) /
+                                              22),
+                                ),
+                              ))
+                        ]))
+
+                    /////////////////////////////////////////////////
+                    ))),
+        back: Container(
+            margin: EdgeInsets.all(MediaQuery.of(context).size.height / 50),
+            height: getHeight(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.contain,
+                  image: AssetImage(CardClass.getPreferenceImagePath())),
+            )),
+      );
+    }
+  }
+
   _pageChange(page) {
-    getFaveIcon(page);
     setState(() {
       _isVisible = getPageVisibility(page);
     });
+    getFaveIcon(page);
   }
 
   getHeight() {
-    // debugPrint(MediaQuery.of(context).size.height.toString());
-    if (MediaQuery.of(context).size.height >= 812) {
-      return ((MediaQuery.of(context).size.height / 4) * 3) - 35;
+    if (MediaQuery.of(context).size.height < 600) {
+      return ((MediaQuery.of(context).size.height / 3) * 2);
     } else {
-      return ((MediaQuery.of(context).size.height / 4) * 3) - 10;
+      return ((MediaQuery.of(context).size.height / 4) * 3);
     }
   }
 
   double getWidth() {
     double height = ((MediaQuery.of(context).size.height / 4) * 3) - 10;
-    // debugPrint(MediaQuery.of(context).size.width.toString());
     if (MediaQuery.of(context).size.height >= 812) {
       height = ((MediaQuery.of(context).size.height / 4) * 3) - 35;
     }
 
     return height;
   }
-
-  // double getFontSize(){
-  //   if(MediaQuery.of(context).size.height>1000){
-  //     return ((MediaQuery.of(context).size.height)/24);
-  //   }
-  //   return 28;
-  // }
 }

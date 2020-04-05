@@ -43,29 +43,14 @@ class _SelectGoddess extends State<SelectGoddess> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     print("Warm");
-                    //     Navigator.of(context).pop();
-                    //     Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //           builder: (context) =>
-                    //               MyHomePage(preference: false),
-                    //         ));
-                    //   },
-                    // child:
                     Container(
                       width: MediaQuery.of(context).size.width / 2 - 2.5,
-                      // decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/warmfirst.png')),),
                       child: ConstrainedBox(
                         constraints: BoxConstraints.expand(),
                         child: FlatButton(
                           padding: EdgeInsets.all(0),
                           onPressed: () {
-                            debugPrint("Warm");
                             CardClass.setPreference(false);
-
                             Navigator.of(context).pop();
                             Navigator.push(
                                 context,
@@ -85,7 +70,6 @@ class _SelectGoddess extends State<SelectGoddess> {
 
                     GestureDetector(
                         onTap: () {
-                          debugPrint("GODDESS: Porcelain");
                           CardClass.setPreference(true);
 
                           Navigator.of(context).pop();
@@ -112,21 +96,8 @@ class _SelectGoddess extends State<SelectGoddess> {
               child: Image.asset('assets/images/selectimage.png'),
             ),
 
-            // SizedBox(height: MediaQuery.of(context).size.height / 6),
           ],
         ),
-        // Scaffold(
-        //   drawer: MyNavigationDrawer(),
-        //   backgroundColor: Colors.transparent,
-        //   appBar: new AppBar(
-        //     iconTheme: IconThemeData(color: Theme.of(context).primaryColorDark),
-        //     backgroundColor: Colors.transparent,
-        //     elevation: 0.0,
-        //   ),
-        //   body: new Container(
-        //     color: Colors.transparent,
-        //   ),
-        // ),
       ],
     );
   }

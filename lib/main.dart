@@ -62,7 +62,6 @@ Future firstLaunch() async {
   //first=true;
   if (first) {
     //if it is the first run of the app, instantiate the user file and create the permanent preferences file with all default cards.
-    //debugPrint(permcards.toString()); //uncomment this to verify that the permanentcards are copying over correctly.
     writeFile("permanentpreferences", permcards.toString());
     writeFile("user", "");
   } else {}
@@ -70,7 +69,6 @@ Future firstLaunch() async {
   var usercontents = await readContent("user");
   var combinedcontents = permprefcontents + usercontents;
 
-  //debugPrint(combinedcontents.toString());
   readCards(combinedcontents);
 
   readInstructions();
@@ -83,8 +81,6 @@ Future readInstructions() async {
   var i = 0;
   while (i < strings.length) {
     strings[i] = strings[i].replaceAll("*", "\n");
-    // debugPrint(strings[i]);
-
     i++;
   }
   CardClass.instructions = strings;
@@ -120,7 +116,6 @@ Future<String> readContent(String type) async {
       file = await _permPreferencesFile;
     }
     var contents = await file.readAsString();
-    //debugPrint(type + "@@@" + contents.toString() + " ^^^ end" + type);
     return contents;
   } catch (e) {
     return 'Error trying to read the file.';
@@ -165,12 +160,6 @@ void save() async {
   writeFile("permanentpreferences", l[0].toString());
   //Overwrite the user file with the updated cards
   writeFile("user", l[1].toString());
-  debugPrint("Saved the file!");
-
-  // var permprefcontents = await readContent("permanentpreferences");
-  // var usercontents = await readContent("user");
-  // debugPrint("Perm pref contents: " + permprefcontents);
-  // debugPrint("User contents: "+ usercontents);
 }
 
 void readCards(String stringCards) async {
@@ -188,7 +177,6 @@ void readCards(String stringCards) async {
     //Verify file is being read correctly.
     cards[index] = new CardClass(
         strings[i], strings[i + 1], strings[i + 2], strings[i + 3]);
-    //debugPrint(cards[index].getImage());
 
     i += 4;
     index += 1;
@@ -240,7 +228,6 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-// class MyHomePage extends StatelessWidget {
 
   MyHomePage({Key key, this.title, @required this.preference})
       : super(key: key);
@@ -289,9 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 appBar: new AppBar(
                   leading: IconButton(
                     icon: Icon(Icons.view_list),
-                    onPressed: () => _scaffoldKey.currentState.openDrawer()
-                    // MaterialPageRoute(builder: (context) => MyNavigationDrawer())
-                    
+                    onPressed: () => _scaffoldKey.currentState.openDrawer()                    
                   ),
                   iconTheme:
                       IconThemeData(color: Theme.of(context).primaryColorDark),

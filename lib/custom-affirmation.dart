@@ -1,20 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fertile_affirmations/card-class.dart';
 
 import 'nav-drawer.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-/*
-
-Currently, when you hit done on the keyboard it launches a new custom affirmation screen and you 
-lose the text you just spend time typing out. We need to solve this bug to make the keyboard disappear when 
-when done is hit, then the check saves the card. 
-
-Inputting emojis in custom affirmation messes up the formatting of all of the cards. We need to either fix
-this or somehow not allow the users to save an emoji in their card. 
-*/
 
 class CustomAffirmation extends StatefulWidget {
   @override
@@ -81,20 +70,13 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
         ),
         drawer: MyNavigationDrawer(),
         body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
           child:
-              Stack(alignment: AlignmentDirectional.center, 
-              children: <Widget>[
-                Container(
-                margin: EdgeInsets.all(10),
-            child:Image.asset('assets/images/cardBlanknew.png'),),
-            // Padding(
-            //     padding: EdgeInsets.all(30),
-            //     child:
+              Stack(alignment: AlignmentDirectional.center, children: <Widget>[
             Container(
-                // decoration:
-                //     BoxDecoration(border: Border.all(color: Colors.black)),
+              margin: EdgeInsets.all(10),
+              child: Image.asset('assets/images/cardBlanknew.png'),
+            ),
+            Container(
                 width: MediaQuery.of(context).size.width / 4 * 3,
                 height: getHeight(),
                 alignment: Alignment.center,
@@ -103,36 +85,23 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
                   textAlign: TextAlign.center,
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.multiline,
-
                   textAlignVertical: TextAlignVertical.center,
-
                   controller: myController,
-                  // onSubmitted: (term){
-                  //   myController.clear();
-                  // },
-
                   decoration: InputDecoration(
-                    hintText: 
+                    hintText:
                         'Enter text here and press submit to create your new card',
                     hintMaxLines: 5,
-
                     border: InputBorder.none,
-                    // border: OutlineInputBorder(),
                   ),
-
-                  //autofocus: true,
                   autocorrect: true,
-
-                  // maxLengthEnforced: true,
                   expands: true,
-
-                  maxLines: null, minLines: null,
+                  maxLines: null,
+                  minLines: null,
                   style: TextStyle(
                       fontFamily: "new",
                       color: Color(0xff41311F),
                       fontSize: (MediaQuery.of(context).size.height) / 20,
                       height: 1.5),
-                  // )
                 )))
           ]),
         ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -145,21 +114,20 @@ class _CustomAffirmationState extends State<CustomAffirmation> {
     //Need to add favorite button so we can store if it is a favorite or not.
     if (myController.text != "") {
       new CardClass(getNextNumber(), myController.text, "false", "false");
-      debugPrint(CardClass.getUserCards().toString());
       save();
     }
   }
 
   getNextNumber() {
     int numcards = CardClass.getUserCards().length;
-    debugPrint("NextNumber: (100+numcards+1).toString()");
     return (100 + numcards + 1).toString();
   }
-  getHeight(){
+
+  getHeight() {
     double height = MediaQuery.of(context).size.height;
-    if (height > 800){
-      return (MediaQuery.of(context).size.height / 6) * 2.8; }
-    else{
+    if (height > 800) {
+      return (MediaQuery.of(context).size.height / 6) * 2.8;
+    } else {
       return (MediaQuery.of(context).size.height / 6) * 3.5;
     }
   }
