@@ -269,8 +269,7 @@ class _RemindMeState extends State<RemindMe> {
                 await flutterLocalNotificationsPlugin.cancelAll();
                 setState(() {
                   setCancelledSharedTime();
-                  getValues();
-                       
+                  getValues(); 
                 _selectedHour = null;
                 _selectedMinute = null;
                 _selectedTOD = null;

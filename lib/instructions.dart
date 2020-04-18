@@ -73,34 +73,36 @@ class _InstructionScreen extends State<InstructionScreen> {
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: AssetImage(
-                                    'assets/images/cardBlanknew.png',
+                                            getImage(position)
+                                    // 'assets/images/cardBlanknew.png',
                                   ))),
-                                  child: Center(
-                                      child: Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 20),
-                                          width: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) *
-                                              0.55,
-                                          height: ((MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      4) *
-                                                  3) *
-                                              0.7,
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                  widget.instructions[position],
-                                                  style: TextStyle(
-                                                      fontSize: getFontSize(),
-                                                      height: 1.1,
-                                                      color: Color(0xff41311F)),
-                                                  textAlign:
-                                                      TextAlign.center)))))
+                                  // child: Center(
+                                  //     child: Container(
+                                  //         margin: EdgeInsets.symmetric(
+                                  //             horizontal: 20),
+                                  //         width: ((MediaQuery.of(context)
+                                  //                         .size
+                                  //                         .height /
+                                  //                     4) *
+                                  //                 3) *
+                                  //             0.55,
+                                  //         height: ((MediaQuery.of(context)
+                                  //                         .size
+                                  //                         .height /
+                                  //                     4) *
+                                  //                 3) *
+                                  //             0.7,
+                                  //         child: Align(
+                                  //             alignment: Alignment.center,
+                                  //             child: Text(
+                                  //                 widget.instructions[position],
+                                  //                 style: TextStyle(
+                                  //                     fontSize: getFontSize(),
+                                  //                     height: 1.1,
+                                  //                     color: Color(0xff41311F)),
+                                  //                 textAlign:
+                                  //                     TextAlign.center))))
+                                  )
                             ])),
                           ]);
                         })),
@@ -131,5 +133,10 @@ class _InstructionScreen extends State<InstructionScreen> {
       fontsize = (MediaQuery.of(context).size.height) / 40;
     }
     return fontsize;
+  }
+
+    String getImage(int position) {
+      String s = 'assets/images/instructions$position.png';
+    return s;
   }
 }

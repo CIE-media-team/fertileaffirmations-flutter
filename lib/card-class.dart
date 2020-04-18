@@ -58,6 +58,12 @@ class CardClass {
     return s;
   }
 
+    String getInstructionImage(position) {
+    var instrstr = "instruction" + position;
+    String s = "assets/images/$instrstr.png";
+    return s;
+  }
+
   //Needs to replicate EXACTLY how the cards are stored.
   String toString() {
     return (cardID +

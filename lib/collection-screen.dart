@@ -18,7 +18,7 @@ class _Collection extends State<Collection> {
   bool fave = false;
   bool creations = false;
   bool firstrun = true;
-  bool _front = true;
+  bool _front = false;
   String cardImage = 'assets/images/cardBlanknew.png';
   String creationsText = "My Creations";
   IconData ic = Icons.flip_to_back;
@@ -58,7 +58,7 @@ class _Collection extends State<Collection> {
     _front = !_front;
     if (_front) {
       cardImage = 'assets/images/cardBlanknew.png';
-      ic = Icons.flip_to_back;
+      ic = Icons.flip_to_front;
     } else {
       bool pref = CardClass.getPreference();
       if (!pref) {
@@ -66,7 +66,7 @@ class _Collection extends State<Collection> {
       } else {
         cardImage = 'assets/images/porcelainroundsmall.png';
       }
-      ic = Icons.flip_to_front;
+      ic = Icons.flip_to_back;
     }
     setState(() {});
   }
@@ -153,13 +153,9 @@ class _Collection extends State<Collection> {
                             // //  image: AssetImage('assets/images/noleaves2.png'),
                             image: AssetImage(getImage(position)),
                             fit: BoxFit.contain)),
-                        // border: Border.all(color: Colors.black, width: 1),
-                        // borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: FlatButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
-                          // debugPrint(cards[position].cardText);
-                          //Navigator.of(context).pop();
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -174,17 +170,16 @@ class _Collection extends State<Collection> {
                             child: Stack(
                               alignment: Alignment.center,
                               children: <Widget>[
-                                // Image.asset('assets/images/noleaves2.png'),
+                                Visibility(
+                                    visible: _front,
+                                    child:
                                 Image.asset(
                                   cardImage,
                                   fit: BoxFit.cover,
-                                ),
+                                )),
                                 Visibility(
                                     visible: _front,
                                     child: Container(
-                                        // decoration: BoxDecoration(
-                                            // border:
-                                            //     Border.all(color: Colors.black)),
                                         height: (MediaQuery.of(context)
                                                 .size
                                                 .height) / 8,
@@ -194,11 +189,8 @@ class _Collection extends State<Collection> {
                                         child: Align(
                                             alignment: Alignment.center,
                                             child:
-                                                // AutoSizeText(
                                                 Text(
                                               cards[position].cardText,
-                                              // maxFontSize: 30,
-                                              // minFontSize: 5,
                                               textAlign: TextAlign.center,
 
                                               style: TextStyle(
@@ -208,21 +200,6 @@ class _Collection extends State<Collection> {
                                                   color: Color(0xff41311F),
                                                   height: 1.4),
                                             )))),
-                                Visibility(
-                                    visible: _front,
-                                    child: Positioned(
-                                        bottom: 8,
-                                        child: Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child: AutoSizeText(
-                                            cards[position].cardID,
-                                            style: TextStyle(
-                                              fontFamily: "new",
-                                              color: Color(0xff41311F),
-                                              fontSize: getFontSize(),
-                                            ),
-                                          ),
-                                        )))
                               ],
                             )))));
               },
@@ -241,8 +218,6 @@ class _Collection extends State<Collection> {
                   alignment: Alignment.centerRight,
                   width: (MediaQuery.of(context).size.width / 2 - 30),
                   child: FlatButton(
-                    // padding: EdgeInsets.only(
-                    //     left: 50, top: 20, bottom: 20, right: 20),
                     onPressed: () {
                       myCreationsButton();
                       if (CardClass.creations) {
@@ -256,8 +231,6 @@ class _Collection extends State<Collection> {
                   ),
                 ),
                 Container(
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.center,
                   width: (60),
                   child: IconButton(
@@ -273,13 +246,9 @@ class _Collection extends State<Collection> {
                   ),
                 ),
                 Container(
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.black, width: 1)),
                   alignment: Alignment.centerLeft,
                   width: (size().width / 2 - 30),
                   child: FlatButton(
-                    // padding: EdgeInsets.only(
-                    //     left: 20, top: 20, bottom: 20, right: 50),
                     onPressed: () {
                       Navigator.of(context).pop();
                       Navigator.push(
